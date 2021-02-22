@@ -16,7 +16,6 @@
     </ol>
     <h1> Project Documentations </h1>
     <ul>
-        <li> <a href="https://docs.google.com/document/d/1WT8Mv3K6Vv-IR-IBDpr78ruoExGpiLQIEY2BgQiMBKE/edit"> Project Proposal </a></li>
         <li> <a href="http://mustafa.cavdar.bilkent.edu.tr/cs353/ProjectGroups.pdf"> Project Groups  </a></li>
         <li><a href="http://mustafa.cavdar.bilkent.edu.tr/cs353/topics.pdf"> Project Topics  </a> </li>
     </ul>
