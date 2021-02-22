@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cs 353 Group Project Page</title>
 </head>
-<body style="background-color:rgb(133, 171, 228);">
+<body style="background-color:rgb(162, 187, 224);">
     <h1> Group Participants</h1>
     <ol>
         <li>Doğa Tansel</li>
