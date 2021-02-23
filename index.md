@@ -4,6 +4,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cs 353 Group Project Page</title>
+    <h1>Meal-To-Go</h1>
 </head>
 <body style="background-color:rgb(162, 187, 224);">
     <h1> Group Participants</h1>
