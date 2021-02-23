@@ -1,4 +1,4 @@
-## CS353 Group Project Page
+## CS353 Group Project
 # Group Participants
 1. Doğa Tansel  21802917
 2. Yusuf Ardahan Doğru 21803748
