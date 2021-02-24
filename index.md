@@ -16,7 +16,7 @@
     <ul>
         <li> <a href="http://mustafa.cavdar.bilkent.edu.tr/cs353/ProjectGroups.pdf"> Project Groups  </a></li>
         <li><a href="http://mustafa.cavdar.bilkent.edu.tr/cs353/topics.pdf"> Project Topics  </a> </li>
-        <li><a href="https://drive.google.com/file/d/1jqUzuQxz5J6Uiz7fhMapYzcH1MWuQGgL/view?usp=sharing"> Project Report  </a> </li>
+        <li><a href="https://drive.google.com/file/d/1D9vsXB6zxoz2kZn0V9T2Y95_17eFJGkC/view?usp=sharing"> Project Report  </a> </li>
     </ul>
 </body>
 </html>
