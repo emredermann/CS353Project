@@ -1,0 +1,7 @@
+Objeler üzerinde ER diyagrama göre Model (MVC) diye dosya üst dosya aç.
+String --> Region
+String --> City
+
+class Region {
+    
+}
