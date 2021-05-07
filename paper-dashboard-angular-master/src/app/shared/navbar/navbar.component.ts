@@ -89,7 +89,6 @@ export class NavbarComponent implements OnInit{
           navbar.classList.add('navbar-transparent');
           navbar.classList.remove('bg-white');
         }
-
       }
 
 }
