@@ -8,7 +8,6 @@ import { AdminLayoutRoutes } from './admin-layout.routing';
 import { DashboardComponent }       from '../../pages/dashboard/dashboard.component';
 import { UserComponent }            from '../../pages/user/user.component';
 import { TableComponent }           from '../../pages/table/table.component';
-import { RestaurantsComponent }           from '../../pages/restaurants/restaurants.component';
 import { MapsComponent }            from '../../pages/maps/maps.component';
 import { BusinessComponent }   from '../../pages/business/business.component';
 import { LoginComponent }         from '../../pages/login/login.component';
@@ -27,7 +26,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     UserComponent,
     TableComponent,
     LoginComponent,
-    RestaurantsComponent,
     MapsComponent,
     BusinessComponent,
   ]
