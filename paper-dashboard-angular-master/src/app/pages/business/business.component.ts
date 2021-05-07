@@ -5,10 +5,10 @@ import { ToastrService } from "ngx-toastr";
 @Component({
     selector: 'notifications-cmp',
     moduleId: module.id,
-    templateUrl: 'notifications.component.html'
+    templateUrl: 'business.component.html'
 })
 
-export class NotificationsComponent{
+export class BusinessComponent{
   constructor(private toastr: ToastrService) {}
   showNotification(from, align) {
     const color = Math.floor(Math.random() * 5 + 1);
