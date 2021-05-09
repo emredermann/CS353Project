@@ -1,3 +1,5 @@
+import { AccountService } from './../_services/account.service';
+import { User } from './../_models/user';
 import { Component } from '@angular/core';
 
 @Component({
@@ -6,4 +8,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent{}
+export class AppComponent{
+
+    user:User;
+
+    constructor(private accountService: AccountService) {
+      this.accountService.user.subscribe(x => this.user = x);
+  }
+  logout(){
+    this.accountService.logout();
+  }
+
+}
