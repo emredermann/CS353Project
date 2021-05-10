@@ -3,9 +3,9 @@ import Chart from 'chart.js';
 
 
 @Component({
-    selector: 'dashboard-cmp',
     moduleId: module.id,
-    templateUrl: 'dashboard.component.html'
+    selector: 'user-cmp',
+    templateUrl: 'user.component.html'
 })
 
 export class UserComponent implements OnInit {
