@@ -3,10 +3,10 @@ import { Component, OnInit } from '@angular/core';
 @Component({
     selector: 'user-cmp',
     moduleId: module.id,
-    templateUrl: 'signup.component.html'
+    templateUrl: 'deliver.component.html'
 })
 
-export class SignUpComponent implements OnInit{
+export class DeliverComponent implements OnInit{
     ngOnInit(){
     }
 }
