@@ -8,10 +8,10 @@ import { BusinessComponent } from '../../pages/business/business.component';
 import { LoginComponent } from '../../pages/login/login.component';
 
 export const AdminLayoutRoutes: Routes = [
-    { path: 'dashboard',      component: DashboardComponent },
-    { path: 'signup',           component: SignUpComponent },
-    { path: 'table',          component: TableComponent },
-    { path: 'maps',           component: MapsComponent },
+    { path: 'dashboard', component: DashboardComponent },
+    { path: 'signup',    component: SignUpComponent },
+    { path: 'table',     component: TableComponent },
+    { path: 'maps',      component: MapsComponent },
     { path: 'business',  component: BusinessComponent },
-    { path: 'login',        component: LoginComponent }
+    { path: 'login',     component: LoginComponent }
 ];
