@@ -8,6 +8,6 @@ import Chart from 'chart.js';
     templateUrl: 'dashboard.component.html'
 })
 
-export class UserComponent {
-
+export class UserComponent implements OnInit {
+  ngOnInit(){}
 }
