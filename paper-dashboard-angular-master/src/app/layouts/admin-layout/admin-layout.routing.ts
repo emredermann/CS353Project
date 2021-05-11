@@ -9,7 +9,7 @@ import { UserComponent } from '../../pages/user/user.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard', component: DashboardComponent },
-    { path: 'signup',    component: DeliverComponent },
+    { path: 'deliver',    component: DeliverComponent },
     { path: 'table',     component: TableComponent },
     { path: 'maps',      component: MapsComponent },
     { path: 'business',  component: BusinessComponent },
