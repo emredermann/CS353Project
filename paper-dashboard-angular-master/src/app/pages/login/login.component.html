@@ -77,12 +77,15 @@
     <div class="col-md-8">
       <div class="card card-user">
         <div class="card-body">
+
+
+
           <form>
             <div class="row">
               <div class="col-md-5 pr-1">
                 <div class="form-group">
                   <label>Username</label>
-                  <input type="text" class="form-control"  placeholder="Username" >
+                  <input type="text" class="form-control"  placeholder="Username" formControlName= "type" (change)="changeUsername($event)">
                 </div>
               </div>
             </div>
@@ -90,24 +93,32 @@
                 <div class="col-md-5 pr-1">
                   <div class="form-group">
                     <label>Password</label>
-                    <input type="text" class="form-control"  placeholder="Password">
+                    <input type="text" class="form-control"  placeholder="Password" formControlName= "type" (change)="changePassword($event)">
                   </div>
                 </div>
               </div> 
+
               <div class="col-md-5 pr-1">
-                <input type="radio" id="delivery" name="login_type" value = "delivery">
+
+                    <input type="radio" id="delivery" name="login_type" value="delivery" formControlName= "type" (change)="changeType($event)">
                     <label for="delivery"> Delivery login</label><br>
-                <input type="radio" id="user" name="login_type" value = "user" >
+               
+                    <input type="radio" id="user" name="login_type" value="user" formControlName= "type" (change)="changeType($event)" >
                     <label for="user"> User login</label><br>
-                <input type="radio" id="owner" name="login_type" value = "owner" >
+               
+                    <input type="radio" id="owner" name="login_type" value="owner" formControlName= "type" (change)="changeType($event)" >
                     <label for="owner"> Owner login</label><br>
-            </div>
+ 
+              </div>
             <div class="row">
               <div class="login ml-auto mr-auto">
                 <button (click)="onSubmit()" type="submit" class="btn btn-primary btn-round">Login</button>
               </div>
             </div>
           </form>
+
+
+
         </div>
       </div>
     </div>

@@ -1,3 +1,4 @@
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
@@ -15,6 +16,7 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 import { UserLayoutComponent } from './layouts/user-layout/user-layout.component';
 import { DeliveryGuyLayoutComponent } from './layouts/delivery-guy-layout/delivery-guy-layout.component';
 import { OwnerLayoutComponent } from './layouts/owner-layout/owner-layout.component';
+import { BrowserModule } from "@angular/platform-browser";
 
 @NgModule({
   declarations: [
@@ -33,6 +35,9 @@ import { OwnerLayoutComponent } from './layouts/owner-layout/owner-layout.compon
     NavbarModule,
     ToastrModule.forRoot(),
     FooterModule,
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     FixedPluginModule
   ],
   providers: [],
