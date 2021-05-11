@@ -13,12 +13,16 @@ import { AppRoutes } from './app.routing';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { UserLayoutComponent } from './layouts/user-layout/user-layout.component';
+import { DeliveryGuyLayoutComponent } from './layouts/delivery-guy-layout/delivery-guy-layout.component';
+import { OwnerLayoutComponent } from './layouts/owner-layout/owner-layout.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    UserLayoutComponent
+    UserLayoutComponent,
+    DeliveryGuyLayoutComponent,
+    OwnerLayoutComponent
   ],
   imports: [
     BrowserAnimationsModule,
