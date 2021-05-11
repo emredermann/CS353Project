@@ -1,4 +1,5 @@
-import { AlertService,AccountService } from '../../_services';
+/*
+
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -68,15 +69,33 @@ export class LoginComponent implements OnInit {
                 });
     }
 }
-/*
+*/
+import { AlertService,AccountService } from '../../_services';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { first } from 'rxjs/operators';
+
 @Component({
     selector: 'login-cmp',
     moduleId: module.id,
     templateUrl: 'login.component.html'
 })
-@Component({ templateUrl: 'login.component.html' })
-export class LoginComponent{}
-*/
+
+export class LoginComponent{
+
+    loginForm: FormGroup;
+    loading = false;
+    submitted = false;
+    returnUrl: string;
+
+    ngOnInit() {
+        
+    }
+
+    onSubmit() {
+       alert('anan');
+    }
+}
+
+
