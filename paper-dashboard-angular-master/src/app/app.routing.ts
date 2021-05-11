@@ -5,13 +5,23 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 import { UserLayoutComponent } from './layouts/user-layout/user-layout.component';
 export const AppRoutes: Routes = [
   {
-    path: 'login',
+    path: '',
     component: AdminLayoutComponent,
     children: [
+<<<<<<< HEAD
         {
       path: '',
       loadChildren: './layouts/admin-layout/admin-layout.module#AdminLayoutModule'
   }]},
+=======
+      {
+        path: '',
+        loadChildren: './layouts/admin-layout/admin-layout.module#AdminLayoutModule'
+      }
+    ]
+  },
+  /*
+>>>>>>> 984caf584701deb66738bf329dded77e4c4863be
   {
     path: 'user',
     component: UserLayoutComponent,
@@ -21,8 +31,14 @@ export const AppRoutes: Routes = [
       loadChildren: './layouts/user-layout/user-layout.module#UserLayoutModule'
      }
     ]
+<<<<<<< HEAD
   },{
     path: 'deliver',
+=======
+  },
+  {
+    path: 'delivery',
+>>>>>>> 984caf584701deb66738bf329dded77e4c4863be
     component: DeliveryGuyLayoutComponent,
     children: [
         {
@@ -41,9 +57,15 @@ export const AppRoutes: Routes = [
      }
     ]
   },
+  /*
+  {
+    path: '',
+    redirectTo: 'login'
+  },
+  */
   {
     path: '**',
-    redirectTo: 'login'
+    redirectTo: ''
   }
 ]
 
