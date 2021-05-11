@@ -1,6 +1,7 @@
+import { AlertService,AccountService } from '../../_services';
 
-/** 
-import { AlertService,AccountService } from '@app/_services'
+ 
+//import { AlertService,AccountService } from '@app/_services'
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -69,7 +70,7 @@ export class LoginComponent implements OnInit {
                 });
     }
 }
-*/
+/* 
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -80,3 +81,4 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 @Component({ templateUrl: 'login.component.html' })
 export class LoginComponent{}
+*/
