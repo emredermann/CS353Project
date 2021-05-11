@@ -7,7 +7,7 @@ import { OwnerLayoutComponent } from './layouts/owner-layout/owner-layout.compon
 
 export const AppRoutes: Routes = [
   {
-    path: 'login',
+    path: '',
     component: AdminLayoutComponent,
     children: [
       {
@@ -16,6 +16,7 @@ export const AppRoutes: Routes = [
       }
     ]
   },
+  /*
   {
     path: 'user',
     component: UserLayoutComponent,
@@ -27,7 +28,7 @@ export const AppRoutes: Routes = [
     ]
   },
   {
-    path: 'deliver',
+    path: 'delivery',
     component: DeliveryGuyLayoutComponent,
     children: [
       {
@@ -46,9 +47,15 @@ export const AppRoutes: Routes = [
       }
     ]
   },
+  /*
+  {
+    path: '',
+    redirectTo: 'login'
+  },
+  */
   {
     path: '**',
-    redirectTo: 'login'
+    redirectTo: ''
   }
 ]
 
