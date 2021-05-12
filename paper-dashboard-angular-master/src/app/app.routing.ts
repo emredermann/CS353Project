@@ -9,10 +9,9 @@ export const AppRoutes: Routes = [
     path: '',
     component: AdminLayoutComponent,
     children: [
-
         {
-      path: 'login',
-      component: AdminLayoutComponent,
+      path: '',
+    //  component: AdminLayoutComponent,
       loadChildren: './layouts/admin-layout/admin-layout.module#AdminLayoutModule'
   }]},
   {
@@ -22,7 +21,7 @@ export const AppRoutes: Routes = [
 
         {
       path: 'delivery-guy-past-assignments',
-      component: DeliveryGuyLayoutComponent,
+      
       loadChildren: './layouts/delivery-guy-layout/delivery-guy-layout.module#DeliveryGuyLayoutModule'
   }]},{
     path: 'owner',
@@ -31,7 +30,7 @@ export const AppRoutes: Routes = [
 
         {
       path: 'owner-main',
-      component: OwnerLayoutComponent,
+      
       loadChildren: './layouts/owner-layout/owner-layout.module#OwnerLayoutModule'
   }]},{
     path: 'user',
@@ -40,11 +39,12 @@ export const AppRoutes: Routes = [
 
         {
       path: 'user-main',
-      component: UserLayoutComponent,
+       
       loadChildren: './layouts/user-layout/user-layout.module#UserLayoutModule'
   }]},
       {
         path: '',
+       
         loadChildren: './layouts/admin-layout/admin-layout.module#AdminLayoutModule'
       }
       /*
