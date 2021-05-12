@@ -1,0 +1,28 @@
+<div class="container text-center">
+    <h1>{{title}}</h1>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="search-restaurant">
+            <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442;  Search for restaurants in your area">
+        </div>
+        <table class="table">
+            <thead class=" text-primary">
+                <th>Name</th>
+                <th>Availability</th>
+                <th>Type</th>
+                <th>Average Delivery Time</th>
+                <th>Minimum Price</th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let restaurant of restaurants | filter:searchText">
+                    <button mat-raised-button>{{restaurant.name}}</button>
+                    <td>{{restaurant.availability}}</td>
+                    <td>{{restaurant.type}}</td>
+                    <td>{{restaurant.avgDelTime}}</td>
+                    <td>{{restaurant.minPrice}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div> 
+</div>
