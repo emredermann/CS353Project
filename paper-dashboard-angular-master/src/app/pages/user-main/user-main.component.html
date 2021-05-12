@@ -16,11 +16,15 @@
             </thead>
             <tbody>
                 <tr *ngFor="let restaurant of restaurants | filter:searchText">
-                    <button mat-raised-button>{{restaurant.name}}</button>
-                    <td>{{restaurant.availability}}</td>
-                    <td>{{restaurant.type}}</td>
-                    <td>{{restaurant.avgDelTime}}</td>
-                    <td>{{restaurant.minPrice}}</td>
+                    <mat-nav-list>
+                        <a mat-list-item [routerLink]="['/order']">
+                          <span matLine>{{restaurant.name}}</span>
+                          <span matLine>{{restaurant.availability}}</span>
+                          <span matLine>{{restaurant.type}}</span>
+                          <span matLine>{{restaurant.avgDelTime}}</span>
+                          <span matLine>{{restaurant.minPrice}}</span>
+                        </a>
+                    </mat-nav-list>
                 </tr>
             </tbody>
         </table>

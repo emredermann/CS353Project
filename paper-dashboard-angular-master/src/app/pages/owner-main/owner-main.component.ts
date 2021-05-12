@@ -23,6 +23,14 @@ export class OwnerMainComponent implements OnInit{
     public restaurantinfo: RestaurantInfo;
     private clicked = false;
 
+    constructor(){
+
+        this.restaurantinfo.ownerName = "Ali Veli";
+        this.restaurantinfo.restaurantName = "Burger King";
+        this.restaurantinfo.restaurantBranch = "Bilkent Branch";
+        this.restaurantinfo.restaurantAddress = "No. 31, Universiteler Mahallesi";
+    }
+
     ngOnInit(){
         this.tableData1 = {
             headerRow: [ 'Order No.', 'Status', 'Availability'],

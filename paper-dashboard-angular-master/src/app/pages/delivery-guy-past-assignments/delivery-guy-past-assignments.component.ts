@@ -19,6 +19,12 @@ export class DeliveryGuyPastAssignmentsComponent implements OnInit{
     public searchText: string;
     public title = 'Past Delivery Assignments';
 
+    constructor(){
+        this.delGuyInfo.deliveryGuyName = "İhsan Vekil";
+        this.delGuyInfo.rating = 3.2;
+        this.delGuyInfo.joinedOn = "4.3.2020";
+    }
+
     assignments = [
         {customerName:'Ahmet Mehmet',  
             orderDetails:['Quarterpounder Hamburger with fries', 'Coke Zero (35 mL)', 'Total: $35'], 
