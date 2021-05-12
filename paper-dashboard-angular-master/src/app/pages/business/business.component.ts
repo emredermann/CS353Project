@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
-import { ToastrService } from "ngx-toastr";
-
+ 
+import Chart from 'chart.js';
+import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
     selector: 'notifications-cmp',
@@ -9,78 +11,46 @@ import { ToastrService } from "ngx-toastr";
 })
 
 export class BusinessComponent{
-  constructor(private toastr: ToastrService) {}
-  showNotification(from, align) {
-    const color = Math.floor(Math.random() * 5 + 1);
+  loginForm = new FormGroup({
+    type : new FormControl('',Validators.required),
+});
+ 
+username : string;
+password : string;
+phone:string;
+address : string;
+restaurantName:string;
+city :string;e
+submitted = false;
+returnUrl: string;
 
-    switch (color) {
-      case 1:
-        this.toastr.info(
-        '<span data-notify="icon" class="nc-icon nc-bell-55"></span><span data-notify="message">Welcome to <b>Paper Dashboard Angular</b> - a beautiful bootstrap dashboard for every web developer.</span>',
-          "",
-          {
-            timeOut: 4000,
-            closeButton: true,
-            enableHtml: true,
-            toastClass: "alert alert-info alert-with-icon",
-            positionClass: "toast-" + from + "-" + align
-          }
-        );
-        break;
-      case 2:
-        this.toastr.success(
-          '<span data-notify="icon" class="nc-icon nc-bell-55"></span><span data-notify="message">Welcome to <b>Paper Dashboard Angular</b> - a beautiful bootstrap dashboard for every web developer.</span>',
-          "",
-          {
-            timeOut: 4000,
-            closeButton: true,
-            enableHtml: true,
-            toastClass: "alert alert-success alert-with-icon",
-            positionClass: "toast-" + from + "-" + align
-          }
-        );
-        break;
-      case 3:
-        this.toastr.warning(
-        '<span data-notify="icon" class="nc-icon nc-bell-55"></span><span data-notify="message">Welcome to <b>Paper Dashboard Angular</b> - a beautiful bootstrap dashboard for every web developer.</span>',
-          "",
-          {
-            timeOut: 4000,
-            closeButton: true,
-            enableHtml: true,
-            toastClass: "alert alert-warning alert-with-icon",
-            positionClass: "toast-" + from + "-" + align
-          }
-        );
-        break;
-      case 4:
-        this.toastr.error(
-        '<span data-notify="icon" class="nc-icon nc-bell-55"></span><span data-notify="message">Welcome to <b>Paper Dashboard Angular</b> - a beautiful bootstrap dashboard for every web developer.</span>',
-          "",
-          {
-            timeOut: 4000,
-            enableHtml: true,
-            closeButton: true,
-            toastClass: "alert alert-danger alert-with-icon",
-            positionClass: "toast-" + from + "-" + align
-          }
-        );
-        break;
-      case 5:
-        this.toastr.show(
-        '<span data-notify="icon" class="nc-icon nc-bell-55"></span><span data-notify="message">Welcome to <b>Paper Dashboard Angular</b> - a beautiful bootstrap dashboard for every web developer.</span>',
-          "",
-          {
-            timeOut: 4000,
-            closeButton: true,
-            enableHtml: true,
-            toastClass: "alert alert-primary alert-with-icon",
-            positionClass: "toast-" + from + "-" + align
-          }
-        );
-        break;
-      default:
-        break;
-    }
-  }
+ngOnInit() {
+    
 }
+get f(){
+    return this.loginForm.controls;
+  }
+onSubmit() {
+   alert(this.username+"\n"+this.password+"\n"+this.phone+"\n"+this.address+"\n"+this.city+"\n"+this.restaurantName);
+}
+getPassword(e){
+    this.password = e.target.value;
+}
+getUsername(e){
+    this.username = e.target.value;
+}
+getPhone(e){
+    this.phone = e.target.value;
+}
+getAddress(e){
+    this.address = e.target.value;
+}
+getCity(e){
+    this.city = e.target.value;
+}
+getRestaurantName(e){
+  this.restaurantName = e.target.value;
+}
+}
+
+
