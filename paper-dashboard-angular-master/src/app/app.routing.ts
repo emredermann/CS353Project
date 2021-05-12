@@ -11,7 +11,6 @@ export const AppRoutes: Routes = [
     children: [
         {
       path: '',
-    //  component: AdminLayoutComponent,
       loadChildren: './layouts/admin-layout/admin-layout.module#AdminLayoutModule'
   }]},
   {
@@ -44,16 +43,8 @@ export const AppRoutes: Routes = [
   }]},
       {
         path: '',
-       
         loadChildren: './layouts/admin-layout/admin-layout.module#AdminLayoutModule'
       }
-      /*
-      {
-        
-        path: '',
-        redirectTo: 'login'
-      }
-      */
     ]
 
 
