@@ -1,3 +1,32 @@
+<div class="card">
+    <div class="card-header">
+      <h4 class="card-title">{{getCustomerName()}}</h4>
+    </div>
+    <div class="card-body">
+      <ul class="list-unstyled team-members">
+
+        <li>
+          <div class="row">
+            <div class="col-md-2 col-2">
+              <div class="avatar">
+                <img src="assets/img/faces/ayo-ogunseinde-2.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
+              </div>
+            </div>
+            <div class="col-md-7 col-7">
+              {{getCredits()}}
+              <br />
+              {{getAddress()}}
+            </div>
+            <div class="col-md-3 col-3 text-right">
+              <button class="btn btn-sm btn-outline-success btn-round btn-icon"><i class="fa fa-envelope"></i></button>
+            </div>
+          </div>
+        </li>
+
+      </ul>
+    </div>
+</div>
+
 <div class="container text-center">
     <h1>{{title}}</h1>
 </div>

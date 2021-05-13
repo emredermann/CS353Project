@@ -1,0 +1,137 @@
+<div class="card">
+    <div class="card-header">
+      <h4 class="card-title">{{getCustomerName()}}</h4>
+    </div>
+    <div class="card-body">
+      <ul class="list-unstyled team-members">
+
+        <li>
+          <div class="row">
+            <div class="col-md-2 col-2">
+              <div class="avatar">
+                <img src="assets/img/faces/ayo-ogunseinde-2.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
+              </div>
+            </div>
+            <div class="col-md-7 col-7">
+              {{getCredits()}}
+              <br />
+              {{getAddress()}}
+            </div>
+            <div class="col-md-3 col-3 text-right">
+              <button class="btn btn-sm btn-outline-success btn-round btn-icon"><i class="fa fa-envelope"></i></button>
+            </div>
+          </div>
+        </li>
+
+      </ul>
+    </div>
+</div>
+
+<ng-template #contentOrderInfo let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Order Details</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+    <form>
+        <div class="form-group">
+        <p>{{getOrderItems()}}</p>
+        <p>{{getOrderPrice()}}</p>
+        </div>
+    </form>
+    </div>
+</ng-template>
+
+<ng-template #contentMyReview let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Your Review and Rating</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+    <form>
+        <div class="form-group">
+            <form class="review-form">
+                <mat-form-field class="review-full-width">
+                  <mat-label>Leave a review</mat-label>
+                  <input matInput value="{{getMyReview()}}">
+                </mat-form-field>
+              
+                <mat-form-field class="review-full-width">
+                  <mat-label>Rate the delivery</mat-label>
+                  <textarea matInput value="{{getMyRating()}}"></textarea>
+                </mat-form-field>
+              </form>
+        <div class="example-button-row">
+            <button type="button" class="btn btn-outline-dark" (click)="saveReview()">Save Review</button>
+            <button type="button" class="btn btn-outline-dark" (click)="cancelReview()">Cancel</button>
+          </div>
+        </div>
+    </form>
+    </div>
+</ng-template>
+
+<ng-template #contentDelGuyReview let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Delivery Guy's Review of You</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+    <form>
+        <div class="form-group">
+        <p>{{getdelGuyReview()}}</p>
+        <p>{{getdelGuyRating()}}</p>
+        </div>
+    </form>
+    </div>
+</ng-template>
+
+<ng-template #contentRestaurantResponse let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Restaurant's Response</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+    <form>
+        <div class="form-group">
+        <p>{{getResponse()}}</p>
+        </div>
+    </form>
+    </div>
+</ng-template>
+
+<div class="container">
+  <div class="row">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>Order No.</th>
+        <th>Order Status</th>
+        <th>My Rating and Review</th>
+        <th>Delivery Guy Rating and Review</th>
+        <th>Restaurant Response</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let order of orders">
+        <button type="button" (click)="open(contentOrderInfo)" (click)="setOrderDetails(order.items, order.price)">{{order.no}}</button>
+        <td>{{order.status}}</td>
+        <button type="button" (click)="open(contentMyReview)" (click)="setMyReview(order.myReview, order.myRating)">See and edit rating and review</button>
+        <button type="button" (click)="open(contentDelGuyReview)" (click)="setDelGuyReview(order.delGuyReview, order.delGuyRating)">See delivery-guy rating and review</button>
+        <button type="button" (click)="open(contentRestaurantResponse)" (click)="setResponse(order.response)">See restaurant's response to your review</button>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<hr>
+
+<pre>{{ closeResult }}</pre>
