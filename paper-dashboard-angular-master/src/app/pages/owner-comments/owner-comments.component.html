@@ -121,11 +121,11 @@
       </thead>
       <tbody>
       <tr *ngFor="let order of orders">
-        <button type="button" (click)="open(contentOrderInfo)" (click)="setOrderDetails(order.items, order.price)">{{order.no}}</button>
+        <button type="button" (click)="open(contentOrderInfo)" (click)="setOrderDetails(order.no,order.items, order.price)">{{order.no}}</button>
         <td>{{order.status}}</td>
-        <button type="button" (click)="open(contentCustomerReview)" (click)="setCustomerReview(order.myReview, order.myRating)">See customer's rating and review</button>
-        <button type="button" (click)="open(contentDelGuyReview)" (click)="setDelGuyReview(order.delGuyReview, order.delGuyRating)">See delivery-guy's rating and review</button>
-        <button type="button" (click)="open(contentMyResponse)" (click)="setResponse(order.response)">See and edit my response</button>
+        <button type="button" (click)="open(contentCustomerReview)" (click)="setCustomerReview(order.no,order.myReview, order.myRating)">See customer's rating and review</button>
+        <button type="button" (click)="open(contentDelGuyReview)" (click)="setDelGuyReview(order.no,order.delGuyReview, order.delGuyRating)">See delivery-guy's rating and review</button>
+        <button type="button" (click)="open(contentMyResponse)" (click)="setResponse(order.no,order.response)">See and edit my response</button>
       </tr>
       </tbody>
     </table>
