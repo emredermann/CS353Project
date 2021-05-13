@@ -28,4 +28,20 @@ export class UserMainComponent implements OnInit{
     ngOnInit(){ //Database'den çekilecek kısım bu
         
     }
+    // Search text datasını alıyor.
+    getCity(e){
+        this.searchText = e.target.value;
+    }
+    proceedToCheckout(){
+        
+    }
+    addToCart(){
+
+    }
+    saveOrderAsCombo(){
+
+    }
+    cancelFinishOrder(){
+
+    }
 }

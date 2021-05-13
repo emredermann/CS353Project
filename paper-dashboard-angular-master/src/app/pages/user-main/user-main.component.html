@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="search-restaurant">
-            <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442;  Search for restaurants in your area">
+            <input class="form-control" type="text" name="search" value="" (change)="getCity($event)" autocomplete="off" placeholder="&#61442;  Search for restaurants in your area">
         </div>
         <table class="table">
             <thead class=" text-primary">
