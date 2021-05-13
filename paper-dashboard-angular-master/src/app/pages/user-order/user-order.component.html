@@ -61,15 +61,11 @@
             </thead>
             <tbody>
                 <tr *ngFor="let item of menu | filter:searchText">
-                    <mat-nav-list>
-                        <a>
-                            <span matLine>{{item.itemName}}</span>
-                            <span matLine>{{item.price}}</span>
-                            <button mat-icon-button (click)="open(content)">
-                                <mat-icon>add</mat-icon>
-                            </button>
-                        </a>
-                    </mat-nav-list>
+                    <td>{{item.itemName}}</td>
+                    <td>{{item.price}}</td>
+                    <button mat-icon-button (click)="open(content)">
+                        <mat-icon>add</mat-icon>
+                    </button>
                 </tr>
             </tbody>
         </table>
