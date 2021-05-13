@@ -31,7 +31,7 @@
         <div class="form-group">
         <label for="choice">Select your size of choice</label>
         <p>
-        <select matNativeControl required>
+        <select matNativeControl required [value] ="selectedSize">
             <option value="smallSize">Small (90g)</option>
             <option value="mediumSize">Medium (120g)</option>
             <option value="largeSize">Large (180g)</option>
@@ -41,7 +41,7 @@
     </form>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-outline-dark" (click)="addToCart()">Add to Cart</button>
+        <button type="button" class="btn btn-outline-dark" (click)="addToCart($value)" value="item">Add to Cart</button>
         <button type="button" class="btn btn-outline-dark" (click)="saveOrderAsCombo()">Save Order as Combo</button>
     </div>
 </ng-template>
@@ -63,7 +63,7 @@
                 <tr *ngFor="let item of menu | filter:searchText">
                     <td>{{item.itemName}}</td>
                     <td>{{item.price}}</td>
-                    <button mat-icon-button (click)="open(content)">
+                    <button mat-icon-button (click)="open(content)" >
                         <mat-icon>add</mat-icon>
                     </button>
                 </tr>
@@ -72,8 +72,5 @@
         <button type="button" class="btn btn-outline-dark" (click)="open(content2)">Finish Order</button>
     </div> 
 </div>
-
-
 <hr>
-
 <pre>{{ closeResult }}</pre>
