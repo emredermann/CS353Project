@@ -1,5 +1,5 @@
+import { userOrder } from './../../_models/userOrder';
 import { deliveryGuy } from './../../_models/deliveryGuy';
- 
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -14,7 +14,20 @@ export class DeliveryGuyPastAssignmentsComponent implements OnInit{
     public searchText: string;
     public title = 'Past Delivery Assignments';
 
-    assignments = [
+   public assignments : userOrder = {
+    idNo:1,
+    items: ['Quarterpounder Hamburger with fries', 'Coke Zero (35 mL)', 'Total: $35'],
+    date: new Date(),
+    price: 124,
+    restaurantName:"McDonalds",
+    restaurantReview:"Very Good",
+    restaurantRating: 12,
+    delGuyReview: "Very Bad",
+    delGuyRating:4,
+    restaurantResponse:"Test",
+    orderState:"pending",
+}  ;
+    /*[
         {customerName:'Ahmet Mehmet',  
             orderDetails:['Quarterpounder Hamburger with fries', 'Coke Zero (35 mL)', 'Total: $35'], 
             deliveryStatus:'Delivered', serviceRating: '4.5', restaurantName:"BurgerKing"} ,
@@ -28,7 +41,7 @@ export class DeliveryGuyPastAssignmentsComponent implements OnInit{
             orderDetails:['Quarterpounder Cheeseburger with fries', 'Coke Zero (35 mL)', 'Total: $35'], 
             deliveryStatus:'Delivered', serviceRating: '2.5',restaurantName:"McDonalds"} ,
     ];
-
+*/
     ngOnInit(){ //Database'den çekilecek kısım bu
         
     }
