@@ -22,16 +22,16 @@ export class DeliveryGuyPastAssignmentsComponent implements OnInit{
     assignments = [
         {customerName:'Ahmet Mehmet',  
             orderDetails:['Quarterpounder Hamburger with fries', 'Coke Zero (35 mL)', 'Total: $35'], 
-            deliveryStatus:'Delivered', serviceRating: '4.5'} ,
+            deliveryStatus:'Delivered', serviceRating: '4.5', restaurantName:"BurgerKing"} ,
         {customerName:'Ali Veli',  
             orderDetails:['2 Large Margaritas', 'California Rolls (8x)','Coke Zero (1L)', 'Total: $59.98'], 
-            deliveryStatus:'Delivery Request Denied', serviceRating: 'none'} ,
+            deliveryStatus:'Delivery Request Denied', serviceRating: 'none' ,restaurantName:"Local71"} ,
         {customerName:'Hakan Şükür',  
             orderDetails:['2 Large Margaritas', '2 Small Margaritas', 'Coke Zero (35 mL)', 'Total: $65'], 
-            deliveryStatus:'Delivery cancelled by customer', serviceRating: 'none'} ,
+            deliveryStatus:'Delivery cancelled by customer', serviceRating: 'none',restaurantName:"Local"} ,
         {customerName:'Mehmet Erbakan',  
             orderDetails:['Quarterpounder Cheeseburger with fries', 'Coke Zero (35 mL)', 'Total: $35'], 
-            deliveryStatus:'Delivered', serviceRating: '2.5'} ,
+            deliveryStatus:'Delivered', serviceRating: '2.5',restaurantName:"McDonalds"} ,
     ];
 
     ngOnInit(){ //Database'den çekilecek kısım bu
