@@ -25,7 +25,7 @@ export class OwnerMainComponent implements OnInit{
                                 {header: 3, status: "Delivered", order: "Cheeseburger"},
                                 {header: 2, status: "Cancelled by customer", order: "Sandwich"},
                                 {header: 1, status: "Delivered", order: "Cheeseburger"}
-    ];;
+    ];
     public restaurantinfo: RestaurantInfo = {ownerName: "Ali Veli", restaurantName: "Burger King", 
         restaurantBranch: "Bilkent", restaurantAddress: "ABC"};
     private clicked = false;
