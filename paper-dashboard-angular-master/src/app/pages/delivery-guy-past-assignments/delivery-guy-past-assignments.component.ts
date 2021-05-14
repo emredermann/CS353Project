@@ -1,11 +1,6 @@
+import { deliveryGuy } from './../../_models/deliveryGuy';
+ 
 import { Component, OnInit } from '@angular/core';
-
-export class DeliveryGuyInfo {
-    deliveryGuyName: string;
-    job: string;
-    rating: number;
-    joinedOn: string;
-}
 
 @Component({
     selector: 'delivery-guy-past-assignments-cmp',
@@ -14,7 +9,7 @@ export class DeliveryGuyInfo {
 })
 
 export class DeliveryGuyPastAssignmentsComponent implements OnInit{
-    public delGuyInfo: DeliveryGuyInfo = {deliveryGuyName: "İhsan Vekil", job: "Delivery Guy", rating: 3.5, joinedOn: "4.3.2020"};
+    public delGuyInfo: deliveryGuy = {deliveryGuyName: "İhsan Vekil", job: "Delivery Guy", rating: 3.5, joinedOn: "4.3.2020" ,status:"pending"};
     private clicked = false;
     public searchText: string;
     public title = 'Past Delivery Assignments';
