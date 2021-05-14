@@ -10,8 +10,8 @@ export const DeliveryGuyLayoutRoutes: Routes = [
     { path: 'login, component: LoginComponent'},
     { path: 'deliver',    component: DeliverComponent },
     //{ path: 'table',     component: TableComponent },
-    { path: 'past-assignments',     component: DeliveryGuyPastAssignmentsComponent },
+    { path: 'delivery-guy-past-assignments',     component: DeliveryGuyPastAssignmentsComponent },
     //{ path: 'new-assignments',     component: DeliveryGuyNewAssignmentsComponent },
-    { path: 'specify-region',     component: DeliveryGuyRegionSpecificationComponent },
+    { path: 'delivery-guy-region-specification',     component: DeliveryGuyRegionSpecificationComponent },
 ];
 

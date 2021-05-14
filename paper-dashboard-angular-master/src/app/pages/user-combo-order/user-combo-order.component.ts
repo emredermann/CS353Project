@@ -14,9 +14,9 @@ interface PersonalInfo {
 }
 
 @Component({
-    selector: 'user-order-cmp',
+    selector: 'user-combo-order-cmp',
     moduleId: module.id,
-    templateUrl: 'user-order.component.html'
+    templateUrl: 'user-combo-order.component.html'
 })
 
 export class UserComboOrderComponent implements OnInit { 

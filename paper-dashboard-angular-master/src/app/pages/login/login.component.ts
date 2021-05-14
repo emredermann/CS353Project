@@ -18,6 +18,8 @@ interface User{
     templateUrl: 'login.component.html'
 })
 export class LoginComponent{
+    private route: ActivatedRoute;
+    private router: Router;
 
     loginForm = new FormGroup({
         type : new FormControl('',Validators.required),
@@ -45,9 +47,11 @@ export class LoginComponent{
         return this.loginForm.controls;
       }
     onSubmit() {
-      // alert(this.username+  " has been clicked with password " + this.password + " as "+ this.value);
+        alert(this.username+  " has been clicked with password " + this.password + " as "+ this.value);
         this.login();
     }
+
+
     changeType(e){
         if(e.target.value == 'user')
             this.loginType = 1;
@@ -72,8 +76,9 @@ export class LoginComponent{
        if(this.loginType == 1){
             for(let i = 0; i < this.user.length;i++){
                 if(this.username == this.user[i].username && this.password == this.user[i].password)
-                {
-                    return this.user;
+                {   
+                    this.router.navigateByUrl('user');
+                    //return this.user;
                 }
         }
             return NONE_TYPE;
@@ -83,7 +88,8 @@ export class LoginComponent{
         for(let i = 0; i < this.user.length;i++){
             if(this.username == this.user[i].username && this.password == this.user[i].password)
             {
-                return this.user;
+                this.router.navigateByUrl('deliver');
+                //return this.user;
             }
     }
         return NONE_TYPE;
@@ -93,7 +99,8 @@ export class LoginComponent{
         for(let i = 0; i < this.user.length;i++){
             if(this.username == this.user[i].username && this.password == this.user[i].password)
             {
-                return this.user;
+                this.router.navigateByUrl('owner');
+                //return this.user;
             }
     }
         return NONE_TYPE;
