@@ -12,7 +12,7 @@ export class DeliveryGuyPastAssignmentsComponent implements OnInit{
     public delGuyInfo: deliveryGuy = {deliveryGuyName: "İhsan Vekil", job: "Delivery Guy", rating: 3.5, joinedOn: "4.3.2020" ,status:"pending"};
     public searchText: string;
     public title = 'Past Delivery Assignments';
-    
+
     public assignments : userOrder[]= [{
     customerName: "İnsan Çocuğu",
     idNo:1,
@@ -40,21 +40,7 @@ export class DeliveryGuyPastAssignmentsComponent implements OnInit{
     restaurantResponse:"Test",
     orderState:"pending"}
     ];
-    /*[
-        {customerName:'Ahmet Mehmet',  
-            orderDetails:['Quarterpounder Hamburger with fries', 'Coke Zero (35 mL)', 'Total: $35'], 
-            deliveryStatus:'Delivered', serviceRating: '4.5', restaurantName:"BurgerKing"} ,
-        {customerName:'Ali Veli',  
-            orderDetails:['2 Large Margaritas', 'California Rolls (8x)','Coke Zero (1L)', 'Total: $59.98'], 
-            deliveryStatus:'Delivery Request Denied', serviceRating: 'none' ,restaurantName:"Local71"} ,
-        {customerName:'Hakan Şükür',  
-            orderDetails:['2 Large Margaritas', '2 Small Margaritas', 'Coke Zero (35 mL)', 'Total: $65'], 
-            deliveryStatus:'Delivery cancelled by customer', serviceRating: 'none',restaurantName:"Local"} ,
-        {customerName:'Mehmet Erbakan',  
-            orderDetails:['Quarterpounder Cheeseburger with fries', 'Coke Zero (35 mL)', 'Total: $35'], 
-            deliveryStatus:'Delivered', serviceRating: '2.5',restaurantName:"McDonalds"} ,
-    ];
-*/
+    
     ngOnInit(){ //Database'den çekilecek kısım bu
         
     }
