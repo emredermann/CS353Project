@@ -48,12 +48,13 @@
                     <th scope="col">Restaurant Name</th>
                 </thead>
                 <tbody>
-                  <tr  *ngFor="let assignment of assignments" >
-                          <td>{{assignment.customerName}}</td>
-                          <td>{{assignment.orderDetails}}</td>
-                          <td>{{assignment.deliveryStatus}}</td>
-                          <td>{{assignment.serviceRating}}</td>
-                          <td>{{assignment.restaurantName}}</td>
+                  <h2>ARABA</h2>
+                  <tr *ngFor="let assignment of assignments">
+                    <td>{{assignment.customerName}}</td>
+                    <td>{{assignment.items}}</td>
+                    <td>{{assignment.orderState}}</td>
+                    <td>{{assignment.restaurantRating}}</td>
+                    <td>{{assignment.restaurantName}}</td>
                   </tr>
                 </tbody>
             </table>

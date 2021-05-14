@@ -1,4 +1,5 @@
 export class userOrder{
+    customerName: string;
     idNo:number;
     items: any[];
     date:   Date;

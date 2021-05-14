@@ -11,10 +11,10 @@ import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
  
 export class OwnerCommentsComponent implements OnInit{
-    public orders: userOrder [] = [{idNo: 5, items: ["abc","cde"], date: new Date(), price: 120.45, 
+    public orders: userOrder [] = [{customerName: "İnsan Çocuğu", idNo: 5, items: ["abc","cde"], date: new Date(), price: 120.45, 
                     restaurantName: "Burger King", restaurantReview: "Nice!", restaurantRating:4.5, delGuyReview:"Cool!",delGuyRating: 3.9,
                     restaurantResponse:"Thanks!",orderState: "Delivered"},
-                    {idNo: 3, items: ["adf","dsg"], date: new Date(), price: 30.15, 
+                    {customerName: "İnsan Çocuğu 2", idNo: 3, items: ["adf","dsg"], date: new Date(), price: 30.15, 
                     restaurantName: "ASPAVA", restaurantReview: "Nice!", restaurantRating:4.5, delGuyReview:"Cool!",delGuyRating: 3.9,
                     restaurantResponse:"Thanks!",orderState: "Delivered"}];
 

@@ -5,19 +5,19 @@ import { Component, OnInit } from '@angular/core';
 
 
 @Component({
-    selector: 'delivery-guy-past-assignments-cmp',
+    selector: 'delivery-guy-new-assignments-cmp',
     moduleId: module.id,
-    templateUrl: 'delivery-guy-past-assignments.component.html'
+    templateUrl: 'delivery-guy-new-assignments.component.html'
 })
 
 export class DeliveryGuyNewAssignmentsComponent implements OnInit{
     public delGuyInfo: deliveryGuy = {deliveryGuyName: "İhsan Vekil", job: "Delivery Guy", rating: 3.5, joinedOn: "4.3.2020", status :"available"};
     private clicked = false;
     public searchText: string;
-    public title = 'Past Delivery Assignments';
+    public title = 'New Delivery Assignments';
     
     //There will be one assignment
-    assignment : userOrder ={ idNo:1,
+    assignments: userOrder []=[{ customerName: "Yarak Başı", idNo:1,
         items:['Quarterpounder Cheeseburger with fries', 'Coke Zero (35 mL)', 'Total: $35'],
         date: new Date(), 
         price: 100,
@@ -27,7 +27,7 @@ export class DeliveryGuyNewAssignmentsComponent implements OnInit{
         delGuyReview: "Very bad",
         delGuyRating:7,
         restaurantResponse:"Good customer",
-        orderState: "pending"};
+        orderState: "pending"}];
 
     ngOnInit(){ //Database'den çekilecek kısım bu
     }

@@ -121,7 +121,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let order of orders; index as i">
+      <tr *ngFor="let order of orders">
         <button type="button" (click)="open(contentOrderInfo)">{{order.idNo}}</button>
         <td>{{order.orderState}}</td>
         <button type="button" (click)="open(contentCustomerReview)" >See customer's rating and review</button>

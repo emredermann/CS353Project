@@ -10,11 +10,11 @@ import { Component, OnInit } from '@angular/core';
 
 export class DeliveryGuyPastAssignmentsComponent implements OnInit{
     public delGuyInfo: deliveryGuy = {deliveryGuyName: "İhsan Vekil", job: "Delivery Guy", rating: 3.5, joinedOn: "4.3.2020" ,status:"pending"};
-    private clicked = false;
     public searchText: string;
     public title = 'Past Delivery Assignments';
-
-   public assignments : userOrder = {
+    
+    public assignments : userOrder[]= [{
+    customerName: "İnsan Çocuğu",
     idNo:1,
     items: ['Quarterpounder Hamburger with fries', 'Coke Zero (35 mL)', 'Total: $35'],
     date: new Date(),
@@ -25,8 +25,21 @@ export class DeliveryGuyPastAssignmentsComponent implements OnInit{
     delGuyReview: "Very Bad",
     delGuyRating:4,
     restaurantResponse:"Test",
-    orderState:"pending",
-}  ;
+    orderState:"pending"},
+
+    {customerName: "İnsan Çocuğu2",
+    idNo:1,
+    items: ['Quarterpounder Hamburger with fries', 'Coke Zero (35 mL)', 'Total: $35'],
+    date: new Date(),
+    price: 124,
+    restaurantName:"McDonalds",
+    restaurantReview:"Very Good",
+    restaurantRating: 12,
+    delGuyReview: "Very Bad",
+    delGuyRating:4,
+    restaurantResponse:"Test",
+    orderState:"pending"}
+    ];
     /*[
         {customerName:'Ahmet Mehmet',  
             orderDetails:['Quarterpounder Hamburger with fries', 'Coke Zero (35 mL)', 'Total: $35'], 
