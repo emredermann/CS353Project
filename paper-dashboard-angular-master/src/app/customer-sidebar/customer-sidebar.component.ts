@@ -11,8 +11,7 @@ export interface RouteInfo {
 
 export const ROUTES: RouteInfo[] = [
     { path: '/login',           title: 'Log In',    icon:'nc-spaceship',  class: '' },
-    { path: '/user',            title: 'Sign Up To User',    icon:'nc-bell-55',  class: '' },
-    { path: '/table',           title: 'Available Restaurants',        icon:'nc-tile-56',    class: '' },
+    { path: '/customer-main',    title: 'Choose Restaurant',   icon:'nc-tile-56',    class: '' },
     { path: '/order-history',   title: 'Order History',      icon:'nc-single-02',  class: '' },
     { path: '/combo',           title: 'Customize Combos',     icon:'nc-bank',    class: '' },
     { path: '/combo-order',   title: 'Order Combos',      icon:'nc-single-02',  class: '' }
