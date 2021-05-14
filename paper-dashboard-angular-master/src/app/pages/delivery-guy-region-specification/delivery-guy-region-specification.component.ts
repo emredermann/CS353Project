@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 interface DeliveryGuyInfo {
     deliveryGuyName: string;
-    job: "Delivery Guy";
+    job: string;
     rating: number;
     joinedOn: string;
 }
@@ -14,17 +14,10 @@ interface DeliveryGuyInfo {
 })
 
 export class DeliveryGuyRegionSpecificationComponent implements OnInit{
-    /*
-    public delGuyInfo: DeliveryGuyInfo;
+     public delGuyInfo: DeliveryGuyInfo = {deliveryGuyName: "İhsan Vekil", job: "Delivery Guy", rating: 3.5, joinedOn: "4.3.2020"};
     private clicked = false;
     public searchText: string;
     public title = 'Past Delivery Assignments';
-
-    constructor(){
-        this.delGuyInfo.deliveryGuyName = "İhsan Vekil";
-        this.delGuyInfo.rating = 3.2;
-        this.delGuyInfo.joinedOn = "4.3.2020";
-    }
 
     assignments = [
         {customerName:'Ahmet Mehmet',  
@@ -40,9 +33,10 @@ export class DeliveryGuyRegionSpecificationComponent implements OnInit{
             orderDetails:['Quarterpounder Cheeseburger with fries', 'Coke Zero (35 mL)', 'Total: $35'], 
             deliveryStatus:'Delivered', serviceRating: '2.5'} ,
     ];
-*/
-/*
-  
+
+    ngOnInit(){ //Database'den çekilecek kısım bu
+        
+    }
 
     getName(){
         return this.delGuyInfo.deliveryGuyName;
@@ -60,8 +54,6 @@ export class DeliveryGuyRegionSpecificationComponent implements OnInit{
     actionMethod() {
         console.log("Delivery-guy has been requested!");
   }
-  */
-  ngOnInit(){ //Database'den çekilecek kısım bu
-        
-  }
+
+  
 }

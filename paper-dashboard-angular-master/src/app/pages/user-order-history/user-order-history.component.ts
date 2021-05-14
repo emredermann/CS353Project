@@ -2,21 +2,21 @@ import { UserOrderComponent } from './../user-order/user-order.component';
 import { Component, OnInit } from '@angular/core';
 import { NONE_TYPE } from '@angular/compiler';
 
-interface PersonalInfo {
+export class PersonalInfo {
     fullName: string;
     credits: number;
     address: string;
 }
-interface userOrder{
+export class userOrder{
     idNo:number;
-    items: any[];
-    date:   Date;
+    items: string;
+    date:  string;
     price: number;
     restaurantReview:string;
     restaurantRating: number;
     delGuyReview: string;
     delGuyRating:number;
-    restaurantResponse
+    restaurantResponse: string;
     orderState:boolean;
 }
 
@@ -27,9 +27,15 @@ interface userOrder{
 })
 
 export class UserOrderHistoryComponent implements OnInit{
-   orders: userOrder [];
+    orders: userOrder[] = [{idNo: 5, items: "pickles and shrooms", date: "2019-01-16", 
+                        price: 15, restaurantReview: "Great!", restaurantRating: 3.5, delGuyReview: "Not so great",
+                        delGuyRating: 2.6, restaurantResponse: "Nice!", orderState: true}, 
+                        {idNo: 5, items: "pickles and shrooms", date: "2019-01-16", 
+                        price: 15, restaurantReview: "Great!", restaurantRating: 3.5, delGuyReview: "Not so great",
+                        delGuyRating: 2.6, restaurantResponse: "Nice!", orderState: true}
+                    ];
     counter : number;
-    user : PersonalInfo;
+    user: PersonalInfo = {fullName: "Kemal Kılıçdaroğlu", credits: 120.43, address:"Somewhere in bilkent" };
 
     ngOnInit(){ //Database'den çekilecek kısım bu
         this.counter = 0;
