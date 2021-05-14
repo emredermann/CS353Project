@@ -18,6 +18,11 @@ import { BrowserModule } from "@angular/platform-browser";
 import { OwnerSidebarModule } from "./owner-sidebar/owner-sidebar.module";
 import { DeliveryGuySidebarComponent } from "./delivery-guy-sidebar/delivery-guy-sidebar.component";
 import { DeliveryGuySidebarModule } from './delivery-guy-sidebar/delivery-guy-sidebar.module';
+import { ErrorInterceptor, JwtInterceptor } from './_helpers';
+
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+
+import { RestaurantService } from './_services/restaurant-service/restaurant.service';
 
 @NgModule({
   declarations: [
@@ -41,9 +46,13 @@ import { DeliveryGuySidebarModule } from './delivery-guy-sidebar/delivery-guy-si
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    FixedPluginModule
+    HttpClientModule,
+    FixedPluginModule,
+    //RestaurantService
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }, RestaurantService
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
