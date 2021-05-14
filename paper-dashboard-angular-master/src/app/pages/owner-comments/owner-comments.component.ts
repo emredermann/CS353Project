@@ -27,12 +27,12 @@ interface restaurantOwner{
     address:string;
 }
 @Component({
-    selector: 'user-order-history-cmp',
+    selector: 'owner-comments-cmp',
     moduleId: module.id,
-    templateUrl: 'user-order-history.component.html'
+    templateUrl: 'owner-comments.component.html'
 })
 
-export class UserOrderHistoryComponent implements OnInit{
+export class OwnerCommentsComponent implements OnInit{
     orders: userOrder [];
     counter : number;
     user : PersonalInfo;

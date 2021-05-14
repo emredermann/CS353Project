@@ -7,8 +7,6 @@ import { TableComponent } from '../../pages/table/table.component';
 export const DeliveryGuyLayoutRoutes: Routes = [
     { path: 'deliver',    component: DeliverComponent },
     { path: 'table',     component: TableComponent },
- //   { path: 'delivery-guy-new-assignments',     component: DeliveryGuyNewAssignmentComponent },
     { path: 'delivery-guy-past-assignments',     component: DeliveryGuyPastAssignmentsComponent },
     { path: 'delivery-guy-region-specification',     component: DeliveryGuyRegionSpecificationComponent },
-    
 ];
