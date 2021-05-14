@@ -38,7 +38,6 @@ export const AppRoutes: Routes = [
 
         {
       path: 'user-main',
-       
       loadChildren: './layouts/user-layout/user-layout.module#UserLayoutModule'
   }]},
       {

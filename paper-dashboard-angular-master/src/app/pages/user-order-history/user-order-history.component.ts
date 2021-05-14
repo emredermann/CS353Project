@@ -30,11 +30,7 @@ export class UserOrderHistoryComponent implements OnInit{
    orders: userOrder [];
     counter : number;
     user : PersonalInfo;
-   /* public title = 'List of Restaurants';
-    public searchText: string;
-    public info: PersonalInfo;
-*/
-   
+
     ngOnInit(){ //Database'den çekilecek kısım bu
         this.counter = 0;
         
