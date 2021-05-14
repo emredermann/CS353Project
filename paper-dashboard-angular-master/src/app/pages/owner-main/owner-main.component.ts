@@ -22,7 +22,7 @@ export class RestaurantInfo {
 export class OwnerMainComponent implements OnInit{
     public orders: Order[] = [{header: 5, status: "En Route", order: "Hamburger"},
                                 {header: 4, status: "Delivered", order: "Cheeseburger"},
-                                {header: 3, status: "Delivered", order: "Cheeseburger"},
+                                {header: 3, status: "Waiting", order: "Cheeseburger"},
                                 {header: 2, status: "Cancelled by customer", order: "Sandwich"},
                                 {header: 1, status: "Delivered", order: "Cheeseburger"}
     ];
@@ -68,6 +68,13 @@ export class OwnerMainComponent implements OnInit{
 
     actionMethod() {
         console.log("Delivery-guy has been requested!");
-  }
+    }
+
+    check(status: string){
+        if (status === 'Waiting')
+            return false;
+        
+        return true;
+    }
 }
 
