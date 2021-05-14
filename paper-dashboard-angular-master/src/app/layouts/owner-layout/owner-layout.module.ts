@@ -3,7 +3,6 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { OwnerLayoutRoutes } from './owner-layout.routing';
-import { TableComponent }           from '../../pages/table/table.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { OwnerCommentsComponent } from 'app/pages/owner-comments/owner-comments.component';
 import { OwnerMainComponent } from 'app/pages/owner-main/owner-main.component';
@@ -18,7 +17,6 @@ import { OwnerMenuItemEditorComponent } from 'app/pages/owner-menu-item-editor/o
     NgbModule
   ],
   declarations: [
-    TableComponent,
     OwnerCommentsComponent,
     OwnerMainComponent,
     OwnerMenuEditorComponent,
