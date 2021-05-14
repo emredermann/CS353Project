@@ -17,6 +17,7 @@ import { OwnerLayoutComponent } from './layouts/owner-layout/owner-layout.compon
 import { BrowserModule } from "@angular/platform-browser";
 import { OwnerSidebarModule } from "./owner-sidebar/owner-sidebar.module";
 import { DeliveryGuySidebarModule } from './delivery-guy-sidebar/delivery-guy-sidebar.module';
+import { CustomerSidebarModule } from './customer-sidebar/customer-sidebar.module';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { DeliveryGuySidebarModule } from './delivery-guy-sidebar/delivery-guy-si
     }),
     SidebarModule,
     DeliveryGuySidebarModule,
+    CustomerSidebarModule,
     OwnerSidebarModule,
     NavbarModule,
     ToastrModule.forRoot(),
