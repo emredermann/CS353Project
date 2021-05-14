@@ -1,42 +1,23 @@
+import { restaurantOwner } from './../../_models/restaurantOwner';
+import { PersonalInfo } from './../../_models/Personalnfo';
+import { userOrder } from './../../_models/userOrder';
 import { UserOrderComponent } from './../user-order/user-order.component';
 import { Component, OnInit } from '@angular/core';
 import { NONE_TYPE } from '@angular/compiler';
+ 
 
-interface PersonalInfo {
-    fullName: string;
-    credits: number;
-    address: string;
-}
-interface userOrder{
-    idNo:number;
-    items: any[];
-    date:   Date;
-    price: number;
-    restaurantReview:string;
-    restaurantRating: number;
-    delGuyReview: string;
-    delGuyRating:number;
-    restaurantResponse:string;
-    orderState:boolean;
-}
 
-interface restaurantOwner{
-    name:string;
-    id:  number;
-    branch:string;
-    address:string;
-}
 @Component({
     selector: 'owner-comments-cmp',
     moduleId: module.id,
     templateUrl: 'owner-comments.component.html'
 })
-
+ 
 export class OwnerCommentsComponent implements OnInit{
     orders: userOrder [];
     counter : number;
-    user : PersonalInfo;
-    restaurant: restaurantOwner;
+    public user: PersonalInfo = {fullName :"emre", credits: 0,address : "izmir"};
+    public restaurant: restaurantOwner = {name : "burgerKing", id:1, branch:"çankaya", address:"Bilkent"};
    /* public title = 'List of Restaurants';
     public searchText: string;
     public info: PersonalInfo;
@@ -44,6 +25,7 @@ export class OwnerCommentsComponent implements OnInit{
    
     ngOnInit(){                  //Database'den çekilecek kısım bu
         this.counter = 0;
+      
     }
     getRestaurantName(){
         return this.restaurant.name;
@@ -60,12 +42,20 @@ export class OwnerCommentsComponent implements OnInit{
     getOrderPrice(){
         return this.orders[this.counter].price;
     }
+
+    get ownerName(){return this.user.fullName;}
+    get RestaurantName(){return this.restaurant.name;}
+    get Branch(){return this.restaurant.branch;}
+    get Address(){return this.restaurant.address;}
+
     getCustomerReview(){return this.orders[this.counter].restaurantReview;}
     getCustomerRating(){return this.orders[this.counter].restaurantRating;}
+    
     // Do we need them
     getdelGuyReview(){return  this.orders[this.counter].delGuyReview;}
     getdelGuyRating(){return  this.orders[this.counter].delGuyRating;}
-    //
+    
+   
     getMyResponse(){return  this.orders[this.counter].restaurantResponse;}
    
     setCustomerReview(orderno,myReview, myRating){
