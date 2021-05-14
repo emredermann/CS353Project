@@ -1,8 +1,8 @@
 <div class="card">
     <div class="card-header">
-      <h4 class="card-title">{{getOwnerName()}}</h4>
+      <h4 class="card-title">{{ownerName}}</h4>
     </div>
-    <img mat-card-image src="{{getRestaurantLogo()}}" alt="Restaurant Logo">
+    <img mat-card-image src="./assets/{{getRestaurantName()}}" alt="Restaurant Logo">
     <div class="card-body">
       <ul class="list-unstyled team-members">
 
@@ -14,11 +14,11 @@
               </div>
             </div>
             <div class="col-md-7 col-7">
-                {{getRestaurantName()}}
+                {{RestaurantName}}
                 <br/>
-                {{getBranch()}}
+                {{Branch}}
                 <br/>
-                {{getAddress()}}
+                {{Address}}
             </div>
             <div class="col-md-3 col-3 text-right">
               <button class="btn btn-sm btn-outline-success btn-round btn-icon"><i class="fa fa-envelope"></i></button>
@@ -29,6 +29,7 @@
       </ul>
     </div>
 </div>
+
 
 <ng-template #contentOrderInfo let-modal>
     <div class="modal-header">
@@ -57,8 +58,8 @@
     <div class="modal-body">
     <form>
         <div class="form-group">
-        <p>{{getCustomerReview()}}</p>
-        <p>{{getCustomerRating()}}</p>
+        <p> {{getCustomerReview()}} </p>
+        <p> {{getCustomerRating()}} </p>
         </div>
     </form>
     </div>
@@ -121,11 +122,11 @@
       </thead>
       <tbody>
       <tr *ngFor="let order of orders">
-        <button type="button" (click)="open(contentOrderInfo)" (click)="setOrderDetails(order.no,order.items, order.price)">{{order.no}}</button>
-        <td>{{order.status}}</td>
-        <button type="button" (click)="open(contentCustomerReview)" (click)="setCustomerReview(order.no,order.myReview, order.myRating)">See customer's rating and review</button>
-        <button type="button" (click)="open(contentDelGuyReview)" (click)="setDelGuyReview(order.no,order.delGuyReview, order.delGuyRating)">See delivery-guy's rating and review</button>
-        <button type="button" (click)="open(contentMyResponse)" (click)="setResponse(order.no,order.response)">See and edit my response</button>
+        <button type="button" (click)="open(contentOrderInfo)">{{order.idNo}}</button>
+        <td>{{order.orderState}}</td>
+        <button type="button" (click)="open(contentCustomerReview)" >See customer's rating and review</button>
+        <button type="button" (click)="open(contentDelGuyReview)">See delivery-guy's rating and review</button>
+        <button type="button" (click)="open(contentMyResponse)">See and edit my response</button>
       </tr>
       </tbody>
     </table>

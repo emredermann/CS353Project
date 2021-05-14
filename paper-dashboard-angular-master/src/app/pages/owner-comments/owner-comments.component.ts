@@ -1,50 +1,54 @@
-import { UserOrderComponent } from './../user-order/user-order.component';
+import { restaurantOwner } from './../../_models/restaurantOwner';
+import { PersonalInfo } from './../../_models/Personalnfo';
+import { userOrder } from './../../_models/userOrder';
 import { Component, OnInit } from '@angular/core';
-import { NONE_TYPE } from '@angular/compiler';
+import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
-interface PersonalInfo {
-    fullName: string;
-    credits: number;
-    address: string;
-}
-interface userOrder{
-    idNo:number;
-    items: any[];
-    date:   Date;
-    price: number;
-    restaurantReview:string;
-    restaurantRating: number;
-    delGuyReview: string;
-    delGuyRating:number;
-    restaurantResponse:string;
-    orderState:boolean;
-}
-
-interface restaurantOwner{
-    name:string;
-    id:  number;
-    branch:string;
-    address:string;
-}
 @Component({
-    selector: 'user-order-history-cmp',
+    selector: 'owner-comments-cmp',
     moduleId: module.id,
-    templateUrl: 'user-order-history.component.html'
+    templateUrl: 'owner-comments.component.html'
 })
+ 
+export class OwnerCommentsComponent implements OnInit{
+    public orders: userOrder [] = [{customerName: "İnsan Çocuğu", idNo: 5, items: ["abc","cde"], date: new Date(), price: 120.45, 
+                    restaurantName: "Burger King", restaurantReview: "Nice!", restaurantRating:4.5, delGuyReview:"Cool!",delGuyRating: 3.9,
+                    restaurantResponse:"Thanks!",orderState: "Delivered"},
+                    {customerName: "İnsan Çocuğu 2", idNo: 3, items: ["adf","dsg"], date: new Date(), price: 30.15, 
+                    restaurantName: "ASPAVA", restaurantReview: "Nice!", restaurantRating:4.5, delGuyReview:"Cool!",delGuyRating: 3.9,
+                    restaurantResponse:"Thanks!",orderState: "Delivered"}];
 
-export class UserOrderHistoryComponent implements OnInit{
-    orders: userOrder [];
     counter : number;
-    user : PersonalInfo;
-    restaurant: restaurantOwner;
-   /* public title = 'List of Restaurants';
-    public searchText: string;
-    public info: PersonalInfo;
-    */
+    public user: PersonalInfo = {fullName :"emre", credits: 0,address : "izmir"};
+    public restaurant: restaurantOwner = {name : "burgerKing", id:1, branch:"çankaya", address:"Bilkent"};
+    public closeResult = '';
+
+    constructor(private modalService: NgbModal)
+    {}
    
     ngOnInit(){                  //Database'den çekilecek kısım bu
         this.counter = 0;
+      
     }
+
+    open(content) {
+        this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+          this.closeResult = `Closed with: ${result}`;
+        }, (reason) => {
+          this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+        });
+      }
+
+      private getDismissReason(reason: any): string {
+        if (reason === ModalDismissReasons.ESC) {
+          return 'by pressing ESC';
+        } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+          return 'by clicking on a backdrop';
+        } else {
+          return `with: ${reason}`;
+        }
+      }
+
     getRestaurantName(){
         return this.restaurant.name;
     }
@@ -60,12 +64,20 @@ export class UserOrderHistoryComponent implements OnInit{
     getOrderPrice(){
         return this.orders[this.counter].price;
     }
+
+    get ownerName(){return this.user.fullName;}
+    get RestaurantName(){return this.restaurant.name;}
+    get Branch(){return this.restaurant.branch;}
+    get Address(){return this.restaurant.address;}
+
     getCustomerReview(){return this.orders[this.counter].restaurantReview;}
     getCustomerRating(){return this.orders[this.counter].restaurantRating;}
+    
     // Do we need them
     getdelGuyReview(){return  this.orders[this.counter].delGuyReview;}
     getdelGuyRating(){return  this.orders[this.counter].delGuyRating;}
-    //
+    
+   
     getMyResponse(){return  this.orders[this.counter].restaurantResponse;}
    
     setCustomerReview(orderno,myReview, myRating){

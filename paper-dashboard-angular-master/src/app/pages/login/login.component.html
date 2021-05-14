@@ -30,7 +30,6 @@
               </div>
             </li>
 
-
             <li>
               <div class="row">
                 <div class="col-md-2 col-2">
@@ -83,7 +82,7 @@
               <div class="col-md-5 pr-1">
                 <div class="form-group">
                   <label>Username</label>
-                  <input type="text" class="form-control"  placeholder="Username" formControlName= "type" (change)="changeUsername($event)">
+                  <input type="text" class="form-control"  placeholder="Username"  (change)="changeUsername($event)">
                 </div>
               </div>
             </div>
@@ -91,20 +90,19 @@
                 <div class="col-md-5 pr-1">
                   <div class="form-group">
                     <label>Password</label>
-                    <input type="text" class="form-control"  placeholder="Password" formControlName= "type" (change)="changePassword($event)">
+                    <input type="text" class="form-control"  placeholder="Password"  (change)="changePassword($event)">
                   </div>
                 </div>
               </div> 
 
               <div class="col-md-5 pr-1">
-
-                    <input type="radio" id="delivery" name="login_type" value="delivery" formControlName= "type" (change)="changeType($event)">
+                    <input type="radio" id="delivery" value="delivery"  (change)="changeType($event)">
                     <label for="delivery"> Delivery login</label><br>
                
-                    <input type="radio" id="user" name="login_type" value="user" formControlName= "type" (change)="changeType($event)" >
-                    <label for="user"> User login</label><br>
+                    <input type="radio" id="user"  value="user" (change)="changeType($event)" >
+                    <label for="user"> Customer login</label><br>
                
-                    <input type="radio" id="owner" name="login_type" value="owner" formControlName= "type" (change)="changeType($event)" >
+                    <input type="radio" id="owner" value="owner" (change)="changeType($event)" >
                     <label for="owner"> Owner login</label><br>
  
               </div>

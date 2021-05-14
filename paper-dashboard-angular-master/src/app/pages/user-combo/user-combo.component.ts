@@ -3,18 +3,14 @@ import { Component, OnInit } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 
-interface Orders {
-    headerRow: string[];
-    orderRows: string[][];
-}
 
-interface RestaurantInfo {
+export class RestaurantInfo {
     ownerName: string;
     restaurantName: string;
     restaurantBranch: string;
     restaurantAddress: string;
 }
-interface Combo{
+export class Combo{
     comboName:string;
     itemlist:string[];
     price:  number;
@@ -26,19 +22,16 @@ interface Combo{
 })
 
 export class UserComboComponent implements OnInit{
-    public tableData1: Orders;
-    public restaurantinfo: RestaurantInfo;
-    private clicked = false;
-    public restaurants : RestaurantInfo [];
-    chosenCombo : Combo;
 
+    public restaurantinfo: RestaurantInfo = {ownerName: "Ali Veli", restaurantName: "Burger King", 
+                                            restaurantBranch: "Bilkent", restaurantAddress: "ABC"};
+    public restaurantinfo2: RestaurantInfo = {ownerName: "Ahmet Çelik", restaurantName: "Gülçimen Aspava", 
+                                            restaurantBranch: "Mustafa Kemal Mah.", restaurantAddress: "ABC"};
+    private clicked = false;
+    public restaurants : RestaurantInfo [] = [this.restaurantinfo, this.restaurantinfo2 ];
+    public chosenCombo : Combo = {comboName: "Fuzz", itemlist: ["burger","pizza"], price: 15};
     
     constructor(){
-
-        this.restaurantinfo.ownerName = "Ali Veli";
-        this.restaurantinfo.restaurantName = "Burger King";
-        this.restaurantinfo.restaurantBranch = "Bilkent Branch";
-        this.restaurantinfo.restaurantAddress = "No. 31, Universiteler Mahallesi";
     }
 
     ngOnInit(){}    

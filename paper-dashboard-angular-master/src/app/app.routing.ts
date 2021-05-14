@@ -9,41 +9,31 @@ export const AppRoutes: Routes = [
     path: '',
     component: AdminLayoutComponent,
     children: [
-        {
-      path: '',
-      loadChildren: './layouts/admin-layout/admin-layout.module#AdminLayoutModule'
-  }]},
+        { path: '', loadChildren: './layouts/admin-layout/admin-layout.module#AdminLayoutModule'}]
+  },
   {
-    path: 'deliver',
+    path: 'delivery',
     component: DeliveryGuyLayoutComponent,
     children: [
-
-        {
-      path: 'delivery-guy-past-assignments',
-      
-      loadChildren: './layouts/delivery-guy-layout/delivery-guy-layout.module#DeliveryGuyLayoutModule'
-  }]},{
+      { path: '', loadChildren: './layouts/delivery-guy-layout/delivery-guy-layout.module#DeliveryGuyLayoutModule' }]
+  },
+  {
     path: 'owner',
     component: OwnerLayoutComponent,
     children: [
-
-        {
-      path: 'owner-main',
-      
-      loadChildren: './layouts/owner-layout/owner-layout.module#OwnerLayoutModule'
-  }]},{
+      { path: '', loadChildren: './layouts/owner-layout/owner-layout.module#OwnerLayoutModule' }]
+  },
+  {
     path: 'user',
     component: UserLayoutComponent,
-    children: [
-
-        {
-      path: 'user-main',
-      loadChildren: './layouts/user-layout/user-layout.module#UserLayoutModule'
-  }]},
-      {
-        path: '',
-        loadChildren: './layouts/admin-layout/admin-layout.module#AdminLayoutModule'
-      }
-    ]
+    children: [ 
+      { path: '', loadChildren: './layouts/user-layout/user-layout.module#UserLayoutModule' }]
+  },
+  
+  {
+    path: '**', redirectTo:'', pathMatch:'full'
+  }
+  
+]
 
 

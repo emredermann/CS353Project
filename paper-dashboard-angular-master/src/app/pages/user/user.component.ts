@@ -11,9 +11,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 })
 
 export class UserComponent implements OnInit {
-  loginForm = new FormGroup({
-    type : new FormControl('',Validators.required),
-});
+  
  
 username : string;
 password : string;
@@ -26,9 +24,7 @@ returnUrl: string;
 ngOnInit() {
     
 }
-get f(){
-    return this.loginForm.controls;
-  }
+
 onSubmit() {
    alert(this.username+"\n"+this.password+"\n"+this.phone+"\n"+this.address+"\n"+this.city);
 }

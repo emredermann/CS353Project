@@ -1,0 +1,61 @@
+<div class="card">
+    <div class="card-header">
+      <h4 class="card-title">{{getName()}}</h4>
+    </div>
+    <div class="card-body">
+      <ul class="list-unstyled team-members">
+
+        <li>
+          <div class="row">
+            <div class="col-md-2 col-2">
+              <div class="avatar">
+                <img src="assets/img/faces/ayo-ogunseinde-2.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
+              </div>
+            </div>
+            <div class="col-md-7 col-7">
+              Title: {{getJob()}}
+              <br />
+              Rating : {{getRating()}}
+              <br />
+              Join Date: {{getJoinDate()}}
+              <br />
+              Status: {{delGuyInfo.status}}
+            </div>
+            <div class="col-md-3 col-3 text-right">
+              <button class="btn btn-sm btn-outline-success btn-round btn-icon"><i class="fa fa-envelope"></i></button>
+            </div>
+          </div>
+        </li>
+
+      </ul>
+    </div>
+</div>
+
+<div class="container text-center">
+    <h3>{{title}}</h3>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="search-assignments">
+            <input class="form-control" size="35" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442;  Search by restaurant name">
+        </div>
+        <table class="table">
+            <thead >
+                <th scope="col">Customer Id</th>
+                <th scope="col">Order Item Details</th>
+                <th scope="col">Order Status</th>
+                <th scope="col">Restaurant Name</th>
+            </thead>
+            <tbody>
+              <tr  *ngFor="let assignment of assignments" >
+                      <td>{{assignment.idNo}}</td>
+                      <td>{{assignment.items}}</td>
+                            <button mat-button (click)="declineAssignment()">Decline</button>
+                            <button mat-raised-button color="primary" (click)="acceptAssignment()">Accept</button>
+                            <td>{{assignment.orderState}}</td>
+                      <td>{{assignment.restaurantName}}</td>
+              </tr>
+            </tbody>
+        </table>
+    </div> 
+</div>
