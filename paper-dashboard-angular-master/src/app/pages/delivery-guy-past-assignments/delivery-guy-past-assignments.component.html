@@ -46,7 +46,7 @@
                 <th>Delivery Rating and Review</th>
             </thead>
             <tbody>
-                <tr *ngFor="let assignment of assignments | filter:searchText">
+                <tr *ngFor="let assignment of assignments">
                     <button mat-raised-button>{{assignment.customerName}}</button>
                     <button mat-raised-button>{{assignment.orderDetails}}</button>
                     <button mat-raised-button>{{assignment.deliveryStatus}}</button>

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 export class DeliveryGuyInfo {
     deliveryGuyName: string;
-    job: "Delivery Guy";
+    job: string;
     rating: number;
     joinedOn: string;
 }
@@ -14,17 +14,10 @@ export class DeliveryGuyInfo {
 })
 
 export class DeliveryGuyPastAssignmentsComponent implements OnInit{
-    public delGuyInfo: DeliveryGuyInfo;
+    public delGuyInfo: DeliveryGuyInfo = {deliveryGuyName: "İhsan Vekil", job: "Delivery Guy", rating: 3.5, joinedOn: "4.3.2020"};
     private clicked = false;
     public searchText: string;
     public title = 'Past Delivery Assignments';
-
-    constructor(){
-        this.delGuyInfo = new DeliveryGuyInfo();
-        this.delGuyInfo.deliveryGuyName = "İhsan Vekil";
-        this.delGuyInfo.rating = 3.2;
-        this.delGuyInfo.joinedOn = "4.3.2020";
-    }
 
     assignments = [
         {customerName:'Ahmet Mehmet',  
