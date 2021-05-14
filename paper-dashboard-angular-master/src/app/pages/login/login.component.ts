@@ -5,12 +5,10 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { event } from 'jquery';
+import { User } from 'app/_models';
 
 
-interface User{
-    username : string;
-    password : string;
-}
+
 
 @Component({
     selector: 'login-cmp',
@@ -18,19 +16,19 @@ interface User{
     templateUrl: 'login.component.html'
 })
 export class LoginComponent{
-    private route: ActivatedRoute;
-    private router: Router;
 
+/*
     loginForm = new FormGroup({
         type : new FormControl('',Validators.required),
     });
-    value : string;
-    username : string;
-    password : string;
-    loading = false;
-    submitted = false;
-    returnUrl: string;
-    user: User[];
+*/
+    public value : string;
+    public username : string;
+    public password : string;
+    public loading = false;
+    public submitted = false;
+    public returnUrl: string;
+    public user: User[] = [];
 
     /*
     1 --> user
@@ -39,24 +37,20 @@ export class LoginComponent{
     */
    
     loginType:number;
-/*
-    constructor(){
-        for(let i = 0; i <5;i++){
-            this.user[i].username = "doga";
-            this.user[i].password = "abc" + i;
-        }
+
+    constructor(private route: ActivatedRoute, private router: Router){
+        
     }
-    */
+    
 
     ngOnInit() {
-        for(let i = 0; i <5;i++){
-            this.user[i].username = "doga";
-            this.user[i].password = "abc" + i;
-        }
+
     }
+    /*
     get f(){
         return this.loginForm.controls;
       }
+      */
     onSubmit() {
         alert(this.username+  " has been clicked with password " + this.password + " as "+ this.value);
         this.login();
@@ -64,6 +58,7 @@ export class LoginComponent{
 
 
     changeType(e){
+        alert("anan" + e.target.value);
         if(e.target.value == 'user')
             this.loginType = 1;
         if(e.target.value == 'delivery')
@@ -85,36 +80,22 @@ export class LoginComponent{
        alert(this.value+" going to enter ");
        // User table
        if(this.loginType == 1){
-            for(let i = 0; i < this.user.length;i++){
-                if(this.username == this.user[i].username && this.password == this.user[i].password)
-                {   
-                    this.router.navigateByUrl('user');
-                    //return this.user;
-                }
-        }
-            return NONE_TYPE;
+            this.router.navigateByUrl('user');
+
+            //return NONE_TYPE;
     }
     // delivery table
     if(this.loginType == 2){
-        for(let i = 0; i < this.user.length;i++){
-            if(this.username == this.user[i].username && this.password == this.user[i].password)
-            {
-                this.router.navigateByUrl('deliver');
-                //return this.user;
-            }
-    }
-        return NONE_TYPE;
+        this.router.navigateByUrl('delivery');
+
+
+        //return NONE_TYPE;
     }
     // owner table
     if(this.loginType == 3){
-        for(let i = 0; i < this.user.length;i++){
-            if(this.username == this.user[i].username && this.password == this.user[i].password)
-            {
-                this.router.navigateByUrl('owner');
-                //return this.user;
-            }
-    }
-        return NONE_TYPE;
+        this.router.navigateByUrl('owner');
+        
+        //return NONE_TYPE;
     }
 }
 }

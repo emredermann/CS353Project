@@ -15,6 +15,8 @@ import { UserLayoutComponent } from './layouts/user-layout/user-layout.component
 import { DeliveryGuyLayoutComponent } from './layouts/delivery-guy-layout/delivery-guy-layout.component';
 import { OwnerLayoutComponent } from './layouts/owner-layout/owner-layout.component';
 import { BrowserModule } from "@angular/platform-browser";
+import { DeliveryGuySidebarComponent } from "./delivery-guy-sidebar/delivery-guy-sidebar.component";
+import { DeliveryGuySidebarModule } from './delivery-guy-sidebar/delivery-guy-sidebar.module';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,7 @@ import { BrowserModule } from "@angular/platform-browser";
       useHash: true
     }),
     SidebarModule,
+    DeliveryGuySidebarModule,
     NavbarModule,
     ToastrModule.forRoot(),
     FooterModule,

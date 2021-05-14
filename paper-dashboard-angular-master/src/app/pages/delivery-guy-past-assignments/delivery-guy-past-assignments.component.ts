@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-interface DeliveryGuyInfo {
+export class DeliveryGuyInfo {
     deliveryGuyName: string;
     job: "Delivery Guy";
     rating: number;
@@ -20,6 +20,7 @@ export class DeliveryGuyPastAssignmentsComponent implements OnInit{
     public title = 'Past Delivery Assignments';
 
     constructor(){
+        this.delGuyInfo = new DeliveryGuyInfo();
         this.delGuyInfo.deliveryGuyName = "İhsan Vekil";
         this.delGuyInfo.rating = 3.2;
         this.delGuyInfo.joinedOn = "4.3.2020";

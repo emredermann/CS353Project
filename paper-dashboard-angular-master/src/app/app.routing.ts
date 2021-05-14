@@ -14,12 +14,12 @@ export const AppRoutes: Routes = [
       loadChildren: './layouts/admin-layout/admin-layout.module#AdminLayoutModule'
   }]},
   {
-    path: 'deliver',
+    path: 'delivery',
     component: DeliveryGuyLayoutComponent,
     children: [
 
         {
-      path: 'delivery-guy-past-assignments',
+      path: '',
       
       loadChildren: './layouts/delivery-guy-layout/delivery-guy-layout.module#DeliveryGuyLayoutModule'
   }]},{
@@ -28,7 +28,7 @@ export const AppRoutes: Routes = [
     children: [
 
         {
-      path: 'owner-main',
+      path: '',
       
       loadChildren: './layouts/owner-layout/owner-layout.module#OwnerLayoutModule'
   }]},{
@@ -37,7 +37,7 @@ export const AppRoutes: Routes = [
     children: [
 
         {
-      path: 'user-main',
+      path: '',
       loadChildren: './layouts/user-layout/user-layout.module#UserLayoutModule'
   }]},
       {
