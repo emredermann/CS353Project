@@ -15,6 +15,7 @@ interface RestaurantInfo {
 interface Combo{
     comboName:string;
     itemlist:string[];
+    price:  number;
 }
 @Component({
     selector: 'user-combo-cmp',
