@@ -1,10 +1,7 @@
 import { restaurantOwner } from './../../_models/restaurantOwner';
 import { PersonalInfo } from './../../_models/Personalnfo';
 import { userOrder } from './../../_models/userOrder';
-import { UserOrderComponent } from './../user-order/user-order.component';
 import { Component, OnInit } from '@angular/core';
-import { NONE_TYPE } from '@angular/compiler';
- 
 
 
 @Component({
