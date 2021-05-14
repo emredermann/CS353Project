@@ -15,7 +15,7 @@ export const AppRoutes: Routes = [
     path: 'delivery',
     component: DeliveryGuyLayoutComponent,
     children: [
-      { path: 'delivery-guy-past-assignments', loadChildren: './layouts/delivery-guy-layout/delivery-guy-layout.module#DeliveryGuyLayoutModule' }]
+      { path: '', loadChildren: './layouts/delivery-guy-layout/delivery-guy-layout.module#DeliveryGuyLayoutModule' }]
   },
   {
     path: 'owner',

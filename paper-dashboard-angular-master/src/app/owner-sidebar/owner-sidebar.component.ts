@@ -9,8 +9,8 @@ export interface RouteInfo {
 }
 
 export const ROUTES: RouteInfo[] = [
-    //{ path: '/business', title: 'Add Business Account',     icon:'nc-bank',    class: '' },
     { path: '/owner/owner-main',    title: 'Owner Main',     icon:'nc-spaceship',    class: '' },
+    { path: '/owner/owner-comments',       title: 'Respond to Reviews',      icon:'nc-bell-55',  class: '' },
     { path: '/owner/owner-menu-editor',       title: 'Edit Menu',      icon:'nc-bell-55',  class: '' },
     { path: '/owner/owner-menu-item-editor',       title: 'Edit Menu Item',      icon:'nc-bank',  class: '' },
 ];
