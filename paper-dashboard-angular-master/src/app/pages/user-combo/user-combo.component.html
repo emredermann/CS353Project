@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+.row {
+  display: flex;
+}
+
+/* Create two equal columns that sits next to each other */
+.column {
+  flex: 50%;
+  padding: 10px;
+  height: 600px; /* Should be removed. Only for demonstration */
+}
+</style>
+</head>
+<body>
+
+<h2>Make A Combo</h2>
+
+<div class="row">
+  <div class="column" style="background-color:white;">
+    <label>Search a Restaurant:  </label>
+    <input type="text" class="form-control" placeholder="Restaurant name here.." >
+    <br><br>
+    <button mat-button [matMenuTriggerFor]="menu">Choose Item From Menu</button>
+    <br><br><br><br><br><br><br><br><br>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>Item 1</button>
+      <button mat-menu-item>Item 2</button>
+      <button mat-menu-item>Item 3</button>
+      <button mat-menu-item>Item 4</button>
+    </mat-menu>
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <button type="button">Add Item To Combo</button>
+
+  </div>
+
+  <div class="column" style="background-color:white;">
+    <label>Current Combo  </label>
+    <br><br>
+    <li>Combo Item 1 <button class="btn"><i class="fa fa-trash"></i></button></li><br>
+    <li>Combo Item 2 <button class="btn"><i class="fa fa-trash"></i></button></li><br>
+    <li>Combo Item 3 <button class="btn"><i class="fa fa-trash"></i></button></li><br>
+    <li>Combo Item 4 <button class="btn"><i class="fa fa-trash"></i></button></li><br>
+    <li>Combo Item 5 <button class="btn"><i class="fa fa-trash"></i></button></li><br>
+    <li>Combo Item 6 <button class="btn"><i class="fa fa-trash"></i></button></li><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <button type="button">Save Combo</button>
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <button type="button">Order Combo</button>
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="second-page.html" style="font-size: 14px; text-decoration: none">Other Saved Combos</a>
+  </div>
+</div>
+
+</body>
+</html>
