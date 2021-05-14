@@ -29,31 +29,36 @@
     </div>
 </div>
 
-<div class="container text-center">
-    <h3>{{title}}</h3>
+<div class="card">
+  <div class="card-header">
+    <h4 class="card-title">{{title}}</h4>
+  </div>
+  <div class="card-body">
+    <div class="container">
+        <div class="row">
+            <div class="search-assignments">
+                <input class="form-control" size="35" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442;  Search by restaurant name">
+            </div>
+            <table class="table">
+                <thead >
+                    <th scope="col">Customer Name</th>
+                    <th scope="col">Order Details</th>
+                    <th scope="col">Delivery Status</th>
+                    <th scope="col">Delivery Rating and Review</th>
+                    <th scope="col">Restaurant Name</th>
+                </thead>
+                <tbody>
+                  <tr  *ngFor="let assignment of assignments" >
+                          <td>{{assignment.customerName}}</td>
+                          <td>{{assignment.orderDetails}}</td>
+                          <td>{{assignment.deliveryStatus}}</td>
+                          <td>{{assignment.serviceRating}}</td>
+                          <td>{{assignment.restaurantName}}</td>
+                  </tr>
+                </tbody>
+            </table>
+        </div> 
+    </div>
+  </div>
 </div>
-<div class="container">
-    <div class="row">
-        <div class="search-assignments">
-            <input class="form-control" size="35" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442;  Search by restaurant name">
-        </div>
-        <table class="table">
-            <thead >
-                <th scope="col">Customer Name</th>
-                <th scope="col">Order Details</th>
-                <th scope="col">Delivery Status</th>
-                <th scope="col">Delivery Rating and Review</th>
-                <th scope="col">Restaurant Name</th>
-            </thead>
-            <tbody>
-              <tr  *ngFor="let assignment of assignments" >
-                      <td>{{assignment.customerName}}</td>
-                      <td>{{assignment.orderDetails}}</td>
-                      <td>{{assignment.deliveryStatus}}</td>
-                      <td>{{assignment.serviceRating}}</td>
-                      <td>{{assignment.restaurantName}}</td>
-              </tr>
-            </tbody>
-        </table>
-    </div> 
-</div>
+
