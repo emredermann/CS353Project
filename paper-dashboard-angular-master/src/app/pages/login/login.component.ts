@@ -39,9 +39,20 @@ export class LoginComponent{
     */
    
     loginType:number;
+/*
+    constructor(){
+        for(let i = 0; i <5;i++){
+            this.user[i].username = "doga";
+            this.user[i].password = "abc" + i;
+        }
+    }
+    */
 
     ngOnInit() {
-        
+        for(let i = 0; i <5;i++){
+            this.user[i].username = "doga";
+            this.user[i].password = "abc" + i;
+        }
     }
     get f(){
         return this.loginForm.controls;
