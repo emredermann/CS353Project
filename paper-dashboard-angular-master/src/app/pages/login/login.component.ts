@@ -35,6 +35,7 @@ export class LoginComponent{
     2 --> delivery
     3 --> owner
     */
+   
     loginType:number;
 
     ngOnInit() {
