@@ -20,7 +20,7 @@ password : string;
 phone:string;
 address : string;
 restaurantName:string;
-city :string;e
+city :string;
 submitted = false;
 returnUrl: string;
 

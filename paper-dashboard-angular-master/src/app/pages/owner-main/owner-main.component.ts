@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
-interface Orders {
-    headerRow: string[];
-    orderRows: string[][];
+export class Order {
+    header: number;
+    status: string;
+    order: string;
 }
 
 export class RestaurantInfo {
@@ -19,7 +20,12 @@ export class RestaurantInfo {
 })
 
 export class OwnerMainComponent implements OnInit{
-    public tableData1: Orders;
+    public orders: Order[] = [{header: 5, status: "En Route", order: "Hamburger"},
+                                {header: 4, status: "Delivered", order: "Cheeseburger"},
+                                {header: 3, status: "Delivered", order: "Cheeseburger"},
+                                {header: 2, status: "Cancelled by customer", order: "Sandwich"},
+                                {header: 1, status: "Delivered", order: "Cheeseburger"}
+    ];;
     public restaurantinfo: RestaurantInfo = {ownerName: "Ali Veli", restaurantName: "Burger King", 
         restaurantBranch: "Bilkent", restaurantAddress: "ABC"};
     private clicked = false;
@@ -29,25 +35,19 @@ export class OwnerMainComponent implements OnInit{
     }
 
     ngOnInit(){
-        this.tableData1 = {
-            headerRow: [ 'Order No.', 'Status', 'Availability'],
-            orderRows: [
-                ['Order #53', 'Being Prepared'],
-                ['Order #52', 'Being prepared'],
-                ['Order #51', 'En Route'],
-                ['Order #50', 'Delivered'],
-                ['Order #49', 'Delivered'],
-                ['Order #48', 'Cancelled by customer']
-            ]
-        };    
+
     }
 
-    getOrderNo(row: string[]){
-        return row[0];
+    getOrderNo(i){
+        return this.orders[i].header;
     }
 
-    getStatus(row: string[]){
-        return row[1];
+    getStatus(i){
+        return this.orders[i].status;
+    }
+
+    getOrder(i){
+        return this.orders[i].order;
     }
 
     getOwnerName(){
@@ -70,3 +70,4 @@ export class OwnerMainComponent implements OnInit{
         console.log("Delivery-guy has been requested!");
   }
 }
+
