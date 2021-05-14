@@ -52,7 +52,6 @@ export class LoginComponent{
       }
       */
     onSubmit() {
-        alert(this.username+  " has been clicked with password " + this.password + " as "+ this.value);
         this.login();
     }
 
@@ -74,10 +73,7 @@ export class LoginComponent{
         this.password = e.target.value;
     }
     login(){
-        /*
-            
-        */
-       alert(this.value+" going to enter ");
+
        // User table
        if(this.loginType == 1){
             this.router.navigateByUrl('user');
