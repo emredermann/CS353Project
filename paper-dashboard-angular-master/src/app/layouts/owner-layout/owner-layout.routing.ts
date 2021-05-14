@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
-import { OwnerMainComponent } from 'app/pages/owner-main/owner-main.component';
-import { OwnerMenuEditorComponent } from 'app/pages/owner-menu-editor/owner-menu-editor.component';
-import { OwnerMenuItemEditorComponent } from 'app/pages/owner-menu-item-editor/owner-menu-item-editor.component';
+import { OwnerMainComponent } from '../../pages/owner-main/owner-main.component';
+import { OwnerMenuEditorComponent } from '../../pages/owner-menu-editor/owner-menu-editor.component';
+import { OwnerMenuItemEditorComponent } from '../../pages/owner-menu-item-editor/owner-menu-item-editor.component';
 
 
 export const OwnerLayoutRoutes: Routes = [

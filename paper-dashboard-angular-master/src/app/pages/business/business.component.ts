@@ -33,6 +33,9 @@ get f(){
 onSubmit() {
    alert(this.username+"\n"+this.password+"\n"+this.phone+"\n"+this.address+"\n"+this.city+"\n"+this.restaurantName);
 }
+getTitle(){
+    return "Add Business Account";
+}
 getPassword(e){
     this.password = e.target.value;
 }

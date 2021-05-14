@@ -21,7 +21,7 @@ export const AppRoutes: Routes = [
     path: 'owner',
     component: OwnerLayoutComponent,
     children: [
-      { path: 'owner-main', loadChildren: './layouts/owner-layout/owner-layout.module#OwnerLayoutModule' }]
+      { path: '', loadChildren: './layouts/owner-layout/owner-layout.module#OwnerLayoutModule' }]
   },
   {
     path: 'user',
@@ -29,10 +29,11 @@ export const AppRoutes: Routes = [
     children: [ 
       { path: '', loadChildren: './layouts/user-layout/user-layout.module#UserLayoutModule' }]
   },
+  
   {
-    path: '',
-    loadChildren: './layouts/admin-layout/admin-layout.module#AdminLayoutModule'
+    path: '**', redirectTo:'', pathMatch:'full'
   }
+  
 ]
 
 

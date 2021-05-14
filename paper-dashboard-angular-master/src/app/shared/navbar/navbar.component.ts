@@ -43,8 +43,16 @@ export class NavbarComponent implements OnInit{
               return this.listTitles[item].title;
           }
       }
-      return 'Dashboard';
+      return 'Meal-To-Go';
     }
+
+    onClick(){
+
+      //this.authenticationService.logout();
+      this.router.navigateByUrl('login');
+
+    }
+
     sidebarToggle() {
         if (this.sidebarVisible === false) {
             this.sidebarOpen();

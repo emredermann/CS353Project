@@ -5,7 +5,7 @@ interface Orders {
     orderRows: string[][];
 }
 
-interface RestaurantInfo {
+export class RestaurantInfo {
     ownerName: string;
     restaurantName: string;
     restaurantBranch: string;
@@ -20,15 +20,11 @@ interface RestaurantInfo {
 
 export class OwnerMenuItemEditorComponent implements OnInit{
     public tableData1: Orders;
-    public restaurantinfo: RestaurantInfo;
+    public restaurantinfo: RestaurantInfo = {ownerName: "Ali Veli", restaurantName: "Burger King", 
+    restaurantBranch: "Bilkent", restaurantAddress: "ABC"};
     private clicked = false;
 
     constructor(){
-
-        this.restaurantinfo.ownerName = "Ali Veli";
-        this.restaurantinfo.restaurantName = "Burger King";
-        this.restaurantinfo.restaurantBranch = "Bilkent Branch";
-        this.restaurantinfo.restaurantAddress = "No. 31, Universiteler Mahallesi";
     }
 
     ngOnInit(){}
