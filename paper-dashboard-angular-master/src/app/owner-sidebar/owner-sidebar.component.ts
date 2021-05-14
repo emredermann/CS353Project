@@ -10,9 +10,9 @@ export interface RouteInfo {
 
 export const ROUTES: RouteInfo[] = [
     //{ path: '/business', title: 'Add Business Account',     icon:'nc-bank',    class: '' },
-    { path: '/owner-main',    title: 'Owner Main',     icon:'nc-bank',    class: '' },
-    { path: '/owner-menu-editor',       title: 'Edit Menu',      icon:'nc-single-02',  class: '' },
-    { path: '/owner-menu-item-editor',       title: 'Edit Menu Item',      icon:'nc-single-02',  class: '' },
+    { path: '/owner-main',    title: 'Owner Main',     icon:'nc-spaceship',    class: '' },
+    { path: '/owner-menu-editor',       title: 'Edit Menu',      icon:'nc-bell-55',  class: '' },
+    { path: '/owner-menu-item-editor',       title: 'Edit Menu Item',      icon:'nc-bank',  class: '' },
 ];
 
 @Component({
