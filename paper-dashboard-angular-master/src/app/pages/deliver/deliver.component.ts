@@ -3,15 +3,13 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-    selector: 'user-cmp',
+    selector: 'deliver-cmp',
     moduleId: module.id,
     templateUrl: 'deliver.component.html'
 })
 
 export class DeliverComponent implements OnInit{
-    loginForm = new FormGroup({
-        type : new FormControl('',Validators.required),
-    });
+   
     
     username : string;
     password : string;
@@ -24,9 +22,7 @@ export class DeliverComponent implements OnInit{
     ngOnInit() {
         
     }
-    get f(){
-        return this.loginForm.controls;
-      }
+   
     onSubmit() {
        alert(this.username+"\n"+this.password+"\n"+this.phone+"\n"+this.address+"\n"+this.city);
     }

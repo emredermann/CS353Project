@@ -19,7 +19,7 @@ export const AppRoutes: Routes = [
     children: [
 
         {
-      path: '',
+      path: 'delivery-guy-past-assignments',
       
       loadChildren: './layouts/delivery-guy-layout/delivery-guy-layout.module#DeliveryGuyLayoutModule'
   }]},{
@@ -28,7 +28,7 @@ export const AppRoutes: Routes = [
     children: [
 
         {
-      path: '',
+      path: 'owner-main',
       
       loadChildren: './layouts/owner-layout/owner-layout.module#OwnerLayoutModule'
   }]},{

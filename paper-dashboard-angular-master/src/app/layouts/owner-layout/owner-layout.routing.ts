@@ -5,7 +5,8 @@ import { OwnerMenuItemEditorComponent } from 'app/pages/owner-menu-item-editor/o
 
 
 export const OwnerLayoutRoutes: Routes = [
-    { path: 'comments',  component: OwnerMainComponent },
+    { path: '',  redirectTo:'owner-main',          pathMatch:'full'},
+    { path: 'owner-main',  component: OwnerMainComponent },
     { path: 'owner-menu-editor',  component: OwnerMenuEditorComponent },
     { path: 'owner-menu-item-editor',  component: OwnerMenuItemEditorComponent }
  
