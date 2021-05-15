@@ -7,7 +7,8 @@ const registerService = require('./register-service');
 router.post('/authenticate', authenticate);
 router.put('/register',register);
 router.get('/orders/new/:id',getNewDeliveryOrders);
-router.get('/orders/old/:id',getOldDeliveryOrders)
+router.get('/orders/old/:id',getOldDeliveryOrders);
+router.get('/orders/:id',getOrderDetails);
 module.exports = router;
 
 
@@ -32,5 +33,9 @@ function getNewDeliveryOrders(req,res,next){
 function getOldDeliveryOrders(req,res,next){
     
     deliveryService.getOldDeliveryOrders(req.params.id).then(user => res.json(user))
+    .catch(next);
+}
+function getOrderDetails(req,res,next){
+    deliveryService.getOrderDetails(req.params.id).then(user => res.json(user))
     .catch(next);
 }
