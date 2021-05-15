@@ -30,18 +30,46 @@ export class AuthenticationService {
         return this.currentUserSubject.value;
     }
 
-    login(username: string, password: string) {
-        
-       
+    login(username: number, password: string, type:number) {
+        alert(type);
+       if(type == 1){
         return this.http.post<any>(`${environment.apiUrl}/user/authenticate`, { 'username': username, 'password':password })
-            .pipe(map(user => {
-                // store user details and jwt token in local storage to keep user logged in between page refreshes
-                
-                localStorage.setItem('currentUser', JSON.stringify(user));
-                this.currentUserSubject.next(user);
-                
-                return user;
-            }));
+        .pipe(map(user => {
+            // store user details and jwt token in local storage to keep user logged in between page refreshes
+            
+            localStorage.setItem('currentUser', JSON.stringify(user));
+            this.currentUserSubject.next(user);
+            
+            return user;
+        }));
+    
+       }
+       else if (type == 2){
+        return this.http.post<any>(`${environment.apiUrl}/delivery/authenticate`, { 'username': username, 'password':password })
+        .pipe(map(user => {
+            // store user details and jwt token in local storage to keep user logged in between page refreshes
+            
+            localStorage.setItem('currentUser', JSON.stringify(user));
+            this.currentUserSubject.next(user);
+            
+            return user;
+        }));
+       }
+       else if(type == 3){
+        return this.http.post<any>(`${environment.apiUrl}/owner/authenticate`, { 'username': username, 'password':password })
+        .pipe(map(user => {
+            // store user details and jwt token in local storage to keep user logged in between page refreshes
+            
+            localStorage.setItem('currentUser', JSON.stringify(user));
+            this.currentUserSubject.next(user);
+            
+            return user;
+        }));
+       }
+       else{
+           throw "Error";
+       }
+        
     }
 
     logout() {

@@ -49,7 +49,7 @@ export class TableComponent implements OnInit{
     updatePage(){
         this.restaurantService.getRestaurants().pipe().subscribe(data => {  
           this.restaurants = data;
-          console.log(data);
+          
        });
     }
 }
