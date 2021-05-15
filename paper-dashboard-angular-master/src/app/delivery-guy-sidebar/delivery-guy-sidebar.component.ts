@@ -11,7 +11,7 @@ export interface RouteInfo {
 export const ROUTES: RouteInfo[] = [
 
     { path: '/delivery/delivery-guy-past-assignments',    title: 'Past Assignments',     icon:'nc-bank',    class: '' },
-    //{ path: '/delivery/delivery-guy-new-assignments',       title: 'New Assignments',      icon:'nc-single-02',  class: '' },
+    { path: '/delivery/delivery-guy-new-assignments',       title: 'New Assignments',      icon:'nc-single-02',  class: '' },
     { path: '/delivery/delivery-guy-region-specification',               title: 'Specify Delivery Region',     icon:'nc-bank',    class: '' }
 ];
 

@@ -47,7 +47,7 @@
                 <tr *ngFor="let order of orders; index as i">
                     <td>{{getOrderNo(i)}}</td>
                     <td>{{getStatus(i)}}</td>
-                    <button type="button" [disabled]="clicked" (click)="actionMethod(); clicked = true;" class="btn btn-primary">Request Delivery-Guy</button>
+                    <button type="button" [disabled]="check(order.status)" (click)="actionMethod(); clicked = true;" class="btn btn-primary">Request Delivery-Guy</button>
                 </tr>
             </tbody>
           </table>
