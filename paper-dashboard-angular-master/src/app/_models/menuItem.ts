@@ -1,6 +1,6 @@
 export class MenuItem {
+    itemId: number;
     itemName: string;
-    itemIngredients: string[];
-    itemSizes: string[];
+    itemOptions: string[];
     itemPrice: number;
 }

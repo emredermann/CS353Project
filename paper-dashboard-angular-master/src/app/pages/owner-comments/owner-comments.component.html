@@ -1,34 +1,4 @@
-<div class="card">
-    <div class="card-header">
-      <h4 class="card-title">{{ownerName}}</h4>
-    </div>
-    <img mat-card-image src="./assets/{{getRestaurantName()}}" alt="Restaurant Logo">
-    <div class="card-body">
-      <ul class="list-unstyled team-members">
 
-        <li>
-          <div class="row">
-            <div class="col-md-2 col-2">
-              <div class="avatar">
-                <img src="assets/img/faces/ayo-ogunseinde-2.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
-              </div>
-            </div>
-            <div class="col-md-7 col-7">
-                {{RestaurantName}}
-                <br/>
-                {{Branch}}
-                <br/>
-                {{Address}}
-            </div>
-            <div class="col-md-3 col-3 text-right">
-              <button class="btn btn-sm btn-outline-success btn-round btn-icon"><i class="fa fa-envelope"></i></button>
-            </div>
-          </div>
-        </li>
-
-      </ul>
-    </div>
-</div>
 
 
 <ng-template #contentOrderInfo let-modal>
@@ -86,7 +56,7 @@
 <ng-template #contentMyResponse let-modal>
     <div class="modal-header">
         <h4 class="modal-title" id="modal-basic-title">Your Response</h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <button type="button" class="close" aria-label="Close" (click)="clearResponse()" (click)="modal.dismiss('Cross click')">
           <span aria-hidden="true">&times;</span>
         </button>
     </div>
@@ -96,7 +66,7 @@
             <form class="review-form">
                 <mat-form-field class="review-full-width">
                   <mat-label>Leave a Response</mat-label>
-                  <input matInput value="{{getMyResponse()}}">
+                  <input value="{{getMyResponse()}}" (change)="setResponse($event)">
                   <p>{{responseStatus}}</p>
                 </mat-form-field>
             </form>
@@ -111,7 +81,37 @@
 
 <div class="card">
   <div class="card-header">
-    <h4 class="card-title">A table of some kind</h4>
+    <h4 class="card-title">{{getOwnerName()}}</h4>
+  </div>
+  <div class="card-body">
+    <ul class="list-unstyled team-members">
+
+      <li>
+        <div class="row">
+          <div class="col-md-2 col-2">
+            <div class="avatar">
+              <img src="assets/img/faces/ayo-ogunseinde-2.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
+            </div>
+          </div>
+          <div class="col-md-7 col-7">
+            Restaurant: {{getRestaurantName()}}
+            <br/>
+            Branch: {{getBranch()}}
+            <br/>
+            Address: {{getAddress()}}
+          </div>
+          <div class="col-md-3 col-3 text-right">
+            <button class="btn btn-sm btn-outline-success btn-round btn-icon"><i class="fa fa-envelope"></i></button>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <h4 class="card-title">Customer Reviews and Your Responses</h4>
   </div>
   <div class="card-body">
     <table class="table table-striped">
@@ -130,7 +130,7 @@
         <td>{{getStatus(i)}}</td>
         <td><button type="button" class="btn btn-primary" (click)="open(contentCustomerReview)" (click)="setCustomerReview(i)" >See customer's rating and review</button></td>
         <td><button type="button" class="btn btn-primary" (click)="open(contentDelGuyReview)" (click)="setDelGuyReview(i)">See delivery-guy's rating and review</button></td>
-        <td><button type="button" class="btn btn-primary" (click)="open(contentMyResponse)" (click)="setResponse(i)">See and edit my response</button></td>
+        <td><button type="button" class="btn btn-primary" (click)="open(contentMyResponse)" (click)="setResponseIndex(i)">See and edit my response</button></td>
       </tr>
       </tbody>
     </table>
