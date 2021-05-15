@@ -20,7 +20,7 @@ password : string;
 phone:string;
 address : string;
 restaurantName:string;
-city :string;
+region :string;
 submitted = false;
 returnUrl: string;
 
@@ -31,7 +31,7 @@ get f(){
     return this.loginForm.controls;
   }
 onSubmit() {
-   alert(this.username+"\n"+this.password+"\n"+this.phone+"\n"+this.address+"\n"+this.city+"\n"+this.restaurantName);
+   alert(this.username+"\n"+this.password+"\n"+this.phone+"\n"+this.address+"\n"+this.region+"\n"+this.restaurantName);
 }
 getTitle(){
     return "Add Business Account";
@@ -48,8 +48,8 @@ getPhone(e){
 getAddress(e){
     this.address = e.target.value;
 }
-getCity(e){
-    this.city = e.target.value;
+getRegion(e){
+    this.region = e.target.value;
 }
 getRestaurantName(e){
   this.restaurantName = e.target.value;

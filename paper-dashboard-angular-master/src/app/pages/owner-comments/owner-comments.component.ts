@@ -12,40 +12,44 @@ import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
  
 export class OwnerCommentsComponent implements OnInit{
     public orders: userOrder [] = [{customerName: "İnsan Çocuğu", idNo: 5, items: ["abc","cde"], date: new Date(), price: 120.45, 
-                    restaurantName: "Burger King", restaurantReview: "Nice!", restaurantRating:4.5, delGuyReview:"Cool!",delGuyRating: 3.9,
+                    restaurantName: "Burger King", restaurantReview: "Nice!", restaurantRating: 3.5, delGuyReview:"Cool!",delGuyRating: 3.9,
                     restaurantResponse:"Thanks!",orderState: "Delivered"},
                     {customerName: "İnsan Çocuğu 2", idNo: 3, items: ["adf","dsg"], date: new Date(), price: 30.15, 
                     restaurantName: "ASPAVA", restaurantReview: "Nice!", restaurantRating:4.5, delGuyReview:"Cool!",delGuyRating: 3.9,
-                    restaurantResponse:"Thanks!",orderState: "Delivered"}];
+                    restaurantResponse:"No Thanks!",orderState: "Delivered"},
+                    {customerName: "İnsan Çocuğu 3", idNo: 4, items: ["çükbaş","amcıkağaz"], date: new Date(), price: 21.15, 
+                    restaurantName: "PİZZA", restaurantReview: "Dick!", restaurantRating:0.5, delGuyReview:"BRUH!",delGuyRating: 3.9,
+                    restaurantResponse:"No Thanks!",orderState: "En Route"}];
 
-    counter : number;
+    public counter : number;
     public user: PersonalInfo = {fullName :"emre", credits: 0,address : "izmir"};
-    public restaurant: restaurantOwner = {name : "burgerKing", id:1, branch:"çankaya", address:"Bilkent"};
+    public restaurant: restaurantOwner = {name : "Ali Veli", restaurantName:"bURGER kİNG", id:1, branch:"çankaya", address:"Bilkent"};
     public closeResult = '';
+    public responseStatus: string;
 
     constructor(private modalService: NgbModal)
     {}
    
     ngOnInit(){                  //Database'den çekilecek kısım bu
-        this.counter = 0;
-      
+      this.counter = 0;
+      this.responseStatus = '';
     }
 
     open(content) {
         this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-          this.closeResult = `Closed with: ${result}`;
+          this.closeResult = `${result}`;
         }, (reason) => {
-          this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+          this.closeResult = `${this.getDismissReason(reason)}`;
         });
       }
 
       private getDismissReason(reason: any): string {
         if (reason === ModalDismissReasons.ESC) {
-          return 'by pressing ESC';
+          return '';
         } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-          return 'by clicking on a backdrop';
+          return '';
         } else {
-          return `with: ${reason}`;
+          return ``;
         }
       }
 
@@ -80,16 +84,32 @@ export class OwnerCommentsComponent implements OnInit{
    
     getMyResponse(){return  this.orders[this.counter].restaurantResponse;}
    
-    setCustomerReview(orderno,myReview, myRating){
-        this.orders[orderno].restaurantReview = myReview;
-        this.orders[orderno].restaurantRating = myRating;
+    setCustomerReview(i){
+      this.counter = i;
     }
-    setDelGuyReview(orderno,delGuyReview, delGuyRating){
-        this.orders[orderno].delGuyReview=delGuyReview;
-        this.orders[orderno].delGuyRating = delGuyRating;
+    setDelGuyReview(i){
+      this.counter = i;
     }
-    setResponse(orderno,response){
-        this.orders[orderno].restaurantResponse = response;
+    setResponse(i){
+      this.counter = i;
+    }
+
+    getOrderNo(i){
+      return this.orders[i].idNo;
+    }
+    getStatus(i){
+      return this.orders[i].orderState;
+    }
+
+    getOrder(i){
+      return this.orders[i].items;
+    }
+
+    saveResponse(){
+      this.responseStatus = 'Response Saved!';
+    }
+    cancelResponse(){
+
     }
 
 
