@@ -24,7 +24,10 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RestaurantService } from './_services/restaurant-service/restaurant.service';
 import { CustomerSidebarModule } from './customer-sidebar/customer-sidebar.module';
 import { RegisterService } from './_services/register-service/register.service';
-import { OrderService } from './_services/order-service/order.service';
+import { AppRoutingModule } from './pages/app-routing.module';
+
+
+
 
 @NgModule({
   declarations: [
@@ -32,7 +35,7 @@ import { OrderService } from './_services/order-service/order.service';
     AdminLayoutComponent,
     UserLayoutComponent,
     DeliveryGuyLayoutComponent,
-    OwnerLayoutComponent
+    OwnerLayoutComponent,
   ],
   imports: [
     BrowserAnimationsModule,
@@ -51,6 +54,7 @@ import { OrderService } from './_services/order-service/order.service';
     ReactiveFormsModule,
     HttpClientModule,
     FixedPluginModule,
+    AppRoutingModule,
     //RestaurantService
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

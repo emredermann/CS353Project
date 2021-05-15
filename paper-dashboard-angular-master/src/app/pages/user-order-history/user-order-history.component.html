@@ -1,137 +1,107 @@
-<div class="card">
-    <div class="card-header">
-      <h4 class="card-title">{{getCustomerName()}}</h4>
-    </div>
-    <div class="card-body">
-      <ul class="list-unstyled team-members">
-
-        <li>
-          <div class="row">
-            <div class="col-md-2 col-2">
-              <div class="avatar">
-                <img src="assets/img/faces/ayo-ogunseinde-2.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
-              </div>
-            </div>
-            <div class="col-md-7 col-7">
-              {{getCredits()}}
-              <br />
-              {{getAddress()}}
-            </div>
-            <div class="col-md-3 col-3 text-right">
-              <button class="btn btn-sm btn-outline-success btn-round btn-icon"><i class="fa fa-envelope"></i></button>
-            </div>
-          </div>
-        </li>
-
-      </ul>
-    </div>
+<ng-template #contentDelGuyReview let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Your Response</h4>
+    <button type="button" class="close" aria-label="Close" (click)="clearResponse()" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
 </div>
-
-<ng-template #contentOrderInfo let-modal>
-    <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Order Details</h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-          <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <div class="modal-body">
-    <form>
-        <div class="form-group">
-        <p>{{getOrderItems()}}</p>
-        <p>{{getOrderPrice()}}</p>
+<div class="modal-body">
+<form>
+    <div class="form-group">
+        <form class="review-form">
+            <mat-form-field class="review-full-width">
+              <mat-label>Leave a Response</mat-label>
+              <input value="{{getMyResponse()}}"  class="form-control" (change)="setDeliveryGuyResponse($event)">
+              <p>{{responseDeliveryGuyStatus}}</p>
+            </mat-form-field>
+        </form>
+        <div class="example-button-row">
+            <button type="button" (click)="saveResponse()" class="btn btn-primary">Save Response</button>
+            <button type="button" class="btn btn-primary" (click)="modal.dismiss('Cross click')" >Cancel</button>
         </div>
-    </form>
     </div>
+</form>
+</div>
 </ng-template>
 
-<ng-template #contentMyReview let-modal>
-    <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Your Review and Rating</h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-          <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <div class="modal-body">
-    <form>
-        <div class="form-group">
+
+<ng-template #contentRestaurantResponse let-modal>
+  <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Your Response</h4>
+      <button type="button"  class="close" aria-label="Close" (click)="clearResponse()" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+  </div>
+  <div class="modal-body">
+  <form>
+      <div class="form-group">
           <form class="review-form">
               <mat-form-field class="review-full-width">
-                <mat-label>Leave a review</mat-label>
-                <input matInput value="{{getMyReview()}}">
-              </mat-form-field>
-            
-              <mat-form-field class="review-full-width">
-                <mat-label>Rate the delivery</mat-label>
-                <textarea matInput value="{{getMyRating()}}"></textarea>
+                <mat-label>Leave a Response </mat-label>
+                <input value="{{getMyResponse()}}" class="form-control" (change)="setRestaurantResponse($event)">
+                <p>{{responseRestaurantStatus}}</p>
               </mat-form-field>
           </form>
           <div class="example-button-row">
-            <button type="button" class="btn btn-outline-dark" (click)="saveReview()">Save Review</button>
-            <button type="button" class="btn btn-outline-dark" (click)="cancelReview()">Cancel</button>
+              <button type="button" (click)="saveResponse()" class="btn btn-primary">Save Response</button>
+              <button type="button" class="btn btn-primary" (click)="modal.dismiss('Cross click')" >Cancel</button>
+          </div>
+      </div>
+  </form>
+  </div>
+</ng-template>
+
+<div class="card">
+<div class="card-header">
+  <h4 class="card-title">{{getUserName()}}</h4>
+</div>
+<div class="card-body">
+  <ul class="list-unstyled team-members">
+
+    <li>
+      <div class="row">
+        <div class="col-md-2 col-2">
+          <div class="avatar">
+            <img  src="assets/img/faces/ayo-ogunseinde-2.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
           </div>
         </div>
-    </form>
-    </div>
-</ng-template>
-
-<ng-template #contentDelGuyReview let-modal>
-    <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Delivery Guy's Review of You</h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-          <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <div class="modal-body">
-    <form>
-        <div class="form-group">
-        <p>{{getdelGuyReview()}}</p>
-        <p>{{getdelGuyRating()}}</p>
+        <div class="col-md-7 col-7">
+          Credits: {{getCredits()}}
+          <br/>
+          Address: {{getAddress()}}
         </div>
-    </form>
-    </div>
-</ng-template>
-
-<ng-template #contentRestaurantResponse let-modal>
-    <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Restaurant's Response</h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-          <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <div class="modal-body">
-    <form>
-        <div class="form-group">
-        <p>{{getResponse()}}</p>
+        <div class="col-md-3 col-3 text-right">
+          <button class="btn btn-sm btn-outline-success btn-round btn-icon"><i class="fa fa-envelope"></i></button>
         </div>
-    </form>
-    </div>
-</ng-template>
-
-<div class="container">
-  <div class="row">
-    <table class="table table-striped">
-      <thead>
-      <tr>
-        <th>Order No.</th>
-        <th>Order Status</th>
-        <th>My Rating and Review</th>
-        <th>Delivery Guy Rating and Review</th>
-        <th>Restaurant Response</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let order of orders">
-        <button type="button" (click)="open(contentOrderInfo)" (click)="setOrderDetails(order.items, order.price)">{{order.no}}</button>
-        <td>{{order.status}}</td>
-        <button type="button" (click)="open(contentMyReview)" (click)="setMyReview(order.myReview, order.myRating)">See and edit rating and review</button>
-        <button type="button" (click)="open(contentDelGuyReview)" (click)="setDelGuyReview(order.delGuyReview, order.delGuyRating)">See delivery-guy rating and review</button>
-        <button type="button" (click)="open(contentRestaurantResponse)" (click)="setResponse(order.response)">See restaurant's response to your review</button>
-      </tr>
-      </tbody>
-    </table>
-  </div>
+      </div>
+    </li>
+  </ul>
+</div>
 </div>
 
-<hr>
+<div class="card">
+<div class="card-header">
+  <h4 class="card-title">Customer Reviews and Your Responses</h4>
+</div>
+<div class="card-body">
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Order No.</th>
+      <th>Order Status</th>
+      <th>Restaurant Rating and Review</th>
+      <th>Delivery Guy Rating and Review</th>
+    </tr>
+    </thead>
 
-<pre>{{ closeResult }}</pre>
+    <tbody>
+    <tr *ngFor="let order of orders;index as i">
+      <button type="button" class="btn btn-primary" (click)="open(contentOrderInfo)">{{getOrderNo(i)}}</button>
+      <td>{{getStatus(i)}}</td>
+      <td><button type="button" class="btn btn-primary" (click)="open(contentRestaurantResponse)" (click)="setCustomerReview(i)" >See customer's rating and review</button></td>
+      <td><button type="button" class="btn btn-primary" (click)="open(contentDelGuyReview)" (click)="setDelGuyReview(i)">See delivery-guy's rating and review</button></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</div>
