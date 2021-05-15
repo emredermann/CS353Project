@@ -1,9 +1,11 @@
 import { userOrder } from './../../_models/userOrder';
 import { deliveryGuy } from './../../_models/deliveryGuy';
 import { Component, OnInit } from '@angular/core';
-import { AssignmentExpression } from 'typescript';
+import { AssignmentExpression, updatePropertyAssignment } from 'typescript';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-
+import { OrderService } from 'app/_services/order-service/order.service';
+import { AuthenticationService } from 'app/_services/authentication-service/authentication.service';
+import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
     selector: 'delivery-guy-new-assignments-cmp',
@@ -17,7 +19,8 @@ export class DeliveryGuyNewAssignmentsComponent implements OnInit{
         type : new FormControl('',Validators.required),
     });
 
-    constructor( private formBuilder: FormBuilder){}
+    constructor( private formBuilder: FormBuilder,private orderService:OrderService, 
+        private authService:AuthenticationService,private modalService: NgbModal){}
 
 
     public delGuyInfo: deliveryGuy = {deliveryGuyName: "İhsan Vekil", job: "Delivery Guy", rating: 3.5, joinedOn: "4.3.2020", status :"available"};
@@ -31,9 +34,10 @@ export class DeliveryGuyNewAssignmentsComponent implements OnInit{
     public counter:number;
     public currentAssignment: number;
     public searchBox= false;
-
+    public closeResult = '';
+    public orderDetail = [];
     //There will be one assignment
-    public assignments: userOrder []=[{ customerName: "Dr.Who", idNo:1,
+    public assignments = [];/*: userOrder []=[{ customerName: "Dr.Who", idNo:1,
         items:['Quarterpounder Cheeseburger with fries', 'Coke Zero (35 mL)', 'Total: $35'],
         date: new Date(), 
         price: 100,
@@ -63,13 +67,24 @@ export class DeliveryGuyNewAssignmentsComponent implements OnInit{
         delGuyReview: "Very bad",
         delGuyRating:7,
         restaurantResponse:"Good customer",
-        orderState: "pending"},];
+        orderState: "pending"},];*/
 
-       public filteredAssignment:userOrder [];
-       public resultAssignment:userOrder [];
-       
+       public filteredAssignment = [];
+       public resultAssignment = [];
+       //public list = [];
+
     ngOnInit(){ //Database'den çekilecek kısım bu
-        this.resultAssignment = this.assignments;
+        this.updatePage();
+        //this.resultAssignment = this.assignments;
+    }
+    updatePage(){
+        let id = this.authService.getCurrentUserId();
+        
+        this.orderService.getNewDeliveryOrders(id).pipe().subscribe(data => {  
+            
+            this.assignments = data;
+            
+         });
     }
     regionSet(e){
         this.selectedRegion = e.target.value;
@@ -91,7 +106,7 @@ export class DeliveryGuyNewAssignmentsComponent implements OnInit{
         return this.delGuyInfo.status;
     }
     refreshFilter(){
-        this.resultAssignment = this.assignments;
+        this.updatePage();
     }
 
     submitRestaurantFilter(){
@@ -119,7 +134,7 @@ export class DeliveryGuyNewAssignmentsComponent implements OnInit{
             }
           }*/
           
-          this.resultAssignment=this.assignments.filter(item=> item.restaurantName ===this.filteredRestaurantName);
+          this.resultAssignment=this.assignments.filter(item=> item.RESTAURANT_NAME ===this.filteredRestaurantName);
           
     }
     changeRestaurantSelection(e){
@@ -137,6 +152,31 @@ export class DeliveryGuyNewAssignmentsComponent implements OnInit{
     }
     actionMethod() {
        alert("You are assigned to!"+this.currentAssignment);
+  }
+  getOrderDetails(order_no:number){
+        let id_user = this.authService.getCurrentUserId();
+        this.orderService.getOrderDetails(order_no,id_user).pipe().subscribe(data => {  
+            
+            this.orderDetail = data;
+        
+        });
+  }
+  open(content) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `${result}`;
+    }, (reason) => {
+      this.closeResult = `${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return '';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return '';
+    } else {
+      return ``;
+    }
   }
 
 }
