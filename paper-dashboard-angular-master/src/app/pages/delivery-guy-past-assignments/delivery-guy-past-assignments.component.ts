@@ -12,8 +12,8 @@ export class DeliveryGuyPastAssignmentsComponent implements OnInit{
     public delGuyInfo: deliveryGuy = {deliveryGuyName: "İhsan Vekil", job: "Delivery Guy", rating: 3.5, joinedOn: "4.3.2020" ,status:"pending"};
     public searchText: string;
     public title = 'Past Delivery Assignments';
-
     public assignments : userOrder[]= [{
+    
     customerName: "İnsan Çocuğu",
     idNo:1,
     items: ['Quarterpounder Hamburger with fries', 'Coke Zero (35 mL)', 'Total: $35'],
