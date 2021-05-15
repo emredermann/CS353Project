@@ -9,8 +9,11 @@ const { first } = require('../knex');
 
 module.exports = {
     authenticate,
+    getNewDeliveryOrders,
+    getOldDeliveryOrders,
     getAll
 };
+
 
 
 async function authenticate({ username, password }) {
@@ -38,6 +41,41 @@ async function authenticate({ username, password }) {
         
     return result;
     
+}
+
+
+async function getNewDeliveryOrders(id){
+    
+    let result = await knex('orders').where({DELIVERY_GUY_ID: id}).where({ORDERSTATE:'Waiting'})
+                    .join('HAS_ITEM','HAS_ITEM.ORDER_NO','=','orders.ORDER_NO').join('MENU_ITEM','MENU_ITEM.FOOD_ID','=','HAS_ITEM.FOOD_ID')
+                    .join('restaurant','restaurant.RESTAURANT_ID','=','MENU_ITEM.RESTAURANT_ID').then((data)=>{
+                        try{
+                            console.log(data);
+                            data[0].DELIVERY_GUY_ID;
+                            return data;
+                        }catch{
+                            throw "Internal Server Error"
+                        }
+                    });
+    return result;
+                
+}
+
+async function getOldDeliveryOrders(id){
+    
+    let result = await knex('orders').where({DELIVERY_GUY_ID: id}).where({ORDERSTATE:'Delivered'})
+                    .join('HAS_ITEM','HAS_ITEM.ORDER_NO','=','orders.ORDER_NO').join('MENU_ITEM','MENU_ITEM.FOOD_ID','=','HAS_ITEM.FOOD_ID')
+                    .join('restaurant','restaurant.RESTAURANT_ID','=','MENU_ITEM.RESTAURANT_ID').then((data)=>{
+                        try{
+                            console.log(data);
+                            data[0].DELIVERY_GUY_ID;
+                            return data;
+                        }catch{
+                            throw "Internal Server Error"
+                        }
+                    });
+    return result;
+                
 }
 
 async function getAll() {

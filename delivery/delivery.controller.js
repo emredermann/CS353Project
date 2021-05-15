@@ -6,7 +6,8 @@ const registerService = require('./register-service');
 
 router.post('/authenticate', authenticate);
 router.put('/register',register);
-
+router.get('/orders/new/:id',getNewDeliveryOrders);
+router.get('/orders/old/:id',getOldDeliveryOrders)
 module.exports = router;
 
 
@@ -19,5 +20,17 @@ function authenticate(req, res, next) {
 
 function register(req,res,next){
     registerService.register(req.body).then(user => res.json(user))
+    .catch(next);
+}
+
+function getNewDeliveryOrders(req,res,next){
+    
+    deliveryService.getNewDeliveryOrders(req.params.id).then(user => res.json(user))
+    .catch(next);
+}
+
+function getOldDeliveryOrders(req,res,next){
+    
+    deliveryService.getOldDeliveryOrders(req.params.id).then(user => res.json(user))
     .catch(next);
 }
