@@ -29,6 +29,31 @@
     </div>
 </div>
 
+
+
+
+<ng-template #contentorderdetails let-modal>
+  <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Order Details</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+  </div>
+  <div class="modal-body">
+  <form>
+      
+      <div *ngFor="let order of orderDetail">
+      <p>{{order.FOODNAME}}, &nbsp;  {{order.AMOUNT}}x, &nbsp; {{order.PRICE}} $ (singular)</p>
+      
+      </div>
+  </form>
+  </div>
+</ng-template>
+
+
+
+
+
 <div class="card">
   <div class="card-header">
     <h4 class="card-title">{{title}}</h4>
@@ -48,12 +73,13 @@
                     <th scope="col">Restaurant Name</th>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let assignment of assignments">
-                    <td>{{assignment.customerName}}</td>
-                    <td>{{assignment.items}}</td>
-                    <td>{{assignment.orderState}}</td>
-                    <td>{{assignment.restaurantRating}}</td>
-                    <td>{{assignment.restaurantName}}</td>
+                  <tr  *ngFor="let assign of assignments" >
+                          <td>{{assign.CUSTOMER_ID}}</td>
+                          <td><button type="button" class="btn btn-primary" (click)="open(contentorderdetails)" (click)="getOrderDetails(assign.ORDER_NO)" >See Order Details</button></td>
+                          <td>{{assign.ORDERSTATE}}</td>
+                                <td>{{assign.RESTAURANTNAME}}</td>
+                                <button mat-button (click)="declineAssignment()" disabled = {{clicked}} >Decline</button>
+                                <button mat-raised-button color="primary" value="{{assign.ORDER_NO}}" (click)="acceptAssignment($event);"  disabled = {{clicked}}>Accept</button>
                   </tr>
                 </tbody>
             </table>

@@ -10,6 +10,6 @@ export const OwnerLayoutRoutes: Routes = [
     { path: 'owner-main',  component: OwnerMainComponent },
     { path: 'owner-comments',  component: OwnerCommentsComponent },
     { path: 'owner-menu-editor',  component: OwnerMenuEditorComponent },
-    { path: 'owner-menu-item-editor',  component: OwnerMenuItemEditorComponent }
+    { path: 'owner-menu-item-editor/:id',  component: OwnerMenuItemEditorComponent }
  
 ];

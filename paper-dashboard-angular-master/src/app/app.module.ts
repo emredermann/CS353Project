@@ -58,7 +58,7 @@ import { AppRoutingModule } from './pages/app-routing.module';
     //RestaurantService
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }, RestaurantService, RegisterService
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }, RestaurantService, RegisterService, OrderService
     ],
   bootstrap: [AppComponent]
 })

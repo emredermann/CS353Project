@@ -9,7 +9,7 @@
   <form>
       <div class="form-group">
         <div class="example-button-row">
-          <button type="button" (click)="deleteItem()" class="btn btn-primary">Delete Item</button>
+          <button type="button" (click)="deleteItem()" (click)="modal.dismiss('Cross click')" class="btn btn-primary">Delete Item</button>
           <button type="button" class="btn btn-primary" (click)="modal.dismiss('Cross click')" >Cancel</button>
           
           <p>{{deleteStatus}}</p>
@@ -69,7 +69,7 @@
             <tr *ngFor="let item of menu; index as i" [value]="item.itemName">
               <td>{{getItemName(i)}}</td>
               <td>{{getItemPrice(i)}}</td>
-              <td><button mat-button-raised class="btn btn-primary" [routerLink]="['/owner/owner-menu-item-editor']">Edit</button></td>
+              <td><button mat-button-raised class="btn btn-primary" [routerLink]="['/owner/owner-menu-item-editor/',item.itemId]" (click)="gotoItemDetails('/owner/owner-menu-item-editor/',item.itemId)">Edit</button></td>
               <td><button mat-icon-button class="btn btn-primary" (click)="open(contentDeleteMenuItem)" (click)="setItemToBeDelete(i)"><mat-icon>Delete</mat-icon></button></td>
             </tr>
           </tbody>
@@ -83,7 +83,7 @@
     
     <div>
       <p></p>
-      <button mat-button-raised class="btn btn-primary"  [routerLink]="['/owner/owner-menu-item-editor']">Add New Menu Item</button>
+      <button mat-button-raised class="btn btn-primary"  [routerLink]="['/owner/owner-menu-item-editor/', newItemId]" (click)="gotoItemDetails('/owner/owner-menu-item-editor/',newItemId)">Add New Menu Item</button>
     </div>
   </div>
 </div>

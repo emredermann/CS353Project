@@ -23,7 +23,8 @@ export class OwnerCommentsComponent implements OnInit{
 
     public counter : number;
     public user: PersonalInfo = {fullName :"emre", credits: 0,address : "izmir"};
-    public restaurant: restaurantOwner = {name : "Ali Veli", restaurantName:"bURGER kİNG", id:1, branch:"çankaya", address:"Bilkent"};
+    public restaurantinfo: restaurantOwner = {name: "Ali Veli", restaurantName: "Burger King", 
+    id: 4,branch:"Bilkent" ,address: "ABC" };
     public closeResult = '';
     public responseStatus: string;
 
@@ -53,14 +54,18 @@ export class OwnerCommentsComponent implements OnInit{
         }
       }
 
+    getOwnerName(){
+      return this.restaurantinfo.name;
+    }
+
     getRestaurantName(){
-        return this.restaurant.name;
+        return this.restaurantinfo.restaurantName;
     }
     getBranch(){
-        return this.restaurant.branch;
+        return this.restaurantinfo.branch;
     }
     getAddress(){
-        return this.restaurant.address;
+        return this.restaurantinfo.address;
     }
     getOrderItems(){
         return this.orders[this.counter].items;
@@ -70,9 +75,9 @@ export class OwnerCommentsComponent implements OnInit{
     }
 
     get ownerName(){return this.user.fullName;}
-    get RestaurantName(){return this.restaurant.name;}
-    get Branch(){return this.restaurant.branch;}
-    get Address(){return this.restaurant.address;}
+    get RestaurantName(){return this.restaurantinfo.name;}
+    get Branch(){return this.restaurantinfo.branch;}
+    get Address(){return this.restaurantinfo.address;}
 
     getCustomerReview(){return this.orders[this.counter].restaurantReview;}
     getCustomerRating(){return this.orders[this.counter].restaurantRating;}
@@ -90,8 +95,11 @@ export class OwnerCommentsComponent implements OnInit{
     setDelGuyReview(i){
       this.counter = i;
     }
-    setResponse(i){
+    setResponseIndex(i){
       this.counter = i;
+    }
+    setResponse(e){
+      this.orders[this.counter].restaurantResponse = e.target.value;
     }
 
     getOrderNo(i){
@@ -108,9 +116,8 @@ export class OwnerCommentsComponent implements OnInit{
     saveResponse(){
       this.responseStatus = 'Response Saved!';
     }
-    cancelResponse(){
-
+    clearResponse(){
+      this.responseStatus = '';
     }
-
 
 }
