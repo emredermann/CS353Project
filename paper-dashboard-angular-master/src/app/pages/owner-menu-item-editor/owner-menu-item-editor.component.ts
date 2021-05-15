@@ -2,7 +2,6 @@ import { restaurantOwner } from './../../_models/restaurantOwner';
 import { MenuItem } from './../../_models/menuItem';
 import { Component, OnInit } from '@angular/core';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-//import {MatMenuModule} from '@angular/material/menu';
 import { ActivatedRoute } from "@angular/router";
 
 @Component({
