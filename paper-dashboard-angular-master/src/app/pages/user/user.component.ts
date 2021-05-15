@@ -3,6 +3,7 @@ import Chart from 'chart.js';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { RegisterService } from 'app/_services/register-service/register.service';
 
 @Component({
     moduleId: module.id,
@@ -15,18 +16,29 @@ export class UserComponent implements OnInit {
  
 username : string;
 password : string;
-phone:string;
+phone:number;
 address : string;
 region :string;
 submitted = false;
 returnUrl: string;
 
+constructor(private registerService:RegisterService,private router: Router){
+
+}
 ngOnInit() {
     
 }
 
 onSubmit() {
-   alert(this.username+"\n"+this.password+"\n"+this.phone+"\n"+this.address+"\n"+this.region);
+    this.region = this.region.toLocaleUpperCase( );
+    this.registerService.registerCustomer(this.username,this.password,this.phone,this.address,this.region).pipe().subscribe(data => {  
+        alert("Signup Successful!");
+        alert("Your ID:"+ data);
+        this.router.navigateByUrl('login');
+     },error=>{
+         alert("Invalid Values, Signup Unsuccessful!");
+     });
+
 }
 getPassword(e){
     this.password = e.target.value;

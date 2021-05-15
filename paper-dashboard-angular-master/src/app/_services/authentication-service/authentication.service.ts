@@ -31,7 +31,7 @@ export class AuthenticationService {
     }
 
     login(username: number, password: string, type:number) {
-        alert(type);
+        
        if(type == 1){
         return this.http.post<any>(`${environment.apiUrl}/user/authenticate`, { 'username': username, 'password':password })
         .pipe(map(user => {

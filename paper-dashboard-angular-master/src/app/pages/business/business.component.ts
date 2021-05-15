@@ -3,6 +3,7 @@ import Chart from 'chart.js';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { RegisterService } from 'app/_services/register-service/register.service';
 
 @Component({
     selector: 'notifications-cmp',
@@ -17,13 +18,16 @@ export class BusinessComponent{
  
 username : string;
 password : string;
-phone:string;
+phone:number;
 address : string;
 restaurantName:string;
 region :string;
 submitted = false;
 returnUrl: string;
 
+constructor(private registerService:RegisterService,private router: Router){
+
+}
 ngOnInit() {
     
 }
@@ -31,7 +35,16 @@ get f(){
     return this.loginForm.controls;
   }
 onSubmit() {
-   alert(this.username+"\n"+this.password+"\n"+this.phone+"\n"+this.address+"\n"+this.region+"\n"+this.restaurantName);
+    this.region = this.region.toLocaleUpperCase( );
+    this.registerService.registerOwner(this.username,this.password,this.phone,this.restaurantName,this.region).pipe().subscribe(data => {  
+        alert("Signup Successful!");
+        alert("Your ID:"+ data);
+        this.router.navigateByUrl('login');
+     },error=>{
+         alert("Invalid Values, Signup Unsuccessful!");
+         
+     });
+   
 }
 getTitle(){
     return "Add Business Account";
