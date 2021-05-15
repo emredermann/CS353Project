@@ -18,7 +18,6 @@ import { DeliveryGuyNewAssignmentsComponent } from 'app/pages/delivery-guy-new-a
   declarations: [
     DeliveryGuyPastAssignmentsComponent,
     DeliveryGuyNewAssignmentsComponent,
-    DeliveryGuyRegionSpecificationComponent,
   ]
 })
 
