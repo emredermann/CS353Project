@@ -25,6 +25,7 @@ import { RestaurantService } from './_services/restaurant-service/restaurant.ser
 import { CustomerSidebarModule } from './customer-sidebar/customer-sidebar.module';
 import { RegisterService } from './_services/register-service/register.service';
 import { AppRoutingModule } from './pages/app-routing.module';
+import { OrderService } from './_services/order-service/order.service';
 
 
 
