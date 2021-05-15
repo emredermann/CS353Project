@@ -1,31 +1,122 @@
-<div class="card">
-    <div class="card-header">
-      <h4 class="card-title">{{getOwnerName()}}</h4>
-    </div>
-    <img mat-card-image src="{{getRestaurantLogo()}}" alt="Restaurant Logo">
-    <div class="card-body">
-      <ul class="list-unstyled team-members">
+<ng-template #contentSizeAdder let-modal>
+  <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Add New Size</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <p>Enter Size</p>
+        <p><input></p>
+        <button type="button" (click)="saveSize()" (click)="modal.dismiss('Cross click')" class="btn btn-primary">Save Size</button>
+      </div>
+  </form>
+  </div>
+</ng-template>
 
-        <li>
-          <div class="row">
-            <div class="col-md-2 col-2">
-              <div class="avatar">
-                <img src="assets/img/faces/ayo-ogunseinde-2.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
+<ng-template #contentIngredientAdder let-modal>
+  <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Add New Ingredient</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <p>Enter Ingredient</p>
+        <p><input></p>
+        <button type="button" (click)="saveIngredient()" (click)="modal.dismiss('Cross click')" class="btn btn-primary">Save Ingredient</button>
+      </div>
+  </form>
+  </div>
+</ng-template>
+
+<div class="row">
+  <div class="col-ms-7">
+
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">{{getOwnerName()}}</h4>
+      </div>
+      <div class="card-body">
+        <ul class="list-unstyled team-members">
+
+          <li>
+            <div class="row">
+              <div class="col-md-2 col-2">
+                <div class="avatar">
+                  <img src="assets/img/faces/ayo-ogunseinde-2.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
+                </div>
+              </div>
+              <div class="col-md-7 col-7">
+                Restaurant: {{getRestaurantName()}}
+                <br/>
+                Branch: {{getBranch()}}
+                <br/>
+                Address: {{getAddress()}}
+              </div>
+              <div class="col-md-3 col-3 text-right">
+                <button class="btn btn-sm btn-outline-success btn-round btn-icon"><i class="fa fa-envelope"></i></button>
               </div>
             </div>
-            <div class="col-md-7 col-7">
-                {{getRestaurantName()}}
-                <br/>
-                {{getBranch()}}
-                <br/>
-                {{getAddress()}}
-            </div>
-            <div class="col-md-3 col-3 text-right">
-              <button class="btn btn-sm btn-outline-success btn-round btn-icon"><i class="fa fa-envelope"></i></button>
-            </div>
-          </div>
-        </li>
-
-      </ul>
+          </li>
+        </ul>
+      </div>
     </div>
+
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">Edit/Add Menu Item</h4>
+      </div>
+      <div class="card-body">
+        <h6>Item Name</h6>
+          <p><input matInput value="{{getItemName()}}">
+        
+        <h6>Item Price</h6>
+          <p><input matInput value="${{getItemPrice()}}">
+
+        <h6>Add/Edit Sizes</h6>
+        <select>
+          
+          <option *ngFor="let choice of sizes" [value]="choice">
+            {{choice}}
+          </option>
+          
+        </select>
+        <br>
+        <button mat-icon-button class="btn btn-primary" (click)="open(contentSizeAdder)">
+          <mat-icon>add</mat-icon>
+        </button>
+        <button mat-icon-button class="btn btn-primary" (click)="onRemoveSize($event)">
+          <mat-icon>delete</mat-icon>
+        </button>
+
+        <h6>Add/Edit Ingredients</h6>
+        <select>
+          
+          <option *ngFor="let choice of ingredients" [value]="choice">
+            {{choice}}
+          </option>
+          
+        </select>
+        <br>
+        <button mat-icon-button class="btn btn-primary" (click)="open(contentIngredientAdder)">
+          <mat-icon>add</mat-icon>
+        </button>
+        <button mat-icon-button class="btn btn-primary" (click)="onRemoveIngredient($event)">
+          <mat-icon>delete</mat-icon>
+        </button>
+
+        
+
+      </div>
+    </div>
+    <div>
+      <p></p>
+      <button mat-button-raised class="btn btn-primary" (click)="saveChanges()" [routerLink]="['/owner/owner-menu-editor']">Finish Edit and Return to Menu Editor</button>
+    </div>
+  </div>
 </div>
