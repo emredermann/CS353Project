@@ -23,6 +23,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { RestaurantService } from './_services/restaurant-service/restaurant.service';
 import { CustomerSidebarModule } from './customer-sidebar/customer-sidebar.module';
+import { RegisterService } from './_services/register-service/register.service';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,7 @@ import { CustomerSidebarModule } from './customer-sidebar/customer-sidebar.modul
     //RestaurantService
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }, RestaurantService
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }, RestaurantService, RegisterService
     ],
   bootstrap: [AppComponent]
 })
