@@ -47,4 +47,14 @@ export class OrderService {
   
   }
 
+  getOrderDetails(id:number,id_user:number){
+    
+    return this.http.get<any>(`${environment.apiUrl}/delivery/orders/${id}~${id_user}`)
+    .pipe(map(user => {
+       
+        
+        return user;
+    }));
+  }
+
 }

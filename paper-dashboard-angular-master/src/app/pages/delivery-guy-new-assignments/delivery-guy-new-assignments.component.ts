@@ -35,6 +35,7 @@ export class DeliveryGuyNewAssignmentsComponent implements OnInit{
     public currentAssignment: number;
     public searchBox= false;
     public closeResult = '';
+    public orderDetail = [];
     //There will be one assignment
     public assignments = [];/*: userOrder []=[{ customerName: "Dr.Who", idNo:1,
         items:['Quarterpounder Cheeseburger with fries', 'Coke Zero (35 mL)', 'Total: $35'],
@@ -80,7 +81,7 @@ export class DeliveryGuyNewAssignmentsComponent implements OnInit{
         let id = this.authService.getCurrentUserId();
         
         this.orderService.getNewDeliveryOrders(id).pipe().subscribe(data => {  
-            console.log(data);
+            
             this.assignments = data;
             
          });
@@ -153,7 +154,12 @@ export class DeliveryGuyNewAssignmentsComponent implements OnInit{
        alert("You are assigned to!"+this.currentAssignment);
   }
   getOrderDetails(order_no:number){
-      
+        let id_user = this.authService.getCurrentUserId();
+        this.orderService.getOrderDetails(order_no,id_user).pipe().subscribe(data => {  
+            
+            this.orderDetail = data;
+        
+        });
   }
   open(content) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {

@@ -1,6 +1,11 @@
 import { userOrder } from './../../_models/userOrder';
 import { deliveryGuy } from './../../_models/deliveryGuy';
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { OrderService } from 'app/_services/order-service/order.service';
+import { AuthenticationService } from 'app/_services/authentication-service/authentication.service';
+import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap'
+//type NewType = NgbModal;
 
 @Component({
     selector: 'delivery-guy-past-assignments-cmp',
@@ -12,7 +17,9 @@ export class DeliveryGuyPastAssignmentsComponent implements OnInit{
     public delGuyInfo: deliveryGuy = {deliveryGuyName: "İhsan Vekil", job: "Delivery Guy", rating: 3.5, joinedOn: "4.3.2020" ,status:"pending"};
     public searchText: string;
     public title = 'Past Delivery Assignments';
-    public assignments : userOrder[]= [{
+    public closeResult = '';
+    public orderDetail = [];
+    public assignments = []; /*: userOrder[]= [{
     
     customerName: "İnsan Çocuğu",
     idNo:1,
@@ -39,12 +46,23 @@ export class DeliveryGuyPastAssignmentsComponent implements OnInit{
     delGuyRating:4,
     restaurantResponse:"Test",
     orderState:"pending"}
-    ];
+    ];*/
     
+    constructor( private formBuilder: FormBuilder,private orderService:OrderService, 
+        private authService:AuthenticationService,private modalService: NgbModal){}
     ngOnInit(){ //Database'den çekilecek kısım bu
-        
+        this.updatePage();
     }
 
+    updatePage(){
+        let id = this.authService.getCurrentUserId();
+        
+        this.orderService.getOldDeliveryOrders(id).pipe().subscribe(data => {  
+            
+            this.assignments = data;
+            
+         });
+    }
     getName(){
         return this.delGuyInfo.deliveryGuyName;
     }
@@ -60,5 +78,30 @@ export class DeliveryGuyPastAssignmentsComponent implements OnInit{
 
     actionMethod() {
         console.log("Delivery-guy has been requested!");
+  }
+  getOrderDetails(order_no:number){
+    let id_user = this.authService.getCurrentUserId();
+    this.orderService.getOrderDetails(order_no,id_user).pipe().subscribe(data => {  
+        
+        this.orderDetail = data;
+    
+    });
+}
+  open(content) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `${result}`;
+    }, (reason) => {
+      this.closeResult = `${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return '';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return '';
+    } else {
+      return ``;
+    }
   }
 }
