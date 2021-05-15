@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { RestaurantService } from '../../_services/restaurant-service/restaurant.service';
 declare interface TableData {
     headerRow: string[];
     dataRows: string[][];
@@ -11,10 +11,17 @@ declare interface TableData {
     templateUrl: 'table.component.html'
 })
 
+
 export class TableComponent implements OnInit{
     public tableData1: TableData;
     public tableData2: TableData;
+    public restaurants = [];
+    constructor(private restaurantService:RestaurantService){
+    
+        
+    }
     ngOnInit(){
+        this.updatePage();
         this.tableData1 = {
             headerRow: [ 'ID', 'Name', 'Country', 'City', 'Salary'],
             dataRows: [
@@ -37,5 +44,12 @@ export class TableComponent implements OnInit{
                 ['6', 'Mason Porter', '$78,615', 'Chile', 'Gloucester' ]
             ]
         };
+    }
+
+    updatePage(){
+        this.restaurantService.getRestaurants().pipe().subscribe(data => {  
+          this.restaurants = data;
+          
+       });
     }
 }

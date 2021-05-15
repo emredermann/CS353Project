@@ -1,3 +1,31 @@
+<ng-template #contentOrderInfo let-modal>
+  <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Order Details</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+  </div>
+  <div class="modal-body">
+  <form>
+      <div class="form-group">
+      <p>Items: {{getOrderItems()}}</p>
+      <p>Price: ${{getOrderPrice()}}</p>
+      </div>
+  </form>
+  </div>
+</ng-template>
+
+<ng-template #contentOrderStatus let-modal>
+  <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Delivery Request</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+  </div>
+  <div class="modal-body">
+  <p>Your request for a delivery-guy has been made!</p>
+  </div>
+</ng-template>
 
 <div class="row">
     <div class="col-ms-7">
@@ -34,7 +62,7 @@
   
       <div class="card">
         <div class="card-header">
-          <h4 class="card-title">A table of some kind</h4>
+          <h4 class="card-title">Order History and Delivery Requests</h4>
         </div>
         <div class="card-body">
           <table class="table">
@@ -45,9 +73,9 @@
             </thead>
             <tbody>
                 <tr *ngFor="let order of orders; index as i">
-                    <td>{{getOrderNo(i)}}</td>
+                    <button type="button" (click)="open(contentOrderInfo)" (click)="setInfo(i)"  class="btn btn-primary">{{getOrderNo(i)}}</button>
                     <td>{{getStatus(i)}}</td>
-                    <button type="button" [disabled]="check(order.status)" (click)="actionMethod(); clicked = true;" class="btn btn-primary">Request Delivery-Guy</button>
+                    <button type="button" [disabled]="check(order.orderState)" (click)="actionMethod(); clicked = true;" (click)="open(contentOrderStatus)" class="btn btn-primary">Request Delivery-Guy</button>
                 </tr>
             </tbody>
           </table>
