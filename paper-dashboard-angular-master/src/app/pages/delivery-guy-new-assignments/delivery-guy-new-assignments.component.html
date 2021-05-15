@@ -47,8 +47,9 @@
 <div class="container">
     <div class="row">
         <div class="search-assignments">
-            <input class="form-control" size="35" (change)="changeRestaurantSelection($event)" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442;  Search by restaurant name">
-            <button class="form-control" (click)="submitRestaurantFilter()" type="submit"> Search</button>
+          <input type="text" class="form-control" size = "35"  placeholder="Search by restaurant name"  (change)="changeRestaurantSelection($event)">
+            <button class="btn btn-primary" (click)="submitRestaurantFilter()" type="submit"> Search</button>
+            <button class="btn btn-primary" (click)="refreshFilter()" type="submit"> clear</button>
           </div>
         <table class="table">
             <thead >
@@ -58,7 +59,7 @@
                 <th scope="col">Restaurant Name</th>
             </thead>
             <tbody>
-              <tr  *ngFor="let assignment of assignments" >
+              <tr  *ngFor="let assignment of resultAssignment" >
                       <td>{{assignment.idNo}}</td>
                       <td>{{assignment.items}}</td>
                             <button mat-button (click)="declineAssignment()" disabled = {{clicked}} >Decline</button>
