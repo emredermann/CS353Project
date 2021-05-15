@@ -15,7 +15,7 @@ export class DeliverComponent implements OnInit{
     password : string;
     phone:string;
     address : string;
-    city :string;e
+    region :string;
     submitted = false;
     returnUrl: string;
 
@@ -24,7 +24,7 @@ export class DeliverComponent implements OnInit{
     }
    
     onSubmit() {
-       alert(this.username+"\n"+this.password+"\n"+this.phone+"\n"+this.address+"\n"+this.city);
+       alert(this.username+"\n"+this.password+"\n"+this.phone+"\n"+this.address+"\n"+this.region);
     }
     getPassword(e){
         this.password = e.target.value;
@@ -38,8 +38,8 @@ export class DeliverComponent implements OnInit{
     getAddress(e){
         this.address = e.target.value;
     }
-    getCity(e){
-        this.city = e.target.value;
+    getRegion(e){
+        this.region = e.target.value;
     }
 }
 
