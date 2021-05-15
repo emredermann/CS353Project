@@ -1,32 +1,88 @@
-<div class="card">
-    <div class="card-header">
-      <h4 class="card-title">{{getOwnerName()}}</h4>
-    </div>
-    <img mat-card-image src="{{getRestaurantLogo()}}" alt="Restaurant Logo">
-    <div class="card-body">
-      <ul class="list-unstyled team-members">
+<ng-template #contentDeleteMenuItem let-modal>
+  <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Delete Menu Item</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+  </div>
+  <div class="modal-body">
+  <form>
+      <div class="form-group">
+        <p></p>
+        <div class="example-button-row">
+          <button type="button" (click)="deleteItem()" class="btn btn-primary">Delete Item</button>
+          <button type="button" class="btn btn-primary" (click)="modal.dismiss('Cross click')" >Cancel</button>
+        </div>
+      </div>
+  </form>
+  </div>
+</ng-template>
 
-        <li>
-          <div class="row">
-            <div class="col-md-2 col-2">
-              <div class="avatar">
-                <img src="assets/img/faces/ayo-ogunseinde-2.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
+
+<div class="row">
+  <div class="col-ms-7">
+
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">{{getOwnerName()}}</h4>
+      </div>
+      <div class="card-body">
+        <ul class="list-unstyled team-members">
+
+          <li>
+            <div class="row">
+              <div class="col-md-2 col-2">
+                <div class="avatar">
+                  <img src="assets/img/faces/ayo-ogunseinde-2.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
+                </div>
+              </div>
+              <div class="col-md-7 col-7">
+                Restaurant: {{getRestaurantName()}}
+                <br/>
+                Branch: {{getBranch()}}
+                <br/>
+                Address: {{getAddress()}}
+              </div>
+              <div class="col-md-3 col-3 text-right">
+                <button class="btn btn-sm btn-outline-success btn-round btn-icon"><i class="fa fa-envelope"></i></button>
               </div>
             </div>
-            <div class="col-md-7 col-7">
-                {{getRestaurantName()}}
-                <br/>
-                {{getBranch()}}
-                <br/>
-                {{getAddress()}}
-            </div>
-            <div class="col-md-3 col-3 text-right">
-              <button class="btn btn-sm btn-outline-success btn-round btn-icon"><i class="fa fa-envelope"></i></button>
-            </div>
-          </div>
-        </li>
-
-      </ul>
+          </li>
+        </ul>
+      </div>
     </div>
-</div>
 
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">Edit Restaurant Menu</h4>
+      </div>
+      <div class="card-body">
+        <table class="table">
+          <thead class=" text-primary">
+              <th>Item Name</th>
+              <th>Item Price</th>
+              <th>Edit Item</th>
+              <th>Delete Item</th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of menu; index as i" [value]="item.itemName">
+              <td>{{item.itemName}}</td>
+              <td>{{item.itemPrice}}</td>
+              <td><button mat-button-raised class="btn btn-primary" [routerLink]="['/owner/owner-menu-item-editor']">Edit</button></td>
+              <td><button mat-icon-button class="btn btn-primary" (click)="open(contentDeleteMenuItem)" (click)="setItemToBeDelete(i)"><mat-icon>Delete</mat-icon></button></td>
+            </tr>
+          </tbody>
+
+          
+        </table>
+       
+      </div>
+    </div>
+
+    
+    <div>
+      <p></p>
+      <button mat-button-raised class="btn btn-primary"  [routerLink]="['/owner/owner-menu-item-editor']">Add New Menu Item</button>
+    </div>
+  </div>
+</div>
