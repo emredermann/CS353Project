@@ -4,8 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { restaurantOwner } from './../../_models/restaurantOwner';
 import { Combo } from './../../_models/combo';
-//import {MatMenuModule} from '@angular/material/menu';
-
+import { RouterModule } from '@angular/router';
 
 @Component({
     selector: 'user-combo-cmp',
@@ -17,7 +16,7 @@ export class UserComboComponent implements OnInit{
 
     public restaurantinfo: restaurantOwner = {name: "Ali Veli", restaurantName: "Burger King", id: 812,
                                             branch: "Bilkent",address: "ABC"};
-    public restaurantinfo2: restaurantOwner = {name: "Ahmet Çelik", restaurantName: "Gülçimen Aspava", id: 813,
+    public restaurantinfo2: restaurantOwner = {name: "Ahmet Çelik", restaurantName: "Gülçimen Aspava", id: 812,
                                             branch: "Mustafa Kemal Mah.", address: "ABC"};
     private clicked = false;
     public restaurants : restaurantOwner [] = [this.restaurantinfo, this.restaurantinfo2 ];
