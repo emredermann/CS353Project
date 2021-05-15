@@ -22,6 +22,7 @@ export class OwnerMenuEditorComponent implements OnInit{
     private clicked = false;
     public counter: number;
     public closeResult = '';
+    public deleteQuestion = 'Are you sure you want to delete this item from your menu?';
     public deleteStatus = 'Are you sure you want to delete this item from your menu?';
 
     constructor(private modalService: NgbModal){
@@ -61,12 +62,22 @@ export class OwnerMenuEditorComponent implements OnInit{
         return this.restaurantinfo.name;
     }
 
+    getItemName(i){
+        return this.menu[i].itemName;
+    }
+
+    getItemPrice(i){
+        return this.menu[i].itemPrice;
+    }
+
     setItemToBeDelete(i){
         this.counter=i;
     }
 
     deleteItem(){
         delete this.menu[this.counter];
+        //this.deleteQuestion = '';
+        this.deleteStatus = 'Item has been deleted from the menu!';
     }
 
 }
