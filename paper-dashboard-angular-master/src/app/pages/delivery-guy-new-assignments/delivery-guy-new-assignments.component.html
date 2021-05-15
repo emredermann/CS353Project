@@ -21,6 +21,7 @@
               <br />
               Status: {{delGuyInfo.status}}
             </div>
+          
             <div class="col-md-3 col-3 text-right">
               <button class="btn btn-sm btn-outline-success btn-round btn-icon"><i class="fa fa-envelope"></i></button>
             </div>
@@ -28,6 +29,15 @@
         </li>
 
       </ul>
+    </div>
+    
+    <div class="d-inline-block" ngbDropdown #myDrop="ngbDropdown">
+      <button class="btn btn-outline-primary mr-2" id="dropdownRegionBox" ngbDropdownToggle>Region Selection</button>
+    <div  ngbDropdownMenu aria-labelledby="dropdownBasic1">
+       <div *ngFor="let reg of region">
+        <button ngbDropdownItem  value="{{reg}}" (click)="regionSet($event)">{{reg}}</button>
+        </div>
+    </div>
     </div>
 </div>
 
@@ -37,8 +47,9 @@
 <div class="container">
     <div class="row">
         <div class="search-assignments">
-            <input class="form-control" size="35" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442;  Search by restaurant name">
-        </div>
+            <input class="form-control" size="35" (change)="changeRestaurantSelection($event)" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442;  Search by restaurant name">
+            <button class="form-control" (click)="submitRestaurantFilter()" type="submit"> Search</button>
+          </div>
         <table class="table">
             <thead >
                 <th scope="col">Customer Id</th>
@@ -50,8 +61,8 @@
               <tr  *ngFor="let assignment of assignments" >
                       <td>{{assignment.idNo}}</td>
                       <td>{{assignment.items}}</td>
-                            <button mat-button (click)="declineAssignment()">Decline</button>
-                            <button mat-raised-button color="primary" (click)="acceptAssignment()">Accept</button>
+                            <button mat-button (click)="declineAssignment()" disabled = {{clicked}} >Decline</button>
+                            <button mat-raised-button color="primary" value="{{assignment.idNo}}" (click)="acceptAssignment($event);"  disabled = {{clicked}}>Accept</button>
                             <td>{{assignment.orderState}}</td>
                       <td>{{assignment.restaurantName}}</td>
               </tr>

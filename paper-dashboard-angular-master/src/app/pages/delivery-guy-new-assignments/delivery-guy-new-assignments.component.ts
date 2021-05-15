@@ -1,6 +1,5 @@
 import { userOrder } from './../../_models/userOrder';
 import { deliveryGuy } from './../../_models/deliveryGuy';
-
 import { Component, OnInit } from '@angular/core';
 
 
@@ -12,12 +11,16 @@ import { Component, OnInit } from '@angular/core';
 
 export class DeliveryGuyNewAssignmentsComponent implements OnInit{
     public delGuyInfo: deliveryGuy = {deliveryGuyName: "İhsan Vekil", job: "Delivery Guy", rating: 3.5, joinedOn: "4.3.2020", status :"available"};
-    private clicked = false;
     public searchText: string;
     public title = 'New Delivery Assignments';
-    
+    public region: string [] = ["cankaya", "beytepe", "bilkent", "çayyolu", "adapazarı"];
+    public clicked: boolean;
+    public selectedRegion: string ;
+    public filteredRestaurantName:string;
+    public filteredAssignmentCount:number;
+    public currentAssignment: number;
     //There will be one assignment
-    assignments: userOrder []=[{ customerName: "Yarak Başı", idNo:1,
+    assignments: userOrder []=[{ customerName: "Dr.Who", idNo:1,
         items:['Quarterpounder Cheeseburger with fries', 'Coke Zero (35 mL)', 'Total: $35'],
         date: new Date(), 
         price: 100,
@@ -27,11 +30,36 @@ export class DeliveryGuyNewAssignmentsComponent implements OnInit{
         delGuyReview: "Very bad",
         delGuyRating:7,
         restaurantResponse:"Good customer",
-        orderState: "pending"}];
+        orderState: "pending"},{ customerName: "Dr.Who", idNo:2,
+        items:['Quarterpounder Cheeseburger with fries', 'Coke Zero (35 mL)', 'Total: $35'],
+        date: new Date(), 
+        price: 100,
+        restaurantName:"Adana",
+        restaurantReview:"VeryGood",
+        restaurantRating: 5,
+        delGuyReview: "Very bad",
+        delGuyRating:7,
+        restaurantResponse:"Good customer",
+        orderState: "pending"},{ customerName: "Dr.Who", idNo:3,
+        items:['Quarterpounder Cheeseburger with fries', 'Coke Zero (35 mL)', 'Total: $35'],
+        date: new Date(), 
+        price: 100,
+        restaurantName:"Local",
+        restaurantReview:"VeryGood",
+        restaurantRating: 5,
+        delGuyReview: "Very bad",
+        delGuyRating:7,
+        restaurantResponse:"Good customer",
+        orderState: "pending"},];
+
+        filteredAssignment:userOrder [];
 
     ngOnInit(){ //Database'den çekilecek kısım bu
     }
-
+    regionSet(e){
+        this.selectedRegion = e.target.value;
+        alert(this .selectedRegion);
+    }
     getName(){
         return this.delGuyInfo.deliveryGuyName;
     }
@@ -48,14 +76,22 @@ export class DeliveryGuyNewAssignmentsComponent implements OnInit{
         return this.delGuyInfo.status;
     }
 
+    changeRestaurantSelection(e){
+            this.filteredRestaurantName = e.value.target;
+            alert( this.filteredRestaurantName);
+    }
     declineAssignment(){
            this.delGuyInfo.status = "available"; 
+           this.clicked = true;
     }
-    acceptAssignment(){
+    acceptAssignment(e){
         this.delGuyInfo.status = "busy";
+        this.clicked = true;
+        this.currentAssignment = e.target.value;
+        this.actionMethod();
     }
     actionMethod() {
-        console.log("Delivery-guy has been requested!");
+       alert("You are assigned to!"+this.currentAssignment);
   }
 
 }
