@@ -14,30 +14,17 @@ interface DeliveryGuyInfo {
 })
 
 export class DeliveryGuyRegionSpecificationComponent implements OnInit{
-     public delGuyInfo: DeliveryGuyInfo = {deliveryGuyName: "İhsan Vekil", job: "Delivery Guy", rating: 3.5, joinedOn: "4.3.2020"};
+    
+    public delGuyInfo: DeliveryGuyInfo = {deliveryGuyName: "İhsan Vekil", job: "Delivery Guy", rating: 3.5, joinedOn: "4.3.2020"};
     private clicked = false;
     public searchText: string;
     public title = 'Past Delivery Assignments';
-
-    assignments = [
-        {customerName:'Ahmet Mehmet',  
-            orderDetails:['Quarterpounder Hamburger with fries', 'Coke Zero (35 mL)', 'Total: $35'], 
-            deliveryStatus:'Delivered', serviceRating: '4.5'} ,
-        {customerName:'Ali Veli',  
-            orderDetails:['2 Large Margaritas', 'California Rolls (8x)','Coke Zero (1L)', 'Total: $59.98'], 
-            deliveryStatus:'Delivery Request Denied', serviceRating: 'none'} ,
-        {customerName:'Hakan Şükür',  
-            orderDetails:['2 Large Margaritas', '2 Small Margaritas', 'Coke Zero (35 mL)', 'Total: $65'], 
-            deliveryStatus:'Delivery cancelled by customer', serviceRating: 'none'} ,
-        {customerName:'Mehmet Erbakan',  
-            orderDetails:['Quarterpounder Cheeseburger with fries', 'Coke Zero (35 mL)', 'Total: $35'], 
-            deliveryStatus:'Delivered', serviceRating: '2.5'} ,
-    ];
-
+    public selectedRegion:string;
+    public regions  : string [];
     ngOnInit(){ //Database'den çekilecek kısım bu
-        
-    }
-
+        this.regions = ["beytepe","bilkent","cankaya","kızılcahamam","karsıyaka",]
+        this.selectedRegion = "-";
+    }   
     getName(){
         return this.delGuyInfo.deliveryGuyName;
     }
@@ -50,7 +37,9 @@ export class DeliveryGuyRegionSpecificationComponent implements OnInit{
     getJoinDate(){
         return this.delGuyInfo.joinedOn;
     }
-
+    regionAdd(e){
+        this.selectedRegion = e.target.value;
+    }
     actionMethod() {
         console.log("Delivery-guy has been requested!");
   }
