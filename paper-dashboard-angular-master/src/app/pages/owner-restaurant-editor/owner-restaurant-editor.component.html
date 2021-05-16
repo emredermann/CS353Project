@@ -72,7 +72,7 @@
                 <td>{{rest.REGION_NAME}}</td>
                 <td>{{rest.AVG_RATING}}</td>
                 <td><button mat-button-raised class="btn btn-primary" [routerLink]="['/owner/owner-menu-editor/',rest.RESTAURANT_ID]" (click)="gotoRestaurantDetails('/owner/owner-menu-editor/',rest.RESTAURANT_ID)">Edit</button></td>
-                <td><button mat-icon-button class="btn btn-primary" (click)="open(contentDeleteRestaurantBranch)" (click)="setBranchToBeDeleted(rest.RESTAURANT_ID)"><mat-icon>Delete</mat-icon></button></td>
+                <td><button mat-icon-button class="btn btn-primary" (click)="open(contentDeleteRestaurantBranch)" (click)="setBranchToBeDeleted(rest.RESTAURANT_ID)">Delete</button></td>
               </tr>
              
             </tbody>
