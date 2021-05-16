@@ -16,12 +16,8 @@ export class OrderService {
     
     return this.http.get<any>(`${environment.apiUrl}/delivery/orders/new/${id}`)
     .pipe(map(user => {
-       
-        
         return user;
     }));
-  
-  
   }
 
   getOldDeliveryOrders(id:number){

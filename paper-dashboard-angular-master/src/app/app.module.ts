@@ -24,7 +24,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RestaurantService } from './_services/restaurant-service/restaurant.service';
 import { CustomerSidebarModule } from './customer-sidebar/customer-sidebar.module';
 import { RegisterService } from './_services/register-service/register.service';
-import { AppRoutingModule } from './pages/app-routing.module';
+import { OrderService } from './_services/order-service/order.service';
+//import { AppRoutingModule } from './pages/app-routing.module';
 
 
 
@@ -54,7 +55,7 @@ import { AppRoutingModule } from './pages/app-routing.module';
     ReactiveFormsModule,
     HttpClientModule,
     FixedPluginModule,
-    AppRoutingModule,
+   // AppRoutingModule,
     //RestaurantService
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
