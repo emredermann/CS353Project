@@ -7,6 +7,7 @@ export const DeliveryGuyLayoutRoutes: Routes = [
     { path : '',         redirectTo:'delivery-guy-past-assignments',          pathMatch:'full'},
     { path: 'delivery-guy-past-assignments',     component: DeliveryGuyPastAssignmentsComponent },
     { path: 'delivery-guy-new-assignments',     component: DeliveryGuyNewAssignmentsComponent },
+    { path: 'delivery-guy-region-specification',     component: DeliveryGuyRegionSpecificationComponent },
    
 ];
 
