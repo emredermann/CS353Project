@@ -87,7 +87,11 @@ export class DeliveryGuyPastAssignmentsComponent implements OnInit{
         this.orderDetail = data;
     
     });
-}
+  }
+
+  getDelGuyReview(order_no:number){
+    //ORDER NO YERINE REVIEW VE RATING GELECEK
+  }
   open(content) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `${result}`;

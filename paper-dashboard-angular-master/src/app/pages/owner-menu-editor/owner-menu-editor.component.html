@@ -76,7 +76,7 @@
               <td>{{getItemName(i)}}</td>
               <td>{{getItemPrice(i)}}</td>
               <td><button mat-button-raised class="btn btn-primary" [routerLink]="['/owner/owner-menu-item-editor/',item.itemId]" (click)="gotoItemDetails('/owner/owner-menu-item-editor/',item.itemId)">Edit</button></td>
-              <td><button mat-icon-button class="btn btn-primary" (click)="open(contentDeleteMenuItem)" (click)="setItemToBeDelete(i)"><mat-icon>Delete</mat-icon></button></td>
+              <td><button class="btn btn-primary" (click)="open(contentDeleteMenuItem)" (click)="setItemToBeDelete(i)"><mat-icon>Delete</mat-icon></button></td>
             </tr>
           </tbody>
 
