@@ -4,6 +4,8 @@ import { Component, OnInit } from '@angular/core';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from "@angular/router";
 import { Restaurant } from 'app/_models/restaurant';
+import { RestaurantService } from 'app/_services/restaurant-service/restaurant.service';
+import { AuthenticationService } from 'app/_services/authentication-service/authentication.service';
 
 @Component({
     selector: 'owner-restaurant-editor-cmp',
@@ -18,7 +20,7 @@ export class OwnerRestaurantEditorComponent implements OnInit{
 
     public restaurantinfo: restaurantOwner = {name: "Ali Veli", restaurantName: "Burger King", 
                                                     id: 4,branch:"Bilkent" ,address: "ABC" };
-    public restaurants: Restaurant[] = [{restaurant_id: 1,
+    public restaurants = [];/*: Restaurant[] = [{restaurant_id: 1,
         restaurant_owner: "Ali Veli",
         restaurantname: "Burger King",
         owner_id: 1,
@@ -32,7 +34,7 @@ export class OwnerRestaurantEditorComponent implements OnInit{
         owner_id: 2,
         avg_rating: 3.5,
         region_name: "Çankaya",
-        menu: this.menu} ];
+        menu: this.menu} ];*/
 
     private clicked = false;
     public counter: number;
@@ -41,12 +43,23 @@ export class OwnerRestaurantEditorComponent implements OnInit{
     public deleteStatus = 'Are you sure you want to remove this restaurant branch from your list of currently owned restaurants?';
     public newRestaurantId = 0;
 
-    constructor(private modalService: NgbModal, private router: Router){
+    constructor(private modalService: NgbModal, private router: Router,private restService:RestaurantService,
+                      private authService:AuthenticationService){
         this.counter = 0;
     }
 
-    ngOnInit(){}
+    ngOnInit(){this.updatePage();}
 
+    updatePage(){
+      let id = this.authService.getCurrentUserId();
+      //alert(id);
+      
+      this.restService.getOwnerRestaurants(id).pipe().subscribe(data => {  
+          
+          this.restaurants = data;
+          
+       });
+      }
     open(content) {
       this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
         this.closeResult = ``;

@@ -63,11 +63,11 @@ export class OrderService {
   }
 
   getReviews(id:number){
-    console.log("Here");
+    
     return this.http.get<any>(`${environment.apiUrl}/owner/reviews/${id}`)
     .pipe(map(user => {
        
-      console.log("Here2");
+      
         return user;
     }));
   }

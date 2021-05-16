@@ -56,7 +56,7 @@ export class DeliveryGuyPastAssignmentsComponent implements OnInit{
 
     updatePage(){
         let id = this.authService.getCurrentUserId();
-        alert(id);
+        //alert(id);
         
         this.orderService.getOldDeliveryOrders(id).pipe().subscribe(data => {  
             
