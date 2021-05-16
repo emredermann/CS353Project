@@ -37,14 +37,8 @@ export class OwnerCommentsComponent implements OnInit{
     ngOnInit(){                  //Database'den çekilecek kısım bu
       this.counter = 0;
       this.responseStatus = '';
-<<<<<<< HEAD
       this.updatePage();
 
-=======
-      this.currentOrder = {customerName: "", idNo: 5, items: ["",""], date: new Date(), price: 0, 
-        restaurantName: "", restaurantReview: "", restaurantRating: 0, delGuyReview:"!",delGuyRating: 0,
-        restaurantResponse:"",orderState: ""};
->>>>>>> da9942800ed41d5b91ca130a2fa1358eb86e8aa5
     }
 
     updatePage(){
@@ -74,7 +68,6 @@ export class OwnerCommentsComponent implements OnInit{
         }
       }
 
-<<<<<<< HEAD
     getOwnerName(){
       return this.restaurantinfo.name;
     }
@@ -134,25 +127,6 @@ export class OwnerCommentsComponent implements OnInit{
     getOrder(i){
       return this.orders[i].items;
     }
-=======
-      setRestaurantReview(review, rating){
-        this.currentOrder.restaurantReview =review;
-        this.currentOrder.restaurantRating =rating;
-      }
-      setDelGuyReview(review, rating){
-        this.currentOrder.delGuyReview =review;
-        this.currentOrder.delGuyRating =rating;
-      }
-  
-      setOrderDetails(items, price){
-        this.currentOrder.items = items;
-        this.currentOrder.price = price;
-      }
-      setResponse(response){
-        this.currentOrder.restaurantResponse =response;
-      }
-     
->>>>>>> da9942800ed41d5b91ca130a2fa1358eb86e8aa5
 
       saveResponse(e){
           
