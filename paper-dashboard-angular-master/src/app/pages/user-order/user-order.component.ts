@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
-import { PersonalInfo } from './../../_models/Personalnfo';
+import { PersonalInfo } from '../../_models/PersonalInfo';
 import { Restaurant } from './../../_models/restaurant';
 import { MenuItem } from './../../_models/menuItem';
 import { ActivatedRoute } from "@angular/router";
@@ -57,7 +57,7 @@ export class UserOrderComponent implements OnInit {
     public closeResult = '';
     selectedSize:string;
     cart: any[];
-    public options: string[] = ["anan"];
+    public options: string[] = ["something"];
  
     constructor(private modalService: NgbModal, private route: ActivatedRoute) {}
 

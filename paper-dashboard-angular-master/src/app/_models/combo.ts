@@ -1,5 +1,8 @@
+import { MenuItem } from './../_models/menuItem';
+
 export class Combo{
+    combo_id: number;
     comboName:string;
-    itemlist:string[];
+    itemlist: MenuItem[];
     price:  number;
 }

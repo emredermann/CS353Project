@@ -1,5 +1,5 @@
 import { restaurantOwner } from './../../_models/restaurantOwner';
-import { PersonalInfo } from './../../_models/Personalnfo';
+import { PersonalInfo } from '../../_models/PersonalInfo';
 import { userOrder } from './../../_models/userOrder';
 import { Component, OnInit } from '@angular/core';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -17,7 +17,7 @@ export class OwnerCommentsComponent implements OnInit{
                     {customerName: "İnsan Çocuğu 2", idNo: 3, items: ["adf","dsg"], date: new Date(), price: 30.15, 
                     restaurantName: "ASPAVA", restaurantReview: "Nice!", restaurantRating:4.5, delGuyReview:"Cool!",delGuyRating: 3.9,
                     restaurantResponse:"No Thanks!",orderState: "Delivered"},
-                    {customerName: "İnsan Çocuğu 3", idNo: 4, items: ["çükbaş","amcıkağaz"], date: new Date(), price: 21.15, 
+                    {customerName: "İnsan Çocuğu 3", idNo: 4, items: ["bişey","başka bişey"], date: new Date(), price: 21.15, 
                     restaurantName: "PİZZA", restaurantReview: "Dick!", restaurantRating:0.5, delGuyReview:"BRUH!",delGuyRating: 3.9,
                     restaurantResponse:"No Thanks!",orderState: "En Route"}];
 

@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
  
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { userOrder } from 'app/_models/userOrder';
-import { PersonalInfo } from 'app/_models/Personalnfo';
+import { PersonalInfo } from 'app/_models/PersonalInfo';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
  
 @Component({
