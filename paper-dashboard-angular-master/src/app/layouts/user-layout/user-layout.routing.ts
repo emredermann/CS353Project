@@ -12,6 +12,6 @@ export const UserLayoutRoutes: Routes = [
     { path: 'user-main',     component: UserMainComponent },
     { path: 'user-order/:id',     component: UserOrderComponent },
     { path: 'user-order-history',     component: UserOrderHistoryComponent  },
-    { path: 'user-combo',     component: UserComboComponent },
+    { path: 'user-combo/:id',     component: UserComboComponent },
     { path: 'user-combo-order',     component: UserComboOrderComponent },
 ];

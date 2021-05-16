@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { restaurantOwner } from './../../_models/restaurantOwner';
-import { PersonalInfo } from './../../_models/Personalnfo';
+import { PersonalInfo } from '../../_models/PersonalInfo';
 import { Restaurant } from './../../_models/restaurant';
 import { MenuItem } from './../../_models/menuItem';
 import { Router } from "@angular/router";
@@ -54,6 +54,8 @@ export class UserMainComponent implements OnInit{
             {itemId: 2, itemName: "Cheeseburger", itemOptions: ["Small (90 g.)","Medium (120 g.)", "Large (180 g.)", "King (220 g.)"], itemPrice: 19}]}
     ];
 
+    public closeResult = '';
+
     constructor(private modalService: NgbModal, private router: Router){
     }
 
@@ -89,5 +91,37 @@ export class UserMainComponent implements OnInit{
         });
     }
 
+    updatePage(){}
+  
+    refreshFilter(){
+      //this.updatePage();
+    }
+
+    submitMenuFilter(){
+      //this.counter = 0;
+      //this.resultAssignment=this.assignments.filter(item=> item.RESTAURANT_NAME ===this.filteredRestaurantName);
+        
+    }
+    changeMenuSelection(e){
+      //this.filteredRestaurantName = e.target.value;
+    }
+
+    open(content) {
+        this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+          this.closeResult = ``;
+        }, (reason) => {
+          this.closeResult = ``;
+        });
+      }
+  
+      private getDismissReason(reason: any): string {
+        if (reason === ModalDismissReasons.ESC) {
+          return '';
+        } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+          return '';
+        } else {
+          return ``;
+        }
+      }
 
 }

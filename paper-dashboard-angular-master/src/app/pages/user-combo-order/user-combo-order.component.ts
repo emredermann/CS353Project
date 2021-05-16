@@ -1,17 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
-import { isTemplateExpression } from 'typescript';
-
-interface RestaurantInfo {
-    restaurantName: string;
-    restaurantBranch: string;
-    restaurantAddress: string;
-}
-
-interface PersonalInfo {
-    fullName: string;
-    credits: number;
-}
+import { NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { MenuItem } from './../../_models/menuItem';
+import { PersonalInfo } from './../../_models/PersonalInfo';
+import { Combo } from './../../_models/combo';
+import { Router } from "@angular/router";
 
 @Component({
     selector: 'user-combo-order-cmp',
@@ -20,6 +12,63 @@ interface PersonalInfo {
 })
 
 export class UserComboOrderComponent implements OnInit { 
+
+    public closeResult = '';
+    public customer: PersonalInfo = {fullName: "Kemal Kılıçdaroğlu", credits: 120, address: "Bilkentte bir yerler" };
+    public combos: Combo[] = [{combo_id: 1, comboName: "Fuzz", 
+                                itemlist: [{itemId: 1, itemName: "Hamburger", itemOptions: ["Small (90 g.)","Medium (120 g.)", "Large (180 g.)", "King (220 g.)"], itemPrice: 14},
+                                            {itemId: 2, itemName: "Cheeseburger", itemOptions: ["Small (90 g.)","Medium (120 g.)", "Large (180 g.)", "King (220 g.)"], itemPrice: 19}], price: 120},
+                                
+                                {combo_id: 2, comboName: "Hayvanatlık", itemlist:[{itemId: 1, itemName: "Hamburger", itemOptions: ["Small (90 g.)","Medium (120 g.)", "Large (180 g.)", "King (220 g.)"], itemPrice: 14},
+                                            {itemId: 2, itemName: "Cheeseburger", itemOptions: ["Small (90 g.)","Medium (120 g.)", "Large (180 g.)", "King (220 g.)"], itemPrice: 19}], price: 120},
+                                
+                                {combo_id: 3, comboName: "Açım", itemlist: [{itemId: 1, itemName: "Hamburger", itemOptions: ["Small (90 g.)","Medium (120 g.)", "Large (180 g.)", "King (220 g.)"], itemPrice: 14},
+                                            {itemId: 2, itemName: "Cheeseburger", itemOptions: ["Small (90 g.)","Medium (120 g.)", "Large (180 g.)", "King (220 g.)"], itemPrice: 19}], price: 120}];
+
+    public currentCombo: Combo = this.combos[0];
+    public menu: MenuItem[] = this.currentCombo.itemlist;
+    public newComboId = 0;
+
+    constructor(private modalService: NgbModal, private router: Router){
+    }
+
     ngOnInit() {
-}
+    }
+
+    open(content) {
+        this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+          this.closeResult = ``;
+        }, (reason) => {
+          this.closeResult = ``;
+        });
+      }
+  
+    private getDismissReason(reason: any): string {
+        if (reason === ModalDismissReasons.ESC) {
+            return '';
+        } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+            return '';
+        } else {
+            return ``;
+        }
+    }
+
+    public gotoComboDetails(url, id) {
+        var myurl = `${url}${id}`;
+        this.router.navigateByUrl(myurl).then(e => {
+          if (e) {
+            console.log("Navigation is successful!");
+          } else {
+            console.log("Navigation has failed!");
+          }
+        });
+      }
+
+    removeCombo(e){
+
+    }
+
+    proceedToCheckout(e){
+
+    }
 }

@@ -12,7 +12,7 @@ export interface RouteInfo {
 export const ROUTES: RouteInfo[] = [
     { path: '/user/user-main',    title: 'Choose Restaurant',   icon:'nc-tile-56',    class: '' },
     { path: '/user/user-order-history',   title: 'Order History',      icon:'nc-single-02',  class: '' },
-    { path: '/user/user-combo',           title: 'Customize Combos',     icon:'nc-bank',    class: '' },
+    //{ path: '/user/user-combo',           title: 'Customize Combos',     icon:'nc-bank',    class: '' },
     { path: '/user/user-combo-order',   title: 'Order Combos',      icon:'nc-single-02',  class: '' }
 ];
 
