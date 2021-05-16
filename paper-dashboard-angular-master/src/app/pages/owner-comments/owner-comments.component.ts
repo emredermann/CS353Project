@@ -29,8 +29,8 @@ export class OwnerCommentsComponent implements OnInit{
     id: 4,branch:"Bilkent" ,address: "ABC" };
     public closeResult = '';
     public responseStatus: string;
-    public currentOrder: userOrder;
-
+    public currentOrder;
+    public orderDetail = [];
     constructor(private modalService: NgbModal,private orderService:OrderService,private authService:AuthenticationService)
     {}
    
@@ -45,12 +45,13 @@ export class OwnerCommentsComponent implements OnInit{
         let id = this.authService.getCurrentUserId();
         
         this.orderService.getReviews(id).pipe().subscribe(data => {  
-            console.log(this.orders);
+            //console.log(this.orders);
             this.orders = data;
             
          });
     }
-    open(content) {
+    open(content,order_no) {
+      this.getOrderDetails(order_no);
         this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
           this.closeResult = `${result}`;
         }, (reason) => {
@@ -66,6 +67,10 @@ export class OwnerCommentsComponent implements OnInit{
         } else {
           return ``;
         }
+
+       
+
+        
       }
 
     getOwnerName(){
@@ -93,28 +98,31 @@ export class OwnerCommentsComponent implements OnInit{
     get Branch(){return this.restaurantinfo.branch;}
     get Address(){return this.restaurantinfo.address;}
 
-    getCustomerReview(){return this.orders[this.counter].restaurantReview;}
-    getCustomerRating(){return this.orders[this.counter].restaurantRating;}
+    getCustomerReview(){return this.orders.filter((item)=>item.ORDER_NO === this.counter)[0].RESTAURANTREVIEW;}
+    getCustomerRating(){return this.orders.filter((item)=>item.ORDER_NO === this.counter)[0].RESTAURANTRATING;}
     
     // Do we need them
-    getdelGuyReview(){return  this.orders[this.counter].delGuyReview;}
-    getdelGuyRating(){return  this.orders[this.counter].delGuyRating;}
+    getdelGuyReview(){return  this.orders.filter((item)=>item.ORDER_NO === this.counter)[0].DELIVERYGUYREVIEW;}
+    getdelGuyRating(){return  this.orders.filter((item)=>item.ORDER_NO === this.counter)[0].DELIVERYGUYRATING;}
     
    
     getMyResponse(){return  this.orders[this.counter].restaurantResponse;}
    
     setCustomerReview(i){
-
       this.counter = i;
+      //this.currentOrder = this.orders.filter(a=> a.ORDER_NO = order_no);
     }
     setDelGuyReview(i){
       this.counter = i;
+      //this.currentOrder = this.orders.filter(a=> a.ORDER_NO = order_no)
     }
     setResponseIndex(i){
       this.counter = i;
+      //this.getOrderDetails(order_no);
+      //this.currentOrder = this.orders.filter(a=> a.ORDER_NO = order_no)
     }
     setResponse(e){
-      this.orders[this.counter].restaurantResponse = e.target.value;
+      //this.orders[this.counter].restaurantResponse = e.target.value;
     }
 
     getOrderNo(i){
@@ -132,4 +140,13 @@ export class OwnerCommentsComponent implements OnInit{
           
       }
 
+      
+      getOrderDetails(order_no:number){
+        //let id_user = this.authService.getCurrentUserId();
+        this.orderService.getOrderDetails(order_no).pipe().subscribe(data => {  
+            
+            this.orderDetail = data;
+        
+        });
+      }
 }

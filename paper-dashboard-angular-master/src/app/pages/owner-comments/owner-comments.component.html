@@ -10,9 +10,8 @@
     </div>
     <div class="modal-body">
     <form>
-        <div class="form-group">
-          <p>Items: {{currentOrder.items}}</p>
-          <p>Price: ${{currentOrder.price}}</p>
+        <div *ngFor="let order of orderDetail">
+       <p>{{order.FOODNAME}}, &nbsp;  {{order.AMOUNT}}x, &nbsp; {{order.PRICE}} $ (singular)</p>
         </div>
     </form>
     </div>
@@ -28,8 +27,8 @@
     <div class="modal-body">
     <form>
         <div class="form-group">
-        <p>Review: {{currentOrder.restaurantReview}} </p>
-        <p>Rating: {{currentOrder.restaurantRating}} </p>
+        <p>Review: {{getCustomerReview()}} </p>
+        <p>Rating: {{getCustomerRating()}} </p>
         </div>
     </form>
     </div>
@@ -45,8 +44,8 @@
     <div class="modal-body">
     <form>
         <div class="form-group">
-        <p>Review: {{currentOrder.delGuyReview}}</p>
-        <p>Rating: {{currentOrder.delGuyRating}}</p>
+        <p>Review: {{getdelGuyReview()}}</p>
+        <p>Rating: {{getdelGuyRating()}}</p>
         </div>
     </form>
     </div>
@@ -96,11 +95,11 @@
             </div>
           </div>
           <div class="col-md-7 col-7">
-            Restaurant: {{restaurantinfo.restaurantName}}
+            Restaurant: {{orders[0].RESTAURANTNAME}}
             <br/>
-            Branch: {{restaurantinfo.branch}}
-            <br/>
-            Address: {{restaurantinfo.address}}
+            Branch: {{orders[0].REGION_NAME}}
+           
+            
           </div>
           <div class="col-md-3 col-3 text-right">
             <button class="btn btn-sm btn-outline-success btn-round btn-icon"><i class="fa fa-envelope"></i></button>
@@ -128,8 +127,8 @@
       </thead>
       <tbody>
       <tr *ngFor="let order of orders;index as i">
-        <button type="button" class="btn btn-primary" (click)="open(contentOrderInfo)">{{order.ORDER_NO}}</button>
-        <td>{{order.ORDER_STATE}}</td>
+        <button type="button" class="btn btn-primary" (click)="open(contentOrderInfo, order.ORDER_NO)">{{order.ORDER_NO}}</button>
+        <td>{{order.ORDERSTATE}}</td>
         <td><button type="button" class="btn btn-primary" (click)="open(contentCustomerReview)" (click)="setCustomerReview(order.ORDER_NO)" >See customer's rating and review</button></td>
         <td><button type="button" class="btn btn-primary" (click)="open(contentDelGuyReview)" (click)="setDelGuyReview(order.ORDER_NO)">See delivery-guy's rating and review</button></td>
         <td><button type="button" class="btn btn-primary" (click)="open(contentMyResponse)" (click)="setResponseIndex(order.ORDER_NO)">See and edit my response</button></td>
