@@ -9,9 +9,9 @@ export interface RouteInfo {
 }
 
 export const ROUTES: RouteInfo[] = [
-    { path: '/owner/owner-main',    title: 'Owner Main',     icon:'nc-spaceship',    class: '' },
+    { path: '/owner/owner-main',    title: 'Order History and Delivery Requests',     icon:'nc-spaceship',    class: '' },
     { path: '/owner/owner-comments',       title: 'Respond to Reviews',      icon:'nc-bell-55',  class: '' },
-    { path: '/owner/owner-menu-editor',       title: 'Edit Menu',      icon:'nc-bell-55',  class: '' }
+    { path: '/owner/owner-restaurant-editor',       title: 'Owned Restaurants',      icon:'nc-bell-55',  class: '' }
 ];
 
 @Component({
