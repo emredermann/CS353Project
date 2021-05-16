@@ -53,12 +53,21 @@ export class OrderService {
     }));
   }
 
-  getOwnerReview(id:number){
-    
-    return this.http.get<any>(`${environment.apiUrl}/owner/reviews/${id}`)
+  getOrderHistory(id:number){
+     return this.http.get<any>(`${environment.apiUrl}/owner/orders/${id}`)
     .pipe(map(user => {
        
         
+        return user;
+    }));
+  }
+
+  getReviews(id:number){
+    console.log("Here");
+    return this.http.get<any>(`${environment.apiUrl}/owner/reviews/${id}`)
+    .pipe(map(user => {
+       
+      console.log("Here2");
         return user;
     }));
   }

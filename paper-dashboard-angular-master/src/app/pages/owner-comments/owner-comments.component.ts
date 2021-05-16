@@ -44,8 +44,8 @@ export class OwnerCommentsComponent implements OnInit{
     updatePage(){
         let id = this.authService.getCurrentUserId();
         
-        this.orderService.getOwnerReview(id).pipe().subscribe(data => {  
-            
+        this.orderService.getReviews(id).pipe().subscribe(data => {  
+            console.log(this.orders);
             this.orders = data;
             
          });

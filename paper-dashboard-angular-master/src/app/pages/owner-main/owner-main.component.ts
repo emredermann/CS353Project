@@ -45,7 +45,7 @@ export class OwnerMainComponent implements OnInit{
     updatePage(){
         let id = this.authService.getCurrentUserId();
         
-        this.orderService.getOwnerReview(id).pipe().subscribe(data => {  
+        this.orderService.getOrderHistory(id).pipe().subscribe(data => {  
             
             this.orders = data;
             
@@ -117,7 +117,7 @@ export class OwnerMainComponent implements OnInit{
 
     setInfo(order_no){
 
-        let id_user = this.authService.getCurrentUserId();
+        //let id_user = this.authService.getCurrentUserId();
         this.orderService.getOrderDetails(order_no).pipe().subscribe(data => {  
             
             this.orderDetail = data;

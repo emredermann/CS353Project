@@ -75,7 +75,7 @@
             </thead>
             <tbody>
                 <tr *ngFor="let order of orders; index as i">
-                    <button type="button" (click)="open(contentOrderInfo)" (click)="setInfo(order.ORDER_NO)"  class="btn btn-primary">{{order.ORDER_NO}}</button>
+                  <td> <button type="button" (click)="open(contentOrderInfo)" (click)="setInfo(order.ORDER_NO)"  class="btn btn-primary">{{order.ORDER_NO}}</button></td>
                     <td>{{order.ORDERSTATE}}</td>
                     <button type="button" [disabled]="check(order.ORDERSTATE)" (click)="actionMethod(); clicked = true;" (click)="open(contentOrderStatus)" class="btn btn-primary">Request Delivery-Guy</button>
                 </tr>
