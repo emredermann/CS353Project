@@ -1,27 +1,32 @@
 
       <div class="card">
-        <div class="card-header">
-          <h4 class="card-title">{{selectedRegion}}</h4>
-        </div>
+        
         <div class="card-body">
           <div class="container">
             <div class="row">
               <table class="table">
                   <thead >
-                    <th scope="col">Customer Name</th>
-                    <th scope="col">Order Details</th>
-                    <th scope="col">Delivery Status</th>
-               
+                    <th scope="col">Region</th>
+                    <th scope="col">Add</th>
+                    <th scope="col">Remove</th>
                   </thead>
                   <tbody>
                     <tr  *ngFor="let region of regions" >
                       <td>{{region}}</td>
-                      <td><button type="button" class="btn btn-primary" value="{{region}}"  (click)="regionAdd($event)">{{region}}</button></td>
+                      <td><button type="button" class="btn btn-primary" value="{{region}}"  (click)="regionAdd($event)">+</button></td>
+                      <td><button type="button" class="btn btn-primary" value="{{region}}"  (click)="regionRemove($event)">-</button></td>
                     </tr>
                   </tbody>
               </table>
             </div> 
           </div>
+        </div>
+
+        <div class="card-text">
+          <h3>Selected Regions</h3>
+          <ng-container  *ngFor="let selectedReg of selectedRegion" >
+            <p>{{selectedReg}}</p>
+          </ng-container>
         </div>
       </div>
   

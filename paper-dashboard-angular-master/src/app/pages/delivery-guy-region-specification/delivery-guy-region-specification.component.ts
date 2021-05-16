@@ -19,12 +19,14 @@ export class DeliveryGuyRegionSpecificationComponent implements OnInit{
     private clicked = false;
     public searchText: string;
     public title = 'Past Delivery Assignments';
-    public selectedRegion:string;
-    public regions  : string [];
+    public selectedRegion:Array<string> = [];
+    public regions  : Array<string> = [];
+    
     ngOnInit(){ //Database'den çekilecek kısım bu
         this.regions = ["beytepe","bilkent","cankaya","kızılcahamam","karsıyaka",]
-        this.selectedRegion = "-";
     }   
+
+    
     getName(){
         return this.delGuyInfo.deliveryGuyName;
     }
@@ -38,7 +40,16 @@ export class DeliveryGuyRegionSpecificationComponent implements OnInit{
         return this.delGuyInfo.joinedOn;
     }
     regionAdd(e){
-        this.selectedRegion = e.target.value;
+        const index = this.selectedRegion.indexOf(e.target.value, 0);
+        if (index < 0) {
+            this.selectedRegion.push( e.target.value);
+        }
+    }
+    regionRemove(e){
+        const index = this.selectedRegion.indexOf(e.target.value, 0);
+        if (index > -1) {
+            this.selectedRegion.splice(index, 1);
+        }
     }
     actionMethod() {
         console.log("Delivery-guy has been requested!");
