@@ -34,11 +34,11 @@ export class AuthenticationService {
         return this.http.post<any>(`${environment.apiUrl}/user/authenticate`, { 'username': username, 'password':password })
         .pipe(map(user => {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
-            this.cur_id = user.USER_ID;
+            
             
             localStorage.setItem('currentUser', JSON.stringify(user));
             this.currentUserSubject.next(user);
-            
+            this.cur_id = user[0].USER_ID;
             return user;
         }));
     
@@ -59,11 +59,11 @@ export class AuthenticationService {
         return this.http.post<any>(`${environment.apiUrl}/owner/authenticate`, { 'username': username, 'password':password })
         .pipe(map(user => {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
-            this.cur_id = user.USER_ID;
+            
             
             localStorage.setItem('currentUser', JSON.stringify(user));
             this.currentUserSubject.next(user);
-            
+            this.cur_id = user[0].USER_ID;
             return user;
         }));
        }

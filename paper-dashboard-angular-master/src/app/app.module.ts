@@ -18,16 +18,13 @@ import { BrowserModule } from "@angular/platform-browser";
 import { OwnerSidebarModule } from "./owner-sidebar/owner-sidebar.module";
 import { DeliveryGuySidebarModule } from './delivery-guy-sidebar/delivery-guy-sidebar.module';
 import { ErrorInterceptor, JwtInterceptor } from './_helpers';
-
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-
 import { RestaurantService } from './_services/restaurant-service/restaurant.service';
 import { CustomerSidebarModule } from './customer-sidebar/customer-sidebar.module';
 import { RegisterService } from './_services/register-service/register.service';
 import { OrderService } from './_services/order-service/order.service';
+
 //import { AppRoutingModule } from './pages/app-routing.module';
-
-
 
 
 @NgModule({

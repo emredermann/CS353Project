@@ -155,7 +155,7 @@ export class DeliveryGuyNewAssignmentsComponent implements OnInit{
   }
   getOrderDetails(order_no:number){
         let id_user = this.authService.getCurrentUserId();
-        this.orderService.getOrderDetails(order_no,id_user).pipe().subscribe(data => {  
+        this.orderService.getOrderDetails(order_no).pipe().subscribe(data => {  
             
             this.orderDetail = data;
         

@@ -2,6 +2,8 @@ import { restaurantOwner } from './../../_models/restaurantOwner';
 import { userOrder } from './../../_models/userOrder';
 import { Component, OnInit } from '@angular/core';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { OrderService } from 'app/_services/order-service/order.service';
+import { AuthenticationService } from 'app/_services/authentication-service/authentication.service';
 
 
 @Component({
@@ -12,7 +14,9 @@ import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 export class OwnerMainComponent implements OnInit{
 
-    public orders: userOrder [] = [{customerName: "İnsan Çocuğu", idNo: 5, items: ["Hamburger"," Hamburger"], date: new Date(), price: 120.45, 
+    public orderDetail = [];
+    
+    public orders = [];/*: userOrder [] = [{customerName: "İnsan Çocuğu", idNo: 5, items: ["Hamburger"," Hamburger"], date: new Date(), price: 120.45, 
                     restaurantName: "Burger King", restaurantReview: "Nice!", restaurantRating:4.5, delGuyReview:"Cool!",delGuyRating: 3.9,
                     restaurantResponse:"Thanks!",orderState: "Delivered"},
                     {customerName: "İnsan Çocuğu 2", idNo: 3, items: ["Cheeseburger"," Sandwich"], date: new Date(), price: 30.15, 
@@ -21,19 +25,31 @@ export class OwnerMainComponent implements OnInit{
                     {customerName: "İnsan Çocuğu 3", idNo: 5, items: ["Cheeseburger"," Cheeseburger"], date: new Date(), price: 142.45, 
                     restaurantName: "Pizza", restaurantReview: "Nice!", restaurantRating:4.5, delGuyReview:"Cool!",delGuyRating: 2.1,
                     restaurantResponse:"Thanks!",orderState: "Delivered"},
-                ];
+                ];*/
 
     public restaurantinfo: restaurantOwner = {name: "Ali Veli", restaurantName: "Burger King", id: 4,branch:"Bilkent" ,address: "ABC" };
     private clicked = false;
     public closeResult = '';
     public counter: number;
 
-    constructor(private modalService: NgbModal){
+    constructor(private modalService: NgbModal,private orderService:OrderService,private authService:AuthenticationService){
 
     }
 
     ngOnInit(){
         this.counter = 0;
+        this.updatePage();
+
+    }
+
+    updatePage(){
+        let id = this.authService.getCurrentUserId();
+        
+        this.orderService.getOrderHistory(id).pipe().subscribe(data => {  
+            
+            this.orders = data;
+            
+         });
     }
 
     open(content) {
@@ -99,8 +115,14 @@ export class OwnerMainComponent implements OnInit{
         return true;
     }
 
-    setInfo(i){
-        this.counter=i;
+    setInfo(order_no){
+
+        //let id_user = this.authService.getCurrentUserId();
+        this.orderService.getOrderDetails(order_no).pipe().subscribe(data => {  
+            
+            this.orderDetail = data;
+        
+        });
     }
 }
 

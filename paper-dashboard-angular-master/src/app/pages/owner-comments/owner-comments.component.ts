@@ -3,6 +3,8 @@ import { PersonalInfo } from '../../_models/PersonalInfo';
 import { userOrder } from './../../_models/userOrder';
 import { Component, OnInit } from '@angular/core';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { OrderService } from 'app/_services/order-service/order.service';
+import { AuthenticationService } from 'app/_services/authentication-service/authentication.service';
 
 @Component({
     selector: 'owner-comments-cmp',
@@ -11,7 +13,7 @@ import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
  
 export class OwnerCommentsComponent implements OnInit{
-    public orders: userOrder [] = [{customerName: "İnsan Çocuğu", idNo: 5, items: ["abc","cde"], date: new Date(), price: 120.45, 
+    public orders = [];/*: userOrder [] = [{customerName: "İnsan Çocuğu", idNo: 5, items: ["abc","cde"], date: new Date(), price: 120.45, 
                     restaurantName: "Burger King", restaurantReview: "Nice!", restaurantRating: 3.5, delGuyReview:"Cool!",delGuyRating: 3.9,
                     restaurantResponse:"Thanks!",orderState: "Delivered"},
                     {customerName: "İnsan Çocuğu 2", idNo: 3, items: ["adf","dsg"], date: new Date(), price: 30.15, 
@@ -19,7 +21,7 @@ export class OwnerCommentsComponent implements OnInit{
                     restaurantResponse:"No Thanks!",orderState: "Delivered"},
                     {customerName: "İnsan Çocuğu 3", idNo: 4, items: ["bişey","başka bişey"], date: new Date(), price: 21.15, 
                     restaurantName: "PİZZA", restaurantReview: "Dick!", restaurantRating:0.5, delGuyReview:"BRUH!",delGuyRating: 3.9,
-                    restaurantResponse:"No Thanks!",orderState: "En Route"}];
+                    restaurantResponse:"No Thanks!",orderState: "En Route"}];*/
 
     public counter : number;
     public user: PersonalInfo = {fullName :"emre", credits: 0,address : "izmir"};
@@ -29,17 +31,25 @@ export class OwnerCommentsComponent implements OnInit{
     public responseStatus: string;
     public currentOrder: userOrder;
 
-    constructor(private modalService: NgbModal)
+    constructor(private modalService: NgbModal,private orderService:OrderService,private authService:AuthenticationService)
     {}
    
     ngOnInit(){                  //Database'den çekilecek kısım bu
       this.counter = 0;
       this.responseStatus = '';
-      this.currentOrder = {customerName: "", idNo: 5, items: ["",""], date: new Date(), price: 0, 
-        restaurantName: "", restaurantReview: "", restaurantRating: 0, delGuyReview:"!",delGuyRating: 0,
-        restaurantResponse:"",orderState: ""};
+      this.updatePage();
+
     }
 
+    updatePage(){
+        let id = this.authService.getCurrentUserId();
+        
+        this.orderService.getReviews(id).pipe().subscribe(data => {  
+            console.log(this.orders);
+            this.orders = data;
+            
+         });
+    }
     open(content) {
         this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
           this.closeResult = `${result}`;
@@ -58,23 +68,65 @@ export class OwnerCommentsComponent implements OnInit{
         }
       }
 
-      setRestaurantReview(review, rating){
-        this.currentOrder.restaurantReview =review;
-        this.currentOrder.restaurantRating =rating;
-      }
-      setDelGuyReview(review, rating){
-        this.currentOrder.delGuyReview =review;
-        this.currentOrder.delGuyRating =rating;
-      }
-  
-      setOrderDetails(items, price){
-        this.currentOrder.items = items;
-        this.currentOrder.price = price;
-      }
-      setResponse(response){
-        this.currentOrder.restaurantResponse =response;
-      }
-     
+    getOwnerName(){
+      return this.restaurantinfo.name;
+    }
+
+    getRestaurantName(){
+        return this.restaurantinfo.restaurantName;
+    }
+    getBranch(){
+        return this.restaurantinfo.branch;
+    }
+    getAddress(){
+        return this.restaurantinfo.address;
+    }
+    getOrderItems(){
+        return this.orders[this.counter].items;
+    }
+    getOrderPrice(){
+        return this.orders[this.counter].price;
+    }
+
+    get ownerName(){return this.user.fullName;}
+    get RestaurantName(){return this.restaurantinfo.name;}
+    get Branch(){return this.restaurantinfo.branch;}
+    get Address(){return this.restaurantinfo.address;}
+
+    getCustomerReview(){return this.orders[this.counter].restaurantReview;}
+    getCustomerRating(){return this.orders[this.counter].restaurantRating;}
+    
+    // Do we need them
+    getdelGuyReview(){return  this.orders[this.counter].delGuyReview;}
+    getdelGuyRating(){return  this.orders[this.counter].delGuyRating;}
+    
+   
+    getMyResponse(){return  this.orders[this.counter].restaurantResponse;}
+   
+    setCustomerReview(i){
+
+      this.counter = i;
+    }
+    setDelGuyReview(i){
+      this.counter = i;
+    }
+    setResponseIndex(i){
+      this.counter = i;
+    }
+    setResponse(e){
+      this.orders[this.counter].restaurantResponse = e.target.value;
+    }
+
+    getOrderNo(i){
+      return this.orders[i].ORDER_NO;
+    }
+    getStatus(i){
+      return this.orders[i].ORDERSTATE;
+    }
+
+    getOrder(i){
+      return this.orders[i].items;
+    }
 
       saveResponse(e){
           
