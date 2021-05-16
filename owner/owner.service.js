@@ -11,7 +11,9 @@ const { first } = require('../knex');
 module.exports = {
     authenticate,
     getReviews,
-    getOrderHistory
+    getOrderHistory,
+    getOwnerRestaurants
+    
 };
 
 
@@ -51,9 +53,9 @@ async function getReviews(id){
     .then((user)=>{
         
         try{
-            console.log("T");
-            console.log(user);
-            //user[0].ORDER_NO;
+            //console.log("T");
+            //console.log(user);
+            user[0].ORDER_NO;
             return user;
         }
         catch{
@@ -75,9 +77,31 @@ async function getOrderHistory(id){
     .then((user)=>{
         
         try{
-            console.log("T");
+            //console.log("T");
+            //console.log(user);
+            user[0].ORDER_NO;
+            return user;
+        }
+        catch{
+        
+            throw 'Internal Server Error';
+        }    
+        
+        ;}).catch(function(err){
+            throw err;
+        })      
+        return result;
+}
+
+async function getOwnerRestaurants(id){
+    let result = await knex('restaurant').where('restaurant.OWNER_ID',id).rightOuterJoin('review','review.OWNER_ID','=','restaurant.OWNER_ID')
+    .select('restaurant.OWNER_ID','restaurant.RESTAURANTNAME','restaurant.REGION_NAME',).avg({AVG_RATING:'review.RESTAURANTRATING'})
+    .then((user)=>{
+        
+        try{
+            
             console.log(user);
-            //user[0].ORDER_NO;
+            user[0].OWNER_ID;
             return user;
         }
         catch{
