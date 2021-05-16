@@ -5,8 +5,8 @@ const registerService = require('./register-service');
 // routes
 
 router.post('/authenticate', authenticate);
-//router.get('/', getAll);
 router.put('/register',register);
+router.get('/reviews/:id',getReviews)
 module.exports = router;
 
 
@@ -19,5 +19,11 @@ function authenticate(req, res, next) {
 
 function register(req,res,next){
     registerService.register(req.body).then(user => res.json(user))
+    .catch(next);
+}
+
+function getReviews(req,res,next){
+    
+    ownerService.getReviews(req.params.id).then(user => res.json(user))
     .catch(next);
 }

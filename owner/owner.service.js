@@ -1,5 +1,6 @@
 ﻿const config = require('config.json');
 const jwt = require('jsonwebtoken');
+const { getOrderDetails } = require('../delivery/delivery.service');
 const knex = require('../knex');
 const { first } = require('../knex');
 
@@ -9,7 +10,7 @@ const { first } = require('../knex');
 
 module.exports = {
     authenticate,
-    getAll
+    getReviews,
 };
 
 
@@ -40,12 +41,32 @@ async function authenticate({ username, password }) {
     
 }
 
-async function getAll() {
+async function getReviews(id){
     
-  
-    
+    let result = await knex('review').where('review.OWNER_ID',id).join('orders','orders.ORDER_NO','=','review.ORDER_NO')
+    .select('review.ORDER_NO','orders.ORDERSTATE','review.DELIVERYGUYREVIEW','review.RESTAURANTREVIEW',
+    'review.DELIVERYGUYRATING','review.RESTAURANTRATING','review.OWNERCOMMENT')
+    .then((user)=>{
+        
+        try{
+            
+            user[0].ORDER_NO;
+        }
+        catch{
+        
+            throw 'Internal Server Error';
+        }    
+        return user;
+        ;}).catch(function(err){
+            throw err;
+        })      
+        
+    return result;
 }
 
+/*async function getOwnerOrderDetails(id){
+
+}*/
 
 // helper functions
 function omitPassword(user) {

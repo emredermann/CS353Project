@@ -9,7 +9,7 @@ const { first } = require('../knex');
 
 module.exports = {
     authenticate,
-    getAll
+    
 };
 
 
@@ -37,18 +37,6 @@ async function authenticate({ username, password }) {
         })      
         
     return result;
-    
-}
-
-async function getAll() {
-    
-    knex('admins').select('*').then((data)=>{
-        adminList = data;
-    });
-    knex('student').select('*').then((data)=>{
-        
-        studentList = data;
-    });
     
 }
 

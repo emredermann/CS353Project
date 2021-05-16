@@ -12,8 +12,7 @@ module.exports = {
     getNewDeliveryOrders,
     getOldDeliveryOrders,
     getOrderDetails,
-    
-    getAll
+
 };
 
 
@@ -85,28 +84,20 @@ async function getOldDeliveryOrders(id){
 }
 //
 
+// TO BE CAHNGED
 async function getOrderDetails(id){
-    var splitter = id.split('~');
-    var id_order = splitter[0];
-    var id_user = splitter[1];
-    let result = await knex('HAS_ITEM').where('HAS_ITEM.ORDER_NO',id_order).join('orders','orders.ORDER_NO','=','HAS_ITEM.ORDER_NO')
-    .join('MENU_ITEM','MENU_ITEM.FOOD_ID','=','HAS_ITEM.FOOD_ID').where({DELIVERY_GUY_ID:id_user})
+    let result = await knex('HAS_ITEM').where('HAS_ITEM.ORDER_NO',id).join('orders','orders.ORDER_NO','=','HAS_ITEM.ORDER_NO')
+    .join('MENU_ITEM','MENU_ITEM.FOOD_ID','=','HAS_ITEM.FOOD_ID')
     .then((data)=>{
         try{
             
-            data[0].DELIVERY_GUY_ID;
+            data[0].ORDER_NO;
             return data;
         }catch{
             throw "Internal Server Error"
         }
     });
     return result;
-}
-
-async function getAll() {
-    
-  
-    
 }
 
 
