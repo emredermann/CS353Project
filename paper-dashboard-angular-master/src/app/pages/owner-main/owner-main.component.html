@@ -7,9 +7,9 @@
   </div>
   <div class="modal-body">
   <form>
-      <div class="form-group">
-      <p>Items: {{getOrderItems()}}</p>
-      <p>Price: ${{getOrderPrice()}}</p>
+      <div *ngFor="let order of orderDetail">
+      <p>{{order.FOODNAME}}, &nbsp;  {{order.AMOUNT}}x, &nbsp; {{order.PRICE}} $ (singular)</p>
+      
       </div>
   </form>
   </div>
@@ -73,9 +73,9 @@
             </thead>
             <tbody>
                 <tr *ngFor="let order of orders; index as i">
-                    <button type="button" (click)="open(contentOrderInfo)" (click)="setInfo(i)"  class="btn btn-primary">{{getOrderNo(i)}}</button>
-                    <td>{{getStatus(i)}}</td>
-                    <button type="button" [disabled]="check(order.orderState)" (click)="actionMethod(); clicked = true;" (click)="open(contentOrderStatus)" class="btn btn-primary">Request Delivery-Guy</button>
+                    <button type="button" (click)="open(contentOrderInfo)" (click)="setInfo(order.ORDER_NO)"  class="btn btn-primary">{{order.ORDER_NO}}</button>
+                    <td>{{order.ORDERSTATE}}</td>
+                    <button type="button" [disabled]="check(order.ORDERSTATE)" (click)="actionMethod(); clicked = true;" (click)="open(contentOrderStatus)" class="btn btn-primary">Request Delivery-Guy</button>
                 </tr>
             </tbody>
           </table>

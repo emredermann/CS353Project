@@ -3,6 +3,8 @@ import { PersonalInfo } from './../../_models/Personalnfo';
 import { userOrder } from './../../_models/userOrder';
 import { Component, OnInit } from '@angular/core';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { OrderService } from 'app/_services/order-service/order.service';
+import { AuthenticationService } from 'app/_services/authentication-service/authentication.service';
 
 @Component({
     selector: 'owner-comments-cmp',
@@ -11,7 +13,7 @@ import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
  
 export class OwnerCommentsComponent implements OnInit{
-    public orders: userOrder [] = [{customerName: "İnsan Çocuğu", idNo: 5, items: ["abc","cde"], date: new Date(), price: 120.45, 
+    public orders = [];/*: userOrder [] = [{customerName: "İnsan Çocuğu", idNo: 5, items: ["abc","cde"], date: new Date(), price: 120.45, 
                     restaurantName: "Burger King", restaurantReview: "Nice!", restaurantRating: 3.5, delGuyReview:"Cool!",delGuyRating: 3.9,
                     restaurantResponse:"Thanks!",orderState: "Delivered"},
                     {customerName: "İnsan Çocuğu 2", idNo: 3, items: ["adf","dsg"], date: new Date(), price: 30.15, 
@@ -19,7 +21,7 @@ export class OwnerCommentsComponent implements OnInit{
                     restaurantResponse:"No Thanks!",orderState: "Delivered"},
                     {customerName: "İnsan Çocuğu 3", idNo: 4, items: ["çükbaş","amcıkağaz"], date: new Date(), price: 21.15, 
                     restaurantName: "PİZZA", restaurantReview: "Dick!", restaurantRating:0.5, delGuyReview:"BRUH!",delGuyRating: 3.9,
-                    restaurantResponse:"No Thanks!",orderState: "En Route"}];
+                    restaurantResponse:"No Thanks!",orderState: "En Route"}];*/
 
     public counter : number;
     public user: PersonalInfo = {fullName :"emre", credits: 0,address : "izmir"};
@@ -28,14 +30,25 @@ export class OwnerCommentsComponent implements OnInit{
     public closeResult = '';
     public responseStatus: string;
 
-    constructor(private modalService: NgbModal)
+    constructor(private modalService: NgbModal,private orderService:OrderService,private authService:AuthenticationService)
     {}
    
     ngOnInit(){                  //Database'den çekilecek kısım bu
       this.counter = 0;
       this.responseStatus = '';
+      this.updatePage();
+
     }
 
+    updatePage(){
+        let id = this.authService.getCurrentUserId();
+        
+        this.orderService.getOwnerReview(id).pipe().subscribe(data => {  
+            
+            this.orders = data;
+            
+         });
+    }
     open(content) {
         this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
           this.closeResult = `${result}`;
@@ -90,6 +103,7 @@ export class OwnerCommentsComponent implements OnInit{
     getMyResponse(){return  this.orders[this.counter].restaurantResponse;}
    
     setCustomerReview(i){
+
       this.counter = i;
     }
     setDelGuyReview(i){
@@ -103,10 +117,10 @@ export class OwnerCommentsComponent implements OnInit{
     }
 
     getOrderNo(i){
-      return this.orders[i].idNo;
+      return this.orders[i].ORDER_NO;
     }
     getStatus(i){
-      return this.orders[i].orderState;
+      return this.orders[i].ORDERSTATE;
     }
 
     getOrder(i){

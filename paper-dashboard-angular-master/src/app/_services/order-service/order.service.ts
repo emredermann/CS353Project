@@ -47,9 +47,29 @@ export class OrderService {
   
   }
 
-  getOrderDetails(id:number,id_user:number){
+  getOrderDetails(id:number){
     
-    return this.http.get<any>(`${environment.apiUrl}/delivery/orders/${id}~${id_user}`)
+    return this.http.get<any>(`${environment.apiUrl}/delivery/orders/${id}`)
+    .pipe(map(user => {
+       
+        
+        return user;
+    }));
+  }
+
+  getOwnerReview(id:number){
+    
+    return this.http.get<any>(`${environment.apiUrl}/owner/reviews/${id}`)
+    .pipe(map(user => {
+       
+        
+        return user;
+    }));
+  }
+
+  getOwnerOrderDetails(id:number){
+    
+    return this.http.get<any>(`${environment.apiUrl}/owner/orders/${id}`)
     .pipe(map(user => {
        
         

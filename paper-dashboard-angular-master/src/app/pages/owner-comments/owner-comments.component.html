@@ -126,11 +126,11 @@
       </thead>
       <tbody>
       <tr *ngFor="let order of orders;index as i">
-        <button type="button" class="btn btn-primary" (click)="open(contentOrderInfo)">{{getOrderNo(i)}}</button>
-        <td>{{getStatus(i)}}</td>
-        <td><button type="button" class="btn btn-primary" (click)="open(contentCustomerReview)" (click)="setCustomerReview(i)" >See customer's rating and review</button></td>
-        <td><button type="button" class="btn btn-primary" (click)="open(contentDelGuyReview)" (click)="setDelGuyReview(i)">See delivery-guy's rating and review</button></td>
-        <td><button type="button" class="btn btn-primary" (click)="open(contentMyResponse)" (click)="setResponseIndex(i)">See and edit my response</button></td>
+        <button type="button" class="btn btn-primary" (click)="open(contentOrderInfo)">{{order.ORDER_NO}}</button>
+        <td>{{order.ORDER_STATE}}</td>
+        <td><button type="button" class="btn btn-primary" (click)="open(contentCustomerReview)" (click)="setCustomerReview(order.ORDER_NO)" >See customer's rating and review</button></td>
+        <td><button type="button" class="btn btn-primary" (click)="open(contentDelGuyReview)" (click)="setDelGuyReview(order.ORDER_NO)">See delivery-guy's rating and review</button></td>
+        <td><button type="button" class="btn btn-primary" (click)="open(contentMyResponse)" (click)="setResponseIndex(order.ORDER_NO)">See and edit my response</button></td>
       </tr>
       </tbody>
     </table>
