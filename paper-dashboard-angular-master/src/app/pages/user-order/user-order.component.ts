@@ -107,15 +107,18 @@ export class UserOrderComponent implements OnInit {
 
     proceedToCheckout(){} //Saves all the changed attributes
 
-    submitRestaurantFilter(){
-
-    }
-
-    changeRestaurantSelection(e){
-
-    }
-
+    updatePage(){}
+  
     refreshFilter(){
+      //this.updatePage();
+    }
 
+    submitMenuFilter(){
+      //this.counter = 0;
+      //this.resultAssignment=this.assignments.filter(item=> item.RESTAURANT_NAME ===this.filteredRestaurantName);
+        
+    }
+    changeMenuSelection(e){
+      //this.filteredRestaurantName = e.target.value;
     }
 }

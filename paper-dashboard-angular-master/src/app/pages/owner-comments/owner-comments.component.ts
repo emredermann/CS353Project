@@ -27,6 +27,7 @@ export class OwnerCommentsComponent implements OnInit{
     id: 4,branch:"Bilkent" ,address: "ABC" };
     public closeResult = '';
     public responseStatus: string;
+    public currentOrder: userOrder;
 
     constructor(private modalService: NgbModal)
     {}
@@ -34,6 +35,9 @@ export class OwnerCommentsComponent implements OnInit{
     ngOnInit(){                  //Database'den çekilecek kısım bu
       this.counter = 0;
       this.responseStatus = '';
+      this.currentOrder = {customerName: "", idNo: 5, items: ["",""], date: new Date(), price: 0, 
+        restaurantName: "", restaurantReview: "", restaurantRating: 0, delGuyReview:"!",delGuyRating: 0,
+        restaurantResponse:"",orderState: ""};
     }
 
     open(content) {
@@ -54,70 +58,26 @@ export class OwnerCommentsComponent implements OnInit{
         }
       }
 
-    getOwnerName(){
-      return this.restaurantinfo.name;
-    }
+      setRestaurantReview(review, rating){
+        this.currentOrder.restaurantReview =review;
+        this.currentOrder.restaurantRating =rating;
+      }
+      setDelGuyReview(review, rating){
+        this.currentOrder.delGuyReview =review;
+        this.currentOrder.delGuyRating =rating;
+      }
+  
+      setOrderDetails(items, price){
+        this.currentOrder.items = items;
+        this.currentOrder.price = price;
+      }
+      setResponse(response){
+        this.currentOrder.restaurantResponse =response;
+      }
+     
 
-    getRestaurantName(){
-        return this.restaurantinfo.restaurantName;
-    }
-    getBranch(){
-        return this.restaurantinfo.branch;
-    }
-    getAddress(){
-        return this.restaurantinfo.address;
-    }
-    getOrderItems(){
-        return this.orders[this.counter].items;
-    }
-    getOrderPrice(){
-        return this.orders[this.counter].price;
-    }
-
-    get ownerName(){return this.user.fullName;}
-    get RestaurantName(){return this.restaurantinfo.name;}
-    get Branch(){return this.restaurantinfo.branch;}
-    get Address(){return this.restaurantinfo.address;}
-
-    getCustomerReview(){return this.orders[this.counter].restaurantReview;}
-    getCustomerRating(){return this.orders[this.counter].restaurantRating;}
-    
-    // Do we need them
-    getdelGuyReview(){return  this.orders[this.counter].delGuyReview;}
-    getdelGuyRating(){return  this.orders[this.counter].delGuyRating;}
-    
-   
-    getMyResponse(){return  this.orders[this.counter].restaurantResponse;}
-   
-    setCustomerReview(i){
-      this.counter = i;
-    }
-    setDelGuyReview(i){
-      this.counter = i;
-    }
-    setResponseIndex(i){
-      this.counter = i;
-    }
-    setResponse(e){
-      this.orders[this.counter].restaurantResponse = e.target.value;
-    }
-
-    getOrderNo(i){
-      return this.orders[i].idNo;
-    }
-    getStatus(i){
-      return this.orders[i].orderState;
-    }
-
-    getOrder(i){
-      return this.orders[i].items;
-    }
-
-    saveResponse(){
-      this.responseStatus = 'Response Saved!';
-    }
-    clearResponse(){
-      this.responseStatus = '';
-    }
+      saveResponse(e){
+          
+      }
 
 }
