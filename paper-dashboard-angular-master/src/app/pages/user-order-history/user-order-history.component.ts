@@ -30,6 +30,7 @@ export class UserOrderHistoryComponent implements OnInit{
     public responseRestaurantStatus: string;
     public responseStatus: string;
     public flag = false;
+    public currentOrder: userOrder;
 
     loginForm = new FormGroup({
         type : new FormControl('',Validators.required),
@@ -40,13 +41,16 @@ export class UserOrderHistoryComponent implements OnInit{
     ngOnInit(){                  //Database'den çekilecek kısım bu
         this.counter = 0;
         this.responseStatus='';
+        this.currentOrder = {customerName: "", idNo: 5, items: ["",""], date: new Date(), price: 0, 
+        restaurantName: "", restaurantReview: "", restaurantRating: 0, delGuyReview:"!",delGuyRating: 0,
+        restaurantResponse:"",orderState: ""};
       }
 
     open(content) {
         this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-          this.closeResult = `${result}`;
+          this.closeResult = ``;
         }, (reason) => {
-          this.closeResult = `${this.getDismissReason(reason)}`;
+          this.closeResult = ``;
         });
       }
 
@@ -59,72 +63,46 @@ export class UserOrderHistoryComponent implements OnInit{
           return ``;
         }
       }
-    getUserName(){
-        return this.user.fullName;
-    }
-    getCredits(){
-        return this.user.credits;
-    }
-    getAddress(){
-        return this.user.address;
-    }
-
-    getOrderItems(){
-        return this.orders[this.counter].items;
-    }
-    getOrderPrice(){
-        return this.orders[this.counter].price;
-    }
-
-    getCustomerReview(){return this.orders[this.counter].restaurantReview;}
-    getCustomerRating(){return this.orders[this.counter].restaurantRating;}
-    
-    getdelGuyReview(){return  this.orders[this.counter].delGuyReview;}
-    getdelGuyRating(){return  this.orders[this.counter].delGuyRating;}
-    
-    getMyResponse(){return  this.orders[this.counter].restaurantResponse;}
+  
    
-    setCustomerReview(i){
-      this.counter = i;
+    setRestaurantReview(review, rating){
+      this.currentOrder.restaurantReview =review;
+      this.currentOrder.restaurantRating =rating;
     }
-    setDelGuyReview(i){
-      this.counter = i;
+    setDelGuyReview(review, rating){
+      this.currentOrder.delGuyReview =review;
+      this.currentOrder.delGuyRating =rating;
     }
-    setResponseIndex(i){
-      this.counter = i;
+
+    setOrderDetails(items, price){
+      this.currentOrder.items = items;
+      this.currentOrder.price = price;
     }
-    setResponse(e){
-      this.orders[this.counter].restaurantResponse = e.target.value;
+    setResponse(response){
+      this.currentOrder.restaurantResponse =response;
     }
-    setDeliveryGuyResponse(e){
-        this.responseDeliveryGuyStatus=e.target.value;
-        this.flag = false;
-    }
-    setRestaurantResponse(e){
+   
+    saveRestaurantReview(e){
         this.responseRestaurantStatus= e.target.value;
         this.flag = true;
     }
-    saveResponse(){
-        if(this.flag == false){
-        this.responseStatus = this.responseDeliveryGuyStatus;
+    saveDelGuyReview(e){
+
     }
-      else{
-        this.responseStatus = this.responseRestaurantStatus;
-      }
-    }
-    clearResponse(){
-      this.responseStatus[0];
-    }
-    
-    getOrderNo(i){
-        return this.orders[i].idNo;
-      }
-      getStatus(i){
-        return this.orders[i].orderState;
-      }
+
+    updatePage(){}
   
-      getOrder(i){
-        return this.orders[i].items;
-      }
+    refreshFilter(){
+      //this.updatePage();
+    }
+
+    submitRestaurantFilter(){
+      //this.counter = 0;
+      //this.resultAssignment=this.assignments.filter(item=> item.RESTAURANT_NAME ===this.filteredRestaurantName);
+        
+    }
+    changeRestaurantSelection(e){
+      //this.filteredRestaurantName = e.target.value;
+    }
   
 }

@@ -1,37 +1,3 @@
-<div class="card">
-    <div class="card-header">
-      <h4 class="card-title">{{getName()}}</h4>
-    </div>
-    <div class="card-body">
-      <ul class="list-unstyled team-members">
-
-        <li>
-          <div class="row">
-            <div class="col-md-2 col-2">
-              <div class="avatar">
-                <img src="assets/img/faces/ayo-ogunseinde-2.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
-              </div>
-            </div>
-            <div class="col-md-7 col-7">
-              Title: {{getJob()}}
-              <br />
-              Rating : {{getRating()}}
-              <br />
-              Join Date: {{getJoinDate()}}
-            </div>
-            <div class="col-md-3 col-3 text-right">
-              <button class="btn btn-sm btn-outline-success btn-round btn-icon"><i class="fa fa-envelope"></i></button>
-            </div>
-          </div>
-        </li>
-
-      </ul>
-    </div>
-</div>
-
-
-
-
 <ng-template #contentorderdetails let-modal>
   <div class="modal-header">
       <h4 class="modal-title" id="modal-basic-title">Order Details</h4>
@@ -50,41 +16,94 @@
   </div>
 </ng-template>
 
-
-
-
-
-<div class="card">
-  <div class="card-header">
-    <h4 class="card-title">{{title}}</h4>
+<ng-template #contentDelGuyReview let-modal>
+  <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Delivery Guy's Review of the Customer</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
   </div>
-  <div class="card-body">
-    <div class="container">
-        <div class="row">
+  <div class="modal-body">
+  <form>
+      <div class="form-group">
+      <p>Review: </p>
+      <p>Rating: </p>
+      </div>
+  </form>
+  </div>
+</ng-template>
+
+<h1>Past Assignments</h1>
+
+<div class="row">
+  <div class="col-md-12">
+
+    <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">{{getName()}}</h4>
+        </div>
+        <div class="card-body">
+          <ul class="list-unstyled team-members">
+
+            <li>
+              <div class="row">
+                <div class="col-md-2 col-2">
+                  <div class="avatar">
+                    <img src="assets/img/faces/ayo-ogunseinde-2.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
+                  </div>
+                </div>
+                <div class="col-md-7 col-7">
+                  Title: {{getJob()}}
+                  <br />
+                  Rating : {{getRating()}}
+                  <br />
+                  Join Date: {{getJoinDate()}}
+                </div>
+                <div class="col-md-3 col-3 text-right">
+                  <button class="btn btn-sm btn-outline-success btn-round btn-icon"><i class="fa fa-envelope"></i></button>
+                </div>
+              </div>
+            </li>
+
+          </ul>
+        </div>
+    </div>
+
+
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">{{title}}</h4>
+      </div>
+      <div class="card-body">
+        <div class="container">
+          <div class="row">
             <div class="search-assignments">
-                <input class="form-control" size="35" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442;  Search by restaurant name">
+              <input type="text" class="form-control" size = "35"  placeholder="Search by restaurant name"  (change)="changeRestaurantSelection($event)">
+              <button class="btn btn-primary" (click)="submitRestaurantFilter()" type="submit"> Search</button>
+              <button class="btn btn-primary" (click)="refreshFilter()" type="submit"> clear</button>
             </div>
             <table class="table">
                 <thead >
-                    <th scope="col">Customer Name</th>
-                    <th scope="col">Order Details</th>
-                    <th scope="col">Delivery Status</th>
-                    <th scope="col">Delivery Rating and Review</th>
-                    <th scope="col">Restaurant Name</th>
+                  <th scope="col">Customer Name</th>
+                  <th scope="col">Order Details</th>
+                  <th scope="col">Delivery Status</th>
+                  <th scope="col">Delivery Rating and Review</th>
+                  <th scope="col">Restaurant Name</th>
                 </thead>
                 <tbody>
                   <tr  *ngFor="let assign of assignments" >
-                          <td>{{assign.CUSTOMER_ID}}</td>
-                          <td><button type="button" class="btn btn-primary" (click)="open(contentorderdetails)" (click)="getOrderDetails(assign.ORDER_NO)" >See Order Details</button></td>
-                          <td>{{assign.ORDERSTATE}}</td>
-                                <td>{{assign.RESTAURANTNAME}}</td>
-                                <button mat-button (click)="declineAssignment()" disabled = {{clicked}} >Decline</button>
-                                <button mat-raised-button color="primary" value="{{assign.ORDER_NO}}" (click)="acceptAssignment($event);"  disabled = {{clicked}}>Accept</button>
+                    <td>{{assign.CUSTOMER_ID}}</td>
+                    <td><button type="button" class="btn btn-primary" (click)="open(contentorderdetails)" (click)="getOrderDetails(assign.ORDER_NO)" >See Order Details</button></td>
+                    <td>{{assign.ORDERSTATE}}</td>
+                    <td><button type="button" class="btn btn-primary" (click)="open(contentDelGuyReview)" (click)="getDelGuyReview(assign.ORDER_NO)" >See Customer Review and Rating Details</button></td>
+                    <td>{{assign.RESTAURANTNAME}}</td>
                   </tr>
                 </tbody>
             </table>
-        </div> 
+          </div> 
+        </div>
+      </div>
     </div>
+
   </div>
 </div>
-
