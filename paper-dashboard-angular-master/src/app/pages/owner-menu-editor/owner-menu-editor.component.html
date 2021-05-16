@@ -84,6 +84,7 @@
     <div>
       <p></p>
       <button mat-button-raised class="btn btn-primary"  [routerLink]="['/owner/owner-menu-item-editor/', newItemId]" (click)="gotoItemDetails('/owner/owner-menu-item-editor/',newItemId)">Add New Menu Item</button>
+      <button mat-button-raised class="btn btn-primary" (click)="saveChanges()" [routerLink]="['/owner/owner-restaurant-editor' ]">Save Branch and Return to Owned Restaurants</button>
     </div>
   </div>
 </div>

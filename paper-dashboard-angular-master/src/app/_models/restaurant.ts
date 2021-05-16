@@ -1,6 +1,7 @@
 import { MenuItem } from './../_models/menuItem';
 
 export class Restaurant{
+
   restaurant_id: number;
   restaurant_owner: string;
   restaurantname: string;
