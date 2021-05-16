@@ -11,6 +11,7 @@ const { first } = require('../knex');
 module.exports = {
     authenticate,
     getReviews,
+    getOrderHistory
 };
 
 
@@ -65,6 +66,29 @@ async function getReviews(id){
         })      */
         
     return result;
+}
+
+async function getOrderHistory(id){
+    let result = await knex('review').where('review.OWNER_ID',id).join('orders','orders.ORDER_NO','=','review.ORDER_NO')
+    .join('restaurant','restaurant.OWNER_ID','=','review.OWNER_ID')
+    .select('restaurant.OWNER_ID','review.ORDER_NO','orders.ORDERSTATE','restaurant.RESTAURANTNAME','restaurant.REGION_NAME')
+    .then((user)=>{
+        
+        try{
+            console.log("T");
+            console.log(user);
+            //user[0].ORDER_NO;
+            return user;
+        }
+        catch{
+        
+            throw 'Internal Server Error';
+        }    
+        
+        ;}).catch(function(err){
+            throw err;
+        })      
+        return result;
 }
 
 /*async function getOwnerOrderDetails(id){

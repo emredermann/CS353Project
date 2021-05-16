@@ -6,7 +6,8 @@ const registerService = require('./register-service');
 
 router.post('/authenticate', authenticate);
 router.put('/register',register);
-router.get('/reviews/:id',getReviews)
+router.get('/reviews/:id',getReviews);
+router.get('/orders/:id',getOrderHistory);
 module.exports = router;
 
 
@@ -24,5 +25,10 @@ function register(req,res,next){
 
 function getReviews(req,res,next){
     ownerService.getReviews(req.params.id).then(user => res.json(user))
+    .catch(next);
+}
+
+function getOrderHistory(req,res,next){
+    ownerService.getOrderHistory(req.params.id).then(user => res.json(user))
     .catch(next);
 }
