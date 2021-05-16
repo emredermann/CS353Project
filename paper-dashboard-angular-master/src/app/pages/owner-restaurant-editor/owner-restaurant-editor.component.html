@@ -67,20 +67,14 @@
                 <th>Menu</th>
             </thead>
             <tbody>
-              <tr>
-                <td>{{restaurants[0].restaurantname}}</td>
-                <td>{{restaurants[0].region_name}}</td>
-                <td>{{restaurants[0].avg_rating}}</td>
-                <td><button mat-button-raised class="btn btn-primary" [routerLink]="['/owner/owner-menu-editor/',restaurants[0].restaurant_id]" (click)="gotoRestaurantDetails('/owner/owner-menu-editor/',restaurants[0].restaurant_id)">Edit</button></td>
-                <td><button mat-icon-button class="btn btn-primary" (click)="open(contentDeleteRestaurantBranch)" (click)="setBranchToBeDeleted(0)"><mat-icon>Delete</mat-icon></button></td>
+              <tr *ngFor="let rest of restaurants" >
+                <td>{{rest.RESTAURANTNAME}}</td>
+                <td>{{rest.REGION_NAME}}</td>
+                <td>{{rest.AVG_RATING}}</td>
+                <td><button mat-button-raised class="btn btn-primary" [routerLink]="['/owner/owner-menu-editor/',rest.RESTAURANT_ID]" (click)="gotoRestaurantDetails('/owner/owner-menu-editor/',rest.RESTAURANT_ID)">Edit</button></td>
+                <td><button mat-icon-button class="btn btn-primary" (click)="open(contentDeleteRestaurantBranch)" (click)="setBranchToBeDeleted(rest.RESTAURANT_ID)"><mat-icon>Delete</mat-icon></button></td>
               </tr>
-              <tr>
-                <td>{{restaurants[1].restaurantname}}</td>
-                <td>{{restaurants[1].region_name}}</td>
-                <td>{{restaurants[1].avg_rating}}</td>
-                <td><button mat-button-raised class="btn btn-primary" [routerLink]="['/owner/owner-menu-editor/',restaurants[1].restaurant_id]" (click)="gotoRestaurantDetails('/owner/owner-menu-editor/',restaurants[1].restaurant_id)">Edit</button></td>
-                <td><button mat-icon-button class="btn btn-primary" (click)="open(contentDeleteRestaurantBranch)" (click)="setBranchToBeDeleted(1)"><mat-icon>Delete</mat-icon></button></td>
-              </tr>
+             
             </tbody>
   
             
