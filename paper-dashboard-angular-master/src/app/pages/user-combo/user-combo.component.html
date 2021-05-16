@@ -29,14 +29,13 @@
     <label>Search a Restaurant:  </label>
     <input type="text" class="form-control" placeholder="Restaurant name here.." (change)="getSearchedRestaurantName($event)" >
     <br><br>
-    <button mat-button [matMenuTriggerFor]="menu">Choose Item From Menu</button>
+    <button class="btn">Choose Item From Menu</button>
     <br><br><br><br><br><br><br><br><br>
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item  value="item1" (click)="additem($event)">Item 1</button>
-      <button mat-menu-item  value="item2" (click)="additem($event)">Item 2</button>
-      <button mat-menu-item  value="item3" (click)="additem($event)">Item 3</button>
-      <button mat-menu-item  value="item4" (click)="additem($event)">Item 4</button>
-    </mat-menu>
+
+      <button class="btn" value="item1" (click)="additem($event)">Item 1</button>
+      <button class="btn" value="item2" (click)="additem($event)">Item 2</button>
+      <button class="btn" value="item3" (click)="additem($event)">Item 3</button>
+      <button class="btn" value="item4" (click)="additem($event)">Item 4</button>
     <br>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <button type="button">Add Item To Combo</button>
@@ -58,7 +57,11 @@
     <button type="button" (click)="OrderCombo()">Order Combo</button>
     <br>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <button mat-button-raised (click)="onAdd($event)" [routerLink]="['/user/user-combo']">Previously Saved Combos</button>
+    <nav>
+      <a [routerLink]="['/user/user-combo-order']">Previously Saved Combos</a>
+    </nav>
+    <router-outlet></router-outlet>>
+    
   </div>
 </div>
 </body>

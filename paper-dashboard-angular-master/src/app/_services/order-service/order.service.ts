@@ -13,19 +13,15 @@ export class OrderService {
   constructor(private http: HttpClient) { }
 
   getNewDeliveryOrders(id:number){
-    
+    alert("anan1");
     return this.http.get<any>(`${environment.apiUrl}/delivery/orders/new/${id}`)
     .pipe(map(user => {
-       
-        
         return user;
     }));
-  
-  
   }
 
   getOldDeliveryOrders(id:number){
-    
+    alert("anan2");
     return this.http.get<any>(`${environment.apiUrl}/delivery/orders/old/${id}`)
     .pipe(map(user => {
        

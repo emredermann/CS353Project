@@ -16,8 +16,10 @@
   </div>
 </ng-template>
 
+<h1>{{item.itemName}} from {{restaurantinfo.restaurantName}}-{{restaurantinfo.branch}} Branch Menu</h1>
+
 <div class="row">
-  <div class="col-ms-7">
+  <div class="col-md-12">
 
     <div class="card">
       <div class="card-header">
@@ -49,6 +51,7 @@
       </div>
     </div>
 
+    
     <div class="card">
       <div class="card-header">
         <h4 class="card-title">Edit/Add Menu Item</h4>
@@ -83,7 +86,7 @@
     </div>
     <div>
       <p></p>
-      <button mat-button-raised class="btn btn-primary" (click)="saveChanges()" [routerLink]="['/owner/owner-menu-editor']">Save Edit and Return to Menu Editor</button>
+      <button mat-button-raised class="btn btn-primary" (click)="saveChanges()" [routerLink]="['/owner/owner-menu-editor/0' ]">Save Edit and Return to Menu Editor</button>
     </div>
   </div>
 </div>

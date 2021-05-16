@@ -1,25 +1,12 @@
+import { User } from './../../_models/user';
 import { UserOrderComponent } from './../user-order/user-order.component';
 import { Component, OnInit } from '@angular/core';
-import { NONE_TYPE } from '@angular/compiler';
-
-export class PersonalInfo {
-    fullName: string;
-    credits: number;
-    address: string;
-}
-export class userOrder{
-    idNo:number;
-    items: string;
-    date:  string;
-    price: number;
-    restaurantReview:string;
-    restaurantRating: number;
-    delGuyReview: string;
-    delGuyRating:number;
-    restaurantResponse: string;
-    orderState:boolean;
-}
-
+ 
+import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { userOrder } from 'app/_models/userOrder';
+import { PersonalInfo } from 'app/_models/Personalnfo';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+ 
 @Component({
     selector: 'user-order-history-cmp',
     moduleId: module.id,
@@ -27,63 +14,95 @@ export class userOrder{
 })
 
 export class UserOrderHistoryComponent implements OnInit{
-    orders: userOrder[] = [{idNo: 5, items: "pickles and shrooms", date: "2019-01-16", 
-                        price: 15, restaurantReview: "Great!", restaurantRating: 3.5, delGuyReview: "Not so great",
-                        delGuyRating: 2.6, restaurantResponse: "Nice!", orderState: true}, 
-                        {idNo: 5, items: "pickles and shrooms", date: "2019-01-16", 
-                        price: 15, restaurantReview: "Great!", restaurantRating: 3.5, delGuyReview: "Not so great",
-                        delGuyRating: 2.6, restaurantResponse: "Nice!", orderState: true}
-                    ];
-    counter : number;
-    user: PersonalInfo = {fullName: "Kemal Kılıçdaroğlu", credits: 120.43, address:"Somewhere in bilkent" };
+    public orders: userOrder [] = [{customerName: "İnsan Çocuğu", idNo: 5, items: ["abc","cde"], date: new Date(), price: 120.45, 
+                                    restaurantName: "Burger King", restaurantReview: "Nice!", restaurantRating: 3.5, delGuyReview:"Cool!",delGuyRating: 3.9,
+                                    restaurantResponse:"Thanks!",orderState: "Delivered"},
+                                    {customerName: "İnsan Çocuğu 2", idNo: 3, items: ["adf","dsg"], date: new Date(), price: 30.15, 
+                                    restaurantName: "ASPAVA", restaurantReview: "Nice!", restaurantRating:4.5, delGuyReview:"Cool!",delGuyRating: 3.9,
+                                    restaurantResponse:"No Thanks!",orderState: "Delivered"},
+                                    {customerName: "İnsan Çocuğu 3", idNo: 4, items: ["çükbaş","amcıkağaz"], date: new Date(), price: 21.15, 
+                                    restaurantName: "PİZZA", restaurantReview: "Dick!", restaurantRating:0.5, delGuyReview:"BRUH!",delGuyRating: 3.9,
+                                    restaurantResponse:"No Thanks!",orderState: "En Route"}];
+    public counter : number;
+    public user: PersonalInfo = {fullName: "Kemal Kılıçdaroğlu", credits: 120.43, address:"Somewhere in bilkent" };
+    public closeResult = '';
+    public responseDeliveryGuyStatus: string;
+    public responseRestaurantStatus: string;
+    public responseStatus: string;
+    public flag = false;
+    public currentOrder: userOrder;
 
-    ngOnInit(){ //Database'den çekilecek kısım bu
+    loginForm = new FormGroup({
+        type : new FormControl('',Validators.required),
+    });
+    constructor(private modalService: NgbModal,private formBuilder: FormBuilder,)
+    {}
+
+    ngOnInit(){                  //Database'den çekilecek kısım bu
         this.counter = 0;
-        
-    }
-    getCustomerName(){
-        return this.user.fullName;
-    }
-    getCredits(){return this.user.credits;}
-    getAddress(){return this.user.address; }
-    getOrderItems(){
-        return  this.orders[this.counter].items;
-    }
-    getOrderPrice(){
-        return this.orders[this.counter].price;
-    }
-    getMyReview(){
-        return this.orders[this.counter].restaurantReview;
-    }
-    getMyRating(){
-       return  this.orders[this.counter].restaurantRating
-    }
-    // Sending db function
-    saveReview(){
+        this.responseStatus='';
+        this.currentOrder = {customerName: "", idNo: 5, items: ["",""], date: new Date(), price: 0, 
+        restaurantName: "", restaurantReview: "", restaurantRating: 0, delGuyReview:"!",delGuyRating: 0,
+        restaurantResponse:"",orderState: ""};
+      }
 
+    open(content) {
+        this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+          this.closeResult = ``;
+        }, (reason) => {
+          this.closeResult = ``;
+        });
+      }
+
+      private getDismissReason(reason: any): string {
+        if (reason === ModalDismissReasons.ESC) {
+          return '';
+        } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+          return '';
+        } else {
+          return ``;
+        }
+      }
+  
+   
+    setRestaurantReview(review, rating){
+      this.currentOrder.restaurantReview =review;
+      this.currentOrder.restaurantRating =rating;
     }
-    cancelReview(){
-        this.orders[this.counter].delGuyReview = "";
-        this.orders[this.counter].delGuyRating = null;
+    setDelGuyReview(review, rating){
+      this.currentOrder.delGuyReview =review;
+      this.currentOrder.delGuyRating =rating;
     }
-    getdelGuyReview(){return this.orders[this.counter].delGuyReview;}
-    getdelGuyRating(){return this.orders[this.counter].delGuyRating;}
-    getResponse(){
-        return this.orders[this.counter].restaurantResponse;
-    }
+
     setOrderDetails(items, price){
-        this.orders[this.counter].items = items;
-        this.orders[this.counter].price = price;
-    }
-    setMyReview(myReview, myRating){
-        this.orders[this.counter].restaurantReview = myReview;
-        this.orders[this.counter].restaurantRating = myRating;
-    }
-    setDelGuyReview(delGuyReview, delGuyRating){
-        this.orders[this.counter].delGuyReview = delGuyReview;
-        this.orders[this.counter].delGuyRating = delGuyRating;
+      this.currentOrder.items = items;
+      this.currentOrder.price = price;
     }
     setResponse(response){
-        this.orders[this.counter].restaurantResponse =response; 
+      this.currentOrder.restaurantResponse =response;
     }
+   
+    saveRestaurantReview(e){
+        this.responseRestaurantStatus= e.target.value;
+        this.flag = true;
+    }
+    saveDelGuyReview(e){
+
+    }
+
+    updatePage(){}
+  
+    refreshFilter(){
+      //this.updatePage();
+    }
+
+    submitRestaurantFilter(){
+      //this.counter = 0;
+      //this.resultAssignment=this.assignments.filter(item=> item.RESTAURANT_NAME ===this.filteredRestaurantName);
+        
+    }
+    changeRestaurantSelection(e){
+      //this.filteredRestaurantName = e.target.value;
+    }
+  
 }

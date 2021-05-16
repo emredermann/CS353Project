@@ -4,7 +4,10 @@ import { DeliveryGuyLayoutComponent } from './layouts/delivery-guy-layout/delive
 import { OwnerLayoutComponent } from './layouts/owner-layout/owner-layout.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { UserLayoutComponent } from './layouts/user-layout/user-layout.component';
+
 export const AppRoutes: Routes = [
+
+
   {
     path: '',
     component: AdminLayoutComponent,

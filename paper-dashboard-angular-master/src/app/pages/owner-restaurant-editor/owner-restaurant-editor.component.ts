@@ -1,62 +1,51 @@
 import { restaurantOwner } from './../../_models/restaurantOwner';
-import { Restaurant } from './../../_models/restaurant';
 import { MenuItem } from './../../_models/menuItem';
 import { Component, OnInit } from '@angular/core';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ActivatedRoute } from "@angular/router";
 import { Router } from "@angular/router";
+import { Restaurant } from 'app/_models/restaurant';
 
 @Component({
-    selector: 'owner-menu-editor-cmp',
+    selector: 'owner-restaurant-editor-cmp',
     moduleId: module.id,
-    templateUrl: 'owner-menu-editor.component.html'
+    templateUrl: 'owner-restaurant-editor.component.html'
 })
 
-export class OwnerMenuEditorComponent implements OnInit{
+export class OwnerRestaurantEditorComponent implements OnInit{
 
     public menu: MenuItem[] = [{itemId: 1, itemName: "Hamburger", itemOptions: ["Small (90 g.)","Medium (120 g.)", "Large (180 g.)", "King (220 g.)"], itemPrice: 14},
                         {itemId: 2, itemName: "Cheeseburger", itemOptions: ["Small (90 g.)","Medium (120 g.)", "Large (180 g.)", "King (220 g.)"], itemPrice: 19}];
 
     public restaurantinfo: restaurantOwner = {name: "Ali Veli", restaurantName: "Burger King", 
-                                              id: 4,branch:"Bilkent" ,address: "ABC" };
+                                                    id: 4,branch:"Bilkent" ,address: "ABC" };
     public restaurants: Restaurant[] = [{restaurant_id: 1,
-                      restaurant_owner: "Ali Veli",
-                      restaurantname: "Burger King",
-                      owner_id: 1,
-                      avg_rating: 3.5,
-                      region_name: "Bilkent",
-                      menu: this.menu},
+        restaurant_owner: "Ali Veli",
+        restaurantname: "Burger King",
+        owner_id: 1,
+        avg_rating: 3.5,
+        region_name: "Bilkent",
+        menu: this.menu},
 
-                      {restaurant_id: 2,
-                      restaurant_owner: "Ali Veli",
-                      restaurantname: "Pizza Hut",
-                      owner_id: 2,
-                      avg_rating: 3.5,
-                      region_name: "Çankaya",
-                      menu: this.menu} ];
-                
-    public restaurant: Restaurant = this.restaurants[0];
+        {restaurant_id: 2,
+        restaurant_owner: "Ali Veli",
+        restaurantname: "Pizza Hut",
+        owner_id: 2,
+        avg_rating: 3.5,
+        region_name: "Çankaya",
+        menu: this.menu} ];
 
     private clicked = false;
     public counter: number;
     public closeResult = '';
-    public deleteQuestion = 'Are you sure you want to delete this item from your menu?';
-    public deleteStatus = 'Are you sure you want to delete this item from your menu?';
-    public newItemId = 0;
+    public deleteQuestion = 'Are you sure you want to remove this restaurant branch from your list of currently owned restaurants?';
+    public deleteStatus = 'Are you sure you want to remove this restaurant branch from your list of currently owned restaurants?';
+    public newRestaurantId = 0;
 
-    constructor(private modalService: NgbModal, private route: ActivatedRoute, private router: Router){
+    constructor(private modalService: NgbModal, private router: Router){
         this.counter = 0;
     }
 
-    ngOnInit(){
-      this.route.params.subscribe(params => {
-        this.restaurants.forEach((aRestaurant: Restaurant) => {
-          if (aRestaurant.restaurant_id == params.id) {
-            this.restaurant = aRestaurant;
-          }
-        });
-      });
-    }
+    ngOnInit(){}
 
     open(content) {
       this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
@@ -76,7 +65,7 @@ export class OwnerMenuEditorComponent implements OnInit{
       }
     }
 
-    public gotoItemDetails(url, id) {
+    public gotoRestaurantDetails(url, id) {
       var myurl = `${url}${id}`;
       this.router.navigateByUrl(myurl).then(e => {
         if (e) {
@@ -86,7 +75,7 @@ export class OwnerMenuEditorComponent implements OnInit{
         }
       });
     }
-
+/*
     getRestaurantName(){
         return this.restaurantinfo.restaurantName;
     }
@@ -100,23 +89,22 @@ export class OwnerMenuEditorComponent implements OnInit{
         return this.restaurantinfo.name;
     }
 
-    getItemName(i){
-        return this.menu[i].itemName;
+
+    getBranchName(i){
+        return this.restaurants[i].restaurantname;
     }
 
     getItemPrice(i){
         return this.menu[i].itemPrice;
     }
-
-    setItemToBeDelete(i){
+*/
+    setBranchToBeDeleted(i){
         this.counter=i;
     }
 
-    deleteItem(){
-        delete this.menu[this.counter];
-        this.deleteStatus = 'Item has been deleted from the menu!';
+    deleteBranch(){
+        delete this.restaurants[this.counter];
+        this.deleteStatus = 'This branch has been removed from you current list of owned restaurants!';
     }
-
-    saveChanges(){}
 
 }

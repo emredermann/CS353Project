@@ -11,8 +11,8 @@
     <div class="modal-body">
     <form>
         <div class="form-group">
-          <p>Items: {{getOrderItems()}}</p>
-          <p>Price: ${{getOrderPrice()}}</p>
+          <p>Items: {{currentOrder.items}}</p>
+          <p>Price: ${{currentOrder.price}}</p>
         </div>
     </form>
     </div>
@@ -28,8 +28,8 @@
     <div class="modal-body">
     <form>
         <div class="form-group">
-        <p>Review: {{getCustomerReview()}} </p>
-        <p>Rating: {{getCustomerRating()}} </p>
+        <p>Review: {{currentOrder.restaurantReview}} </p>
+        <p>Rating: {{currentOrder.restaurantRating}} </p>
         </div>
     </form>
     </div>
@@ -45,8 +45,8 @@
     <div class="modal-body">
     <form>
         <div class="form-group">
-        <p>Review: {{getdelGuyReview()}}</p>
-        <p>Rating: {{getdelGuyRating()}}</p>
+        <p>Review: {{currentOrder.delGuyReview}}</p>
+        <p>Rating: {{currentOrder.delGuyRating}}</p>
         </div>
     </form>
     </div>
@@ -56,7 +56,7 @@
 <ng-template #contentMyResponse let-modal>
     <div class="modal-header">
         <h4 class="modal-title" id="modal-basic-title">Your Response</h4>
-        <button type="button" class="close" aria-label="Close" (click)="clearResponse()" (click)="modal.dismiss('Cross click')">
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
           <span aria-hidden="true">&times;</span>
         </button>
     </div>
@@ -66,12 +66,12 @@
             <form class="review-form">
                 <mat-form-field class="review-full-width">
                   <mat-label>Leave a Response</mat-label>
-                  <input value="{{getMyResponse()}}" (change)="setResponse($event)">
+                  <input value="{{currentOrder.restaurantResponse}}">
                   <p>{{responseStatus}}</p>
                 </mat-form-field>
             </form>
             <div class="example-button-row">
-                <button type="button" (click)="saveResponse()" class="btn btn-primary">Save Response</button>
+                <button type="button" (change)="saveResponse($event)" class="btn btn-primary">Save Response</button>
                 <button type="button" class="btn btn-primary" (click)="modal.dismiss('Cross click')" >Cancel</button>
             </div>
         </div>
@@ -79,9 +79,11 @@
     </div>
 </ng-template>
 
+<h1>Customer Reviews and Your Responses</h1>
+
 <div class="card">
   <div class="card-header">
-    <h4 class="card-title">{{getOwnerName()}}</h4>
+    <h4 class="card-title">{{restaurantinfo.name}}</h4>
   </div>
   <div class="card-body">
     <ul class="list-unstyled team-members">
@@ -94,11 +96,11 @@
             </div>
           </div>
           <div class="col-md-7 col-7">
-            Restaurant: {{getRestaurantName()}}
+            Restaurant: {{restaurantinfo.restaurantName}}
             <br/>
-            Branch: {{getBranch()}}
+            Branch: {{restaurantinfo.branch}}
             <br/>
-            Address: {{getAddress()}}
+            Address: {{restaurantinfo.address}}
           </div>
           <div class="col-md-3 col-3 text-right">
             <button class="btn btn-sm btn-outline-success btn-round btn-icon"><i class="fa fa-envelope"></i></button>
@@ -111,7 +113,7 @@
 
 <div class="card">
   <div class="card-header">
-    <h4 class="card-title">Customer Reviews and Your Responses</h4>
+    <h4 class="card-title">Respond to Reviews</h4>
   </div>
   <div class="card-body">
     <table class="table table-striped">
@@ -119,18 +121,26 @@
       <tr>
         <th>Order No.</th>
         <th>Order Status</th>
-        <th>Customer Rating and Review</th>
+        <th>Restaurant Rating and Review</th>
         <th>Delivery Guy Rating and Review</th>
         <th>My Response</th>
       </tr>
       </thead>
       <tbody>
       <tr *ngFor="let order of orders;index as i">
+<<<<<<< HEAD
         <button type="button" class="btn btn-primary" (click)="open(contentOrderInfo)">{{order.ORDER_NO}}</button>
         <td>{{order.ORDER_STATE}}</td>
         <td><button type="button" class="btn btn-primary" (click)="open(contentCustomerReview)" (click)="setCustomerReview(order.ORDER_NO)" >See customer's rating and review</button></td>
         <td><button type="button" class="btn btn-primary" (click)="open(contentDelGuyReview)" (click)="setDelGuyReview(order.ORDER_NO)">See delivery-guy's rating and review</button></td>
         <td><button type="button" class="btn btn-primary" (click)="open(contentMyResponse)" (click)="setResponseIndex(order.ORDER_NO)">See and edit my response</button></td>
+=======
+        <td><button type="button" class="btn btn-primary" (click)="open(contentOrderInfo)" (click)="setOrderDetails(order.items, order.price)">{{order.idNo}}</button></td>
+        <td>{{order.orderState}}</td>
+        <td><button type="button" class="btn btn-primary" (click)="open(contentCustomerReview)" (click)="setRestaurantReview(order.restaurantReview, order.restaurantRating)" >See restaurant's rating and review</button></td>
+        <td><button type="button" class="btn btn-primary" (click)="open(contentDelGuyReview)"  (click)="setDelGuyReview(order.delGuyReview, order.delGuyRating)">See delivery-guy's rating and review</button></td>
+        <td><button type="button" class="btn btn-primary" (click)="open(contentMyResponse)" (click)="setResponse(order.restaurantResponse)">See and edit my response</button></td>
+>>>>>>> da9942800ed41d5b91ca130a2fa1358eb86e8aa5
       </tr>
       </tbody>
     </table>

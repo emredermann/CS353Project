@@ -1,0 +1,98 @@
+<ng-template #contentDeleteRestaurantBranch let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Delete Restaurant Branch</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+    <form>
+        <div class="form-group">
+          <div class="example-button-row">
+            <button type="button" (click)="deleteBranch()" (click)="modal.dismiss('Cross click')" class="btn btn-primary">Delete Branch</button>
+            <button type="button" class="btn btn-primary" (click)="modal.dismiss('Cross click')" >Cancel</button>
+            
+            <p>{{deleteStatus}}</p>
+          </div>
+        </div>
+    </form>
+    </div>
+</ng-template>
+  
+<h1>Your Restaurants</h1>
+  
+<div class="row">
+    <div class="col-md-12">
+  
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">{{restaurantinfo.name}}</h4>
+        </div>
+        <div class="card-body">
+          <ul class="list-unstyled team-members">
+  
+            <li>
+              <div class="row">
+                <div class="col-md-2 col-2">
+                  <div class="avatar">
+                    <img src="assets/img/faces/ayo-ogunseinde-2.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
+                  </div>
+                </div>
+                <div class="col-md-7 col-7">
+                  Restaurant: {{restaurantinfo.restaurantName}}
+                  <br/>
+                  Branch: {{restaurantinfo.branch}}
+                  <br/>
+                  Address: {{restaurantinfo.address}}
+                </div>
+                <div class="col-md-3 col-3 text-right">
+                  <button class="btn btn-sm btn-outline-success btn-round btn-icon"><i class="fa fa-envelope"></i></button>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+  
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">List of Restaurant Branches</h4>
+        </div>
+        <div class="card-body">
+          <table class="table">
+            <thead class=" text-primary">
+                <th>Restaurant Name</th>
+                <th>Branch</th>
+                <th>Rating</th>
+                <th>Menu</th>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{restaurants[0].restaurantname}}</td>
+                <td>{{restaurants[0].region_name}}</td>
+                <td>{{restaurants[0].avg_rating}}</td>
+                <td><button mat-button-raised class="btn btn-primary" [routerLink]="['/owner/owner-menu-editor/',restaurants[0].restaurant_id]" (click)="gotoRestaurantDetails('/owner/owner-menu-editor/',restaurants[0].restaurant_id)">Edit</button></td>
+                <td><button mat-icon-button class="btn btn-primary" (click)="open(contentDeleteRestaurantBranch)" (click)="setBranchToBeDeleted(0)"><mat-icon>Delete</mat-icon></button></td>
+              </tr>
+              <tr>
+                <td>{{restaurants[1].restaurantname}}</td>
+                <td>{{restaurants[1].region_name}}</td>
+                <td>{{restaurants[1].avg_rating}}</td>
+                <td><button mat-button-raised class="btn btn-primary" [routerLink]="['/owner/owner-menu-editor/',restaurants[1].restaurant_id]" (click)="gotoRestaurantDetails('/owner/owner-menu-editor/',restaurants[1].restaurant_id)">Edit</button></td>
+                <td><button mat-icon-button class="btn btn-primary" (click)="open(contentDeleteRestaurantBranch)" (click)="setBranchToBeDeleted(1)"><mat-icon>Delete</mat-icon></button></td>
+              </tr>
+            </tbody>
+  
+            
+          </table>
+         
+        </div>
+      </div>
+  
+      
+      <div>
+        <p></p>
+        <button mat-button-raised class="btn btn-primary"  [routerLink]="['/owner/owner-menu-editor/', newRestaurantId]" (click)="gotoRestaurantDetails('/owner/owner-menu-editor/',newRestaurantId)">Add New Restaurant Branch</button>
+      </div>
+    </div>
+  </div>

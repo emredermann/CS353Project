@@ -19,9 +19,10 @@
   </div>
 </ng-template>
 
+<h1>{{restaurant.restaurantname}} Menu</h1>
 
 <div class="row">
-  <div class="col-ms-7">
+  <div class="col-md-12">
 
     <div class="card">
       <div class="card-header">
@@ -58,6 +59,11 @@
         <h4 class="card-title">Edit Restaurant Menu</h4>
       </div>
       <div class="card-body">
+        <h6>Restaurant Name</h6>
+          <p><input matInput value="{{restaurant.restaurantname}}">
+        
+        <h6>Branch</h6>
+          <p><input matInput value="{{restaurant.region_name}}">
         <table class="table">
           <thead class=" text-primary">
               <th>Item Name</th>
@@ -70,7 +76,7 @@
               <td>{{getItemName(i)}}</td>
               <td>{{getItemPrice(i)}}</td>
               <td><button mat-button-raised class="btn btn-primary" [routerLink]="['/owner/owner-menu-item-editor/',item.itemId]" (click)="gotoItemDetails('/owner/owner-menu-item-editor/',item.itemId)">Edit</button></td>
-              <td><button mat-icon-button class="btn btn-primary" (click)="open(contentDeleteMenuItem)" (click)="setItemToBeDelete(i)"><mat-icon>Delete</mat-icon></button></td>
+              <td><button class="btn btn-primary" (click)="open(contentDeleteMenuItem)" (click)="setItemToBeDelete(i)"><mat-icon>Delete</mat-icon></button></td>
             </tr>
           </tbody>
 
@@ -84,6 +90,7 @@
     <div>
       <p></p>
       <button mat-button-raised class="btn btn-primary"  [routerLink]="['/owner/owner-menu-item-editor/', newItemId]" (click)="gotoItemDetails('/owner/owner-menu-item-editor/',newItemId)">Add New Menu Item</button>
+      <button mat-button-raised class="btn btn-primary" (click)="saveChanges()" [routerLink]="['/owner/owner-restaurant-editor' ]">Save Branch and Return to Owned Restaurants</button>
     </div>
   </div>
 </div>

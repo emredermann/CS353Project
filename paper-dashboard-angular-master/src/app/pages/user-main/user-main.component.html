@@ -1,6 +1,8 @@
+<h1>Available Restaurants</h1>
+
 <div class="card">
     <div class="card-header">
-      <h4 class="card-title">{{getCustomerName()}}</h4>
+      <h4 class="card-title">{{customer.fullName}}</h4>
     </div>
     <div class="card-body">
       <ul class="list-unstyled team-members">
@@ -13,9 +15,9 @@
               </div>
             </div>
             <div class="col-md-7 col-7">
-              {{getCredits()}}
+              {{customer.credits}}
               <br />
-              {{getAddress()}}
+              {{customer.address}}
             </div>
             <div class="col-md-3 col-3 text-right">
               <button class="btn btn-sm btn-outline-success btn-round btn-icon"><i class="fa fa-envelope"></i></button>
@@ -27,35 +29,31 @@
     </div>
 </div>
 
-<div class="container text-center">
-    <h1>{{title}}</h1>
-</div>
-<div class="container">
-    <div class="row">
-        <div class="search-restaurant">
-            <input class="form-control" type="text" name="search" value="" (change)="getCity($event)" autocomplete="off" placeholder="&#61442;  Search for restaurants in your area">
-        </div>
-        <table class="table">
-            <thead class=" text-primary">
-                <th>Name</th>
-                <th>Availability</th>
-                <th>Type</th>
-                <th>Average Delivery Time</th>
-                <th>Minimum Price</th>
-            </thead>
-            <tbody>
-                <tr *ngFor="let restaurant of restaurants | filter:searchText">
-                    <mat-nav-list>
-                        <a mat-list-item [routerLink]="['/order']">
-                          <span matLine>{{restaurant.name}}</span>
-                          <span matLine>{{restaurant.availability}}</span>
-                          <span matLine>{{restaurant.type}}</span>
-                          <span matLine>{{restaurant.avgDelTime}}</span>
-                          <span matLine>{{restaurant.minPrice}}</span>
-                        </a>
-                    </mat-nav-list>
-                </tr>
-            </tbody>
-        </table>
-    </div> 
+<div class="card">
+  <div class="card-header">
+    <h4 class="card-title">{{title}}</h4>
+  </div>
+  <div class="card-body">
+    <div class="search-assignments">
+      <input type="text" class="form-control" size = "35"  placeholder="Search by restaurant name"  (change)="changeRestaurantSelection($event)">
+        <button class="btn btn-primary" (click)="submitRestaurantFilter()" type="submit"> Search</button>
+        <button class="btn btn-primary" (click)="refreshFilter()" type="submit"> clear</button>
+    </div>
+    <table class="table">
+      <thead class=" text-primary">
+        <th>Restaurant Name</th> <th>Restaurant Rating</th> <th>Restaurant Region</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let restaurant of restaurants">
+          <td><button mat-button-raised class="btn btn-primary" [routerLink]="['/user/user-order/',restaurant.restaurant_id]" 
+            (click)="gotoRestaurantDetails('/user/user-order/',restaurant.restaurant_id)">{{restaurant.restaurantname}}</button></td>
+          <td>BURAYA RESTAURANT RATING VARSA KONULUR{{restaurant.restaurant_id}}</td>
+          <td>{{restaurant.region_name}}</td>
+        </tr>
+      </tbody>
+
+      
+    </table>
+   
+  </div>
 </div>

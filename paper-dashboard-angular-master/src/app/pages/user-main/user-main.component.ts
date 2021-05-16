@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-
-interface PersonalInfo {
-    fullName: string;
-    credits: number;
-    address: string;
-}
+import { restaurantOwner } from './../../_models/restaurantOwner';
+import { PersonalInfo } from './../../_models/Personalnfo';
+import { Restaurant } from './../../_models/restaurant';
+import { MenuItem } from './../../_models/menuItem';
+import { Router } from "@angular/router";
+import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
     selector: 'user-main-cmp',
@@ -15,21 +15,46 @@ interface PersonalInfo {
 export class UserMainComponent implements OnInit{
     public title = 'List of Restaurants';
     public searchText: string;
-    public info: PersonalInfo;
-
-    restaurants = [
-        {name:'Burger King',  availability:'Open', type:'Burgers', avgDelTime: '30-40 min', minPrice:'$15'} ,
-        {name:'Pizza Hut',  availability:'Closed', type:'Pizza', avgDelTime: '20-30 min', minPrice:'$20'} ,
-        {name:'KFC',  availability:'Open', type:'Fried Chicken', avgDelTime: '40-50 min', minPrice:'$18'} ,
-        {name:'Kardeşler Aspava',  availability:'Open', type:'Kebap', avgDelTime: '45-55 min', minPrice:'$30'} ,
-        {name:'Gülçimen Aspava',  availability:'Open', type:'Kebap', avgDelTime: '45-55 min', minPrice:'$30'} ,
-        {name:'Şan İskender',  availability:'Closed', type:'İskender Kebap', avgDelTime: '30-40 min', minPrice:'$25'}
+    public customer: PersonalInfo = {fullName: "Doğa Tansel", credits: 125.12, address: "Bilkent"};
+    public restaurants: Restaurant[] = [
+        {restaurant_id: 1, restaurant_owner: "Ali Veli", 
+        restaurantname:'Burger King', owner_id: 1, 
+        avg_rating: 3.5, region_name: "Bilkent", 
+        menu: [{itemId: 1, itemName: "Hamburger", itemOptions: ["Small (90 g.)","Medium (120 g.)", "Large (180 g.)", "King (220 g.)"], itemPrice: 14},
+            {itemId: 2, itemName: "Cheeseburger", itemOptions: ["Small (90 g.)","Medium (120 g.)", "Large (180 g.)", "King (220 g.)"], itemPrice: 19}]},
+        
+        {restaurant_id: 2, restaurant_owner: "Ali Veli", 
+        restaurantname:'Pizza Hut', owner_id: 2, 
+        avg_rating: 3.9, region_name: "Çankaya", 
+        menu: [{itemId: 1, itemName: "Hamburger", itemOptions: ["Small (90 g.)","Medium (120 g.)", "Large (180 g.)", "King (220 g.)"], itemPrice: 14},
+            {itemId: 2, itemName: "Cheeseburger", itemOptions: ["Small (90 g.)","Medium (120 g.)", "Large (180 g.)", "King (220 g.)"], itemPrice: 19}]} ,
+        
+        {restaurant_id: 3, restaurant_owner: "Hasan Abi", 
+        restaurantname:'KFC', owner_id: 3, 
+        avg_rating: 4.5, region_name: "Ümitköy", 
+        menu: [{itemId: 1, itemName: "Hamburger", itemOptions: ["Small (90 g.)","Medium (120 g.)", "Large (180 g.)", "King (220 g.)"], itemPrice: 14},
+            {itemId: 2, itemName: "Cheeseburger", itemOptions: ["Small (90 g.)","Medium (120 g.)", "Large (180 g.)", "King (220 g.)"], itemPrice: 19}]} ,
+        
+        {restaurant_id: 4, restaurant_owner: "Halil Abi", 
+        restaurantname:'Kardeşler Aspava', 
+        owner_id: 4, avg_rating: 4.2, region_name: "Moda",
+        menu: [{itemId: 1, itemName: "Hamburger", itemOptions: ["Small (90 g.)","Medium (120 g.)", "Large (180 g.)", "King (220 g.)"], itemPrice: 14},
+            {itemId: 2, itemName: "Cheeseburger", itemOptions: ["Small (90 g.)","Medium (120 g.)", "Large (180 g.)", "King (220 g.)"], itemPrice: 19}]} ,
+        
+        {restaurant_id: 5, restaurant_owner: "Ali Veli", 
+        restaurantname:'Gülçimen Aspava', 
+        owner_id: 5, avg_rating: 5.0, region_name: "Bilkent", 
+        menu: [{itemId: 1, itemName: "Hamburger", itemOptions: ["Small (90 g.)","Medium (120 g.)", "Large (180 g.)", "King (220 g.)"], itemPrice: 14},
+            {itemId: 2, itemName: "Cheeseburger", itemOptions: ["Small (90 g.)","Medium (120 g.)", "Large (180 g.)", "King (220 g.)"], itemPrice: 19}]} ,
+        
+        {restaurant_id: 6, restaurant_owner: "Ali Veli", 
+        restaurantname:'Şan İskender', owner_id: 6, 
+        avg_rating: 3.5, region_name: "Bilkent", 
+        menu: [{itemId: 1, itemName: "Hamburger", itemOptions: ["Small (90 g.)","Medium (120 g.)", "Large (180 g.)", "King (220 g.)"], itemPrice: 14},
+            {itemId: 2, itemName: "Cheeseburger", itemOptions: ["Small (90 g.)","Medium (120 g.)", "Large (180 g.)", "King (220 g.)"], itemPrice: 19}]}
     ];
 
-    constructor(){
-        this.info.fullName = "Ali Veli";
-        this.info.credits = 120.90;
-        this.info.address = "Merkez Kampüs Lojmanlar, 24/5, Bilkent, Çankaya";
+    constructor(private modalService: NgbModal, private router: Router){
     }
 
     ngOnInit(){ //Database'den çekilecek kısım bu
@@ -52,13 +77,17 @@ export class UserMainComponent implements OnInit{
 
     }
 
-    getCustomerName(){
-        return this.info.fullName;
+
+    public gotoRestaurantDetails(url, id) {
+        var myurl = `${url}${id}`;
+        this.router.navigateByUrl(myurl).then(e => {
+          if (e) {
+            console.log("Navigation is successful!");
+          } else {
+            console.log("Navigation has failed!");
+          }
+        });
     }
-    getCredits(){
-        return this.info.credits;
-    }
-    getAddress(){
-        return this.info.address;
-    }
+
+
 }
