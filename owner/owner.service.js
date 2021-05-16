@@ -94,8 +94,8 @@ async function getOrderHistory(id){
 }
 
 async function getOwnerRestaurants(id){
-    let result = await knex('restaurant').where('restaurant.OWNER_ID',id).rightOuterJoin('review','review.OWNER_ID','=','restaurant.OWNER_ID')
-    .select('restaurant.OWNER_ID','restaurant.RESTAURANTNAME','restaurant.REGION_NAME',).avg({AVG_RATING:'review.RESTAURANTRATING'})
+    let result = await knex('restaurant').where('restaurant.OWNER_ID',id)//.join('review','review.OWNER_ID','=','restaurant.OWNER_ID')
+    .select('restaurant.OWNER_ID','restaurant.RESTAURANTNAME','restaurant.REGION_NAME',)//.avg({AVG_RATING:'review.RESTAURANTRATING'})
     .then((user)=>{
         
         try{
