@@ -39,6 +39,26 @@ async function authenticate({ username, password }) {
             throw err;
                  
         })      
+
+    if(result === 'Invalid ID or Password')
+        return result;
+
+        let t = await knex('delivery_guy').where({DELIVERY_GUY_ID:username}).update({isAVAILABLE:true}).then((user)=>{
+        
+            try{
+                user[0].USER_ID;
+            }
+            catch{
+            
+                throw 'Internal Server Error';
+            }
+            return user;
+                ;}).catch(function(err){
+                throw err;
+                     
+            });
+            if (t ===  'Internal Server Error')
+                return t;
         
     return result;
     

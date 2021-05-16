@@ -23,7 +23,6 @@ function register(req,res,next){
 }
 
 function getReviews(req,res,next){
-    
     ownerService.getReviews(req.params.id).then(user => res.json(user))
     .catch(next);
 }

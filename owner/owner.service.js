@@ -42,24 +42,27 @@ async function authenticate({ username, password }) {
 }
 
 async function getReviews(id){
-    
+    //console.log(id);
+    /*if(id == 111)
+        throw "Pat";*/
     let result = await knex('review').where('review.OWNER_ID',id).join('orders','orders.ORDER_NO','=','review.ORDER_NO')
-    .select('review.ORDER_NO','orders.ORDERSTATE','review.DELIVERYGUYREVIEW','review.RESTAURANTREVIEW',
-    'review.DELIVERYGUYRATING','review.RESTAURANTRATING','review.OWNERCOMMENT')
+    .select('review.ORDER_NO','orders.ORDERSTATE','review.DELIVERYGUYREVIEW','review.RESTAURANTREVIEW','review.DELIVERYGUYRATING','review.RESTAURANTRATING','review.OWNERCOMMENT')
     .then((user)=>{
         
         try{
-            
-            user[0].ORDER_NO;
+            console.log("T");
+            console.log(user);
+            //user[0].ORDER_NO;
+            return user;
         }
         catch{
         
             throw 'Internal Server Error';
         }    
-        return user;
-        ;}).catch(function(err){
+        
+        ;})/*.catch(function(err){
             throw err;
-        })      
+        })      */
         
     return result;
 }
