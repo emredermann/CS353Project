@@ -22,7 +22,7 @@
 <h1>Your Restaurants</h1>
   
 <div class="row">
-    <div class="col-ms-7">
+    <div class="col-md-12">
   
       <div class="card">
         <div class="card-header">
@@ -67,12 +67,19 @@
                 <th>Menu</th>
             </thead>
             <tbody>
-              <tr *ngFor="let restaurant of restaurants; index as i" [value]="restaurant.restaurantname">
-                <td>{{restaurant.restaurantname}}</td>
-                <td>{{restaurant.region_name}}</td>
-                <td>{{restaurant.avg_rating}}</td>
-                <td><button mat-button-raised class="btn btn-primary" [routerLink]="['/owner/owner-menu-editor/',restaurant.restaurant_id]" (click)="gotoRestaurantDetails('/owner/owner-menu-editor/',restaurant.restaurant_id)">Edit</button></td>
-                <td><button mat-icon-button class="btn btn-primary" (click)="open(contentDeleteRestaurantBranch)" (click)="setBranchToBeDeleted(i)"><mat-icon>Delete</mat-icon></button></td>
+              <tr>
+                <td>{{restaurants[0].restaurantname}}</td>
+                <td>{{restaurants[0].region_name}}</td>
+                <td>{{restaurants[0].avg_rating}}</td>
+                <td><button mat-button-raised class="btn btn-primary" [routerLink]="['/owner/owner-menu-editor/',restaurants[0].restaurant_id]" (click)="gotoRestaurantDetails('/owner/owner-menu-editor/',restaurants[0].restaurant_id)">Edit</button></td>
+                <td><button mat-icon-button class="btn btn-primary" (click)="open(contentDeleteRestaurantBranch)" (click)="setBranchToBeDeleted(0)"><mat-icon>Delete</mat-icon></button></td>
+              </tr>
+              <tr>
+                <td>{{restaurants[1].restaurantname}}</td>
+                <td>{{restaurants[1].region_name}}</td>
+                <td>{{restaurants[1].avg_rating}}</td>
+                <td><button mat-button-raised class="btn btn-primary" [routerLink]="['/owner/owner-menu-editor/',restaurants[1].restaurant_id]" (click)="gotoRestaurantDetails('/owner/owner-menu-editor/',restaurants[1].restaurant_id)">Edit</button></td>
+                <td><button mat-icon-button class="btn btn-primary" (click)="open(contentDeleteRestaurantBranch)" (click)="setBranchToBeDeleted(1)"><mat-icon>Delete</mat-icon></button></td>
               </tr>
             </tbody>
   
