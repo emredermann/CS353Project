@@ -21,6 +21,7 @@ export class RestaurantService {
     
   }
   getRestaurantMenu(id:number){
+    console.log("herei");
     return  this.http.get<any[]>(`${environment.apiUrl}/user/menu/${id}`)
     .pipe(map(rest => {
       
