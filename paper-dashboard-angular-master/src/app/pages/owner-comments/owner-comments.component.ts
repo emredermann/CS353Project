@@ -29,6 +29,9 @@ export class OwnerCommentsComponent implements OnInit{
     id: 4,branch:"Bilkent" ,address: "ABC" };
     public closeResult = '';
     public responseStatus: string;
+    
+    public maxPrice:number;
+
     public currentOrder;
     public orderDetail = [];
     constructor(private modalService: NgbModal,private orderService:OrderService,private authService:AuthenticationService)
@@ -67,10 +70,6 @@ export class OwnerCommentsComponent implements OnInit{
         } else {
           return ``;
         }
-
-       
-
-        
       }
 
     getOwnerName(){

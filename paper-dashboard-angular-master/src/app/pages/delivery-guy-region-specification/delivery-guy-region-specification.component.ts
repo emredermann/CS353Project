@@ -25,10 +25,13 @@ export class DeliveryGuyRegionSpecificationComponent implements OnInit{
     public regions = [];// : Array<string> = [];
     public delRegions = [];
     constructor(private deliveryService:DeliveryService,private authService :AuthenticationService){}
-
+    public buttonCondcheck :boolean;
+    public buttonCondNcheck :boolean;
     ngOnInit(){ //Database'den çekilecek kısım bu
         //this.regions = ["beytepe","bilkent","cankaya","kızılcahamam","karsıyaka",]
         this.updatePage();
+        this.buttonCondcheck = false;
+        this.buttonCondNcheck = false;
     }   
 
     updatePage(){
@@ -40,7 +43,7 @@ export class DeliveryGuyRegionSpecificationComponent implements OnInit{
          });
 
          this.deliveryService.getUserRegion(id).subscribe(data => {  
-            
+          
             this.delRegions = data;
             
          });
@@ -49,11 +52,13 @@ export class DeliveryGuyRegionSpecificationComponent implements OnInit{
     check(region){
         let id = this.authService.getCurrentUserId(); 
         let test = this.delRegions.filter((item)=>item.DELIVERY_GUY_ID ==id); ////
+        this.buttonCondcheck = true;
         return (test.findIndex(region) != -1);
     }
     checkN(region){
         let id = this.authService.getCurrentUserId(); 
         let test = this.delRegions.filter((item)=>item.DELIVERY_GUY_ID ==id);////
+        this.buttonCondNcheck = true;
         return (test.findIndex(region) == -1);
     }
     getName(){
