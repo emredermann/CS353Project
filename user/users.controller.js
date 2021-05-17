@@ -10,8 +10,12 @@ const registerService = require('./register-service');
 router.get('/table',getRestaurants);
 router.post('/authenticate', authenticate);
 router.put('/register',register);
-router.get('/users/:id',getUser);
+router.get('/:id',getUser);
 router.get('/menu/:id', getRestaurantMenu); 
+router.get('/item/:id',getItemOptions);     
+router.get('/combos/:id',getUserCombos);
+router.get('/combo/:id',getCombo);
+router.delete('/combo/rem/:id',removeCombo);
 module.exports = router;
 
 function getRestaurants(req,res,next){
@@ -37,7 +41,25 @@ function getUser(req,res,next){
     .catch(next);
 }
 function getRestaurantMenu(req,res,next){
-    console.log("Here");
+    
     userService.getRestaurantMenu(req.params.id).then(user => res.json(user))
+    .catch(next);
+}
+function getItemOptions(req,res,next){
+    userService.getItemOptions(req.params.id).then(user => res.json(user))
+    .catch(next);
+}
+
+function getUserCombos(req,res,next){
+    userService.getUserCombos(req.params.id).then(user => res.json(user))
+    .catch(next);
+}
+function getCombo(req,res,next){
+    userService.getCombo(req.params.id).then(user => res.json(user))
+    .catch(next);
+}
+function removeCombo(req,res,next){
+    console.log("aaa");
+    userService.removeCombo(req.params.id).then(user => res.json(user))
     .catch(next);
 }

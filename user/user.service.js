@@ -10,7 +10,12 @@ const { first } = require('../knex');
 module.exports = {
     authenticate,
     getUser,
-    getRestaurantMenu
+    getRestaurantMenu,
+    getItemOptions,
+    getUserCombos,
+    getCombo,
+    removeCombo
+
     
 };
 
@@ -57,7 +62,7 @@ async function getUser(id){
 }
 
 async function getRestaurantMenu(id){
-    console.log("aaaa");
+    
     let result =  await knex('menu_item').where({RESTAURANT_ID: id}).then((user)=>{
         try{
             //user[0].RESTAURANT_ID;
@@ -68,6 +73,60 @@ async function getRestaurantMenu(id){
         }
     });
 
+    return result;
+}
+
+async function getItemOptions(id){
+    let result = await knex('item_option').where({FOOD_ID:id}).then((user)=>{
+        try{
+            //user[0].RESTAURANT_ID;
+            console.log(user);
+            return user;
+        }catch{
+            throw "Internal Server Error"
+        }
+    });
+    return result;
+}
+
+async function getUserCombos(id){
+    console.log("aaa");
+    let result = await knex('combo_menu').where({CUSTOMER_ID:id}).then((user)=>{
+        try{
+            //user[0].RESTAURANT_ID;
+            console.log(user);
+            return user;
+        }catch{
+            throw "Internal Server Error"
+        }
+    });
+    return result;
+}
+
+async function getCombo(comb){
+    let result = await knex('containts').join('menu_item','menu_item.FOOD_ID','=','contains.FOOD_ID')
+    .where({COMBO_NAME:comb}).then((user)=>{
+        try{
+            //user[0].RESTAURANT_ID;
+            console.log(user);
+            return user;
+        }catch{
+            throw "Internal Server Error"
+        }
+    });
+    return result;
+}
+
+async function removeCombo(id){
+    let result = await knex('combo_menu').where('COMBO_NAME',id).del().then((user)=>{
+        try{
+            //user[0].RESTAURANT_ID;
+            console.log(user);
+            return user;
+        }catch{
+            throw "Internal Server Error"
+        }
+    });
     return result;
 }
 

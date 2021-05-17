@@ -1,7 +1,7 @@
 ﻿const config = require('config.json');
 const jwt = require('jsonwebtoken');
 const knex = require('../knex');
-const { first } = require('../knex');
+const { first, where } = require('../knex');
 
 // users hardcoded for simplicity, store in a db for production applications
 /*const users = [{ id: 1, username: 'test', password: 'test', firstName: 'Test', lastName: 'User', type:'student' },
@@ -219,7 +219,7 @@ async function removeRegion(id){
     let delid = splitter[0];
     let region  = splitter[1];
 
-    let result = await knex('service_choice').delete({REGION_NAME:region},{DELIVERY_GUY_ID,delid}).then((data)=>{
+    let result = await knex('service_choice').where({REGION_NAME:region}).where({DELIVERY_GUY_ID,delid}).del().then((data)=>{
         try{
             //console.log(data);
             //data[0].DELIVERY_GUY_ID;
