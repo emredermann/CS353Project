@@ -110,30 +110,7 @@ export class DeliveryGuyNewAssignmentsComponent implements OnInit{
     }
 
     submitRestaurantFilter(){
-        this.counter = 0;
-        /*
-        for (var val of this.assignments) {
-            if(this.filteredRestaurantName === val.restaurantName){
-                alert(val.restaurantName);
-                
-                for (let index = 1; index < 12; index++) {
-                   this.filteredAssignment[index].customerName=val.customerName
-                   this.filteredAssignment[index].date = val.date;
-                   this.filteredAssignment[index].delGuyRating = val.delGuyRating;
-                   this.filteredAssignment[index].delGuyReview = val.delGuyReview;
-                   this.filteredAssignment[index].idNo = val.idNo;
-                   this.filteredAssignment[index].items = val.items;
-                   this.filteredAssignment[index].orderState = val.orderState;
-                   this.filteredAssignment[index].price = val.price;
-                   this.filteredAssignment[index].restaurantName = val.restaurantName;
-                   this.filteredAssignment[index].restaurantRating = val.restaurantRating;
-                   this.filteredAssignment[index].restaurantResponse = val.restaurantResponse;
-                   this.filteredAssignment[index].restaurantReview = val.restaurantReview;
-                }
-                 this.counter = this.counter+ 1;
-            }
-          }*/
-          
+        this.counter = 0;        
           this.resultAssignment=this.assignments.filter(item=> item.RESTAURANT_NAME ===this.filteredRestaurantName);
           
     }
