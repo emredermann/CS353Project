@@ -37,4 +37,3 @@ async function register({Ausername, Apassword, Aphone }){
     return maxID;
 }
 
-

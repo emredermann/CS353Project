@@ -13,6 +13,10 @@ module.exports = {
     getOldDeliveryOrders,
     getOrderDetails,
     acceptDelivery,
+    getRegions,
+    getUserRegions,
+    postRegion,
+    removeRegion
     
 
 };
@@ -160,4 +164,63 @@ async function acceptDelivery({u_id,od}){
     return result;
 
 
+}
+
+async function getRegions(){
+    let result = await knex('region').then((data)=>{
+        try{
+            
+            //console.log(data);
+            //data[0].ORDER_NO;
+            return data;
+        }catch{
+            throw "Internal Server Error"
+        }
+    });
+    return result;
+}
+
+async function getUserRegions(id){
+    let result = await knex('service_choice').where({DELIVERY_GUY_ID:id}).then((data)=>{
+        try{
+            
+            //console.log(data);
+            //data[0].DELIVERY_GUY_ID;
+            return data;
+        }catch{
+            throw "Internal Server Error"
+        }
+    });
+    return result;
+}
+
+async function postRegion({region,id}){
+    let result = await knex('service_choice').insert({REGION_NAME:region},{DELIVERY_GUY_ID,id}).then((data)=>{
+        try{
+            //console.log(data);
+            //data[0].DELIVERY_GUY_ID;
+            return data;
+        }catch{
+            throw "Internal Server Error"
+        }
+    });
+    return result;
+}
+
+async function removeRegion(id){
+
+    let splitter = id.split('~');
+    let delid = splitter[0];
+    let region  = splitter[1];
+
+    let result = await knex('service_choice').delete({REGION_NAME:region},{DELIVERY_GUY_ID,delid}).then((data)=>{
+        try{
+            //console.log(data);
+            //data[0].DELIVERY_GUY_ID;
+            return data;
+        }catch{
+            throw "Internal Server Error"
+        }
+    });
+    return result;
 }
