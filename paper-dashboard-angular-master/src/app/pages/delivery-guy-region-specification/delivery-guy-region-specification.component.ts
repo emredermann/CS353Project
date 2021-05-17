@@ -46,6 +46,16 @@ export class DeliveryGuyRegionSpecificationComponent implements OnInit{
          });
 
     }
+    check(region){
+        let id = this.authService.getCurrentUserId(); 
+        let test = this.delRegions.filter((item)=>item.DELIVERY_GUY_ID ==id); ////
+        return (test.findIndex(region) != -1);
+    }
+    checkN(region){
+        let id = this.authService.getCurrentUserId(); 
+        let test = this.delRegions.filter((item)=>item.DELIVERY_GUY_ID ==id);////
+        return (test.findIndex(region) == -1);
+    }
     getName(){
         return this.delGuyInfo.deliveryGuyName;
     }
@@ -80,7 +90,7 @@ export class DeliveryGuyRegionSpecificationComponent implements OnInit{
         }
     }
     actionMethod() {
-        console.log("Delivery-guy has been requested!");
+        //console.log("Delivery-guy has been requested!");
   }
 
   
