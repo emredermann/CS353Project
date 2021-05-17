@@ -88,9 +88,9 @@ export class OrderService {
     }));
   }
 
-  /*insertOrder(list:MenuItem[]){
+  insertOrder(list:MENU_ITEM){
 
-  }*/
+  }
   
   
 

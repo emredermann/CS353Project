@@ -8,6 +8,8 @@ import { RestaurantService } from 'app/_services/restaurant-service/restaurant.s
 import { identifierModuleUrl } from '@angular/compiler';
 import { OrderService } from 'app/_services/order-service/order.service';
 import { AuthenticationService } from 'app/_services/authentication-service/authentication.service';
+import { textSpanIntersectsWithPosition } from 'typescript';
+import { TypeCheckCompiler } from '@angular/compiler/src/view_compiler/type_check_compiler';
 
 @Component({
     selector: 'user-order-cmp',
@@ -30,6 +32,8 @@ class HAS_ITEM {
 export class UserOrderComponent implements OnInit {
     public info: PersonalInfo = {fullName: "Doğa Tansel", credits: 125.12, address: "Bilkent"};
     public restaurants= [] ;
+    public has_item: HAS_ITEM [];
+    public orderItem: HAS_ITEM;
 
     public restaurant: Restaurant = {restaurant_id: 0,
         restaurant_owner: "",
@@ -42,9 +46,9 @@ export class UserOrderComponent implements OnInit {
     public searchText: string;
     public closeResult = '';
     selectedSize:string;
-    public deletedItem : MenuItem;
     public cart: Array<MenuItem> = [];
-    public addedItem : MenuItem;
+    public addedItem : MENU_ITEM;
+    public selectedItem: MENU_ITEM;
     public options: string[] = ["something"];
     public rest_id:number;
     public menu = [];
@@ -116,8 +120,12 @@ export class UserOrderComponent implements OnInit {
         });
         this.cart.push(this.addedItem);
     }
-    removeFromCart(){
-        const index = this.cart.indexOf(this.deletedItem, 0);
+    removeFromCart(selectedItem){
+        this.orderItem.FOOD_ID = selectedItem.FOOD_ID;
+        this.orderItem.ORDER_NO = this.orderCount;
+        this.orderCount--;
+
+        const index = this.has_item.indexOf(this.orderItem, 0);
         if (index > -1) {
             this.cart.splice(index, 1);
         }
@@ -127,11 +135,13 @@ export class UserOrderComponent implements OnInit {
         alert(fud);
         this.fud_t = fud;
     }
-    setItemDeleted(v){
-        this.deletedItem = v;
+
+
+    setItem(v){
+        this.selectedItem = v;
     }
     saveOrderAsCombo() {
-        this.cart;                  // ---> send it to the db as combo
+        //this.cart;                  // ---> send it to the db as combo
         alert("Your customized order has been saved as a combo");
     }
 

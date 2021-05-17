@@ -1,3 +1,4 @@
+import { COMBO_MENU } from './../../_models/combo_menu';
 import { NONE_TYPE } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { Restaurant } from './../../_models/restaurant';
@@ -6,6 +7,7 @@ import { PersonalInfo } from './../../_models/PersonalInfo';
 import { Combo } from './../../_models/combo';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ActivatedRoute } from "@angular/router";
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
     selector: 'user-combo-cmp',
@@ -17,54 +19,16 @@ import { ActivatedRoute } from "@angular/router";
 export class UserComboComponent implements OnInit{
 
     private clicked = false;
-    public customer: PersonalInfo = {fullName: "Umut Ada Yürüten", credits: 120, address: "İncek" };
-    public restaurants: Restaurant[] = [
-        {restaurant_id: 1, restaurant_owner: "Ali Veli", 
-        restaurantname:'Burger King', owner_id: 1, 
-        avg_rating: 3.5, region_name: "Bilkent", 
-        menu: [{itemId: 1, itemName: "Hamburger", itemOptions: ["Small (90 g.)","Medium (120 g.)", "Large (180 g.)", "King (220 g.)"], itemPrice: 14},
-            {itemId: 2, itemName: "Cheeseburger", itemOptions: ["Small (90 g.)","Medium (120 g.)", "Large (180 g.)", "King (220 g.)"], itemPrice: 19}]},
-        
-        {restaurant_id: 2, restaurant_owner: "Ali Veli", 
-        restaurantname:'Pizza Hut', owner_id: 2, 
-        avg_rating: 3.9, region_name: "Çankaya", 
-        menu: [{itemId: 1, itemName: "Hamburger", itemOptions: ["Small (90 g.)","Medium (120 g.)", "Large (180 g.)", "King (220 g.)"], itemPrice: 14},
-            {itemId: 2, itemName: "Cheeseburger", itemOptions: ["Small (90 g.)","Medium (120 g.)", "Large (180 g.)", "King (220 g.)"], itemPrice: 19}]} ,
-        
-        {restaurant_id: 3, restaurant_owner: "Hasan Abi", 
-        restaurantname:'KFC', owner_id: 3, 
-        avg_rating: 4.5, region_name: "Ümitköy", 
-        menu: [{itemId: 1, itemName: "Hamburger", itemOptions: ["Small (90 g.)","Medium (120 g.)", "Large (180 g.)", "King (220 g.)"], itemPrice: 14},
-            {itemId: 2, itemName: "Cheeseburger", itemOptions: ["Small (90 g.)","Medium (120 g.)", "Large (180 g.)", "King (220 g.)"], itemPrice: 19}]} ,
-        
-        {restaurant_id: 4, restaurant_owner: "Halil Abi", 
-        restaurantname:'Kardeşler Aspava', 
-        owner_id: 4, avg_rating: 4.2, region_name: "Moda",
-        menu: [{itemId: 1, itemName: "Hamburger", itemOptions: ["Small (90 g.)","Medium (120 g.)", "Large (180 g.)", "King (220 g.)"], itemPrice: 14},
-            {itemId: 2, itemName: "Cheeseburger", itemOptions: ["Small (90 g.)","Medium (120 g.)", "Large (180 g.)", "King (220 g.)"], itemPrice: 19}]} ,
-        
-        {restaurant_id: 5, restaurant_owner: "Ali Veli", 
-        restaurantname:'Gülçimen Aspava', 
-        owner_id: 5, avg_rating: 5.0, region_name: "Bilkent", 
-        menu: [{itemId: 1, itemName: "Hamburger", itemOptions: ["Small (90 g.)","Medium (120 g.)", "Large (180 g.)", "King (220 g.)"], itemPrice: 14},
-            {itemId: 2, itemName: "Cheeseburger", itemOptions: ["Small (90 g.)","Medium (120 g.)", "Large (180 g.)", "King (220 g.)"], itemPrice: 19}]} ,
-        
-        {restaurant_id: 6, restaurant_owner: "Ali Veli", 
-        restaurantname:'Şan İskender', owner_id: 6, 
-        avg_rating: 3.5, region_name: "Bilkent", 
-        menu: [{itemId: 1, itemName: "Hamburger", itemOptions: ["Small (90 g.)","Medium (120 g.)", "Large (180 g.)", "King (220 g.)"], itemPrice: 14},
-            {itemId: 2, itemName: "Cheeseburger", itemOptions: ["Small (90 g.)","Medium (120 g.)", "Large (180 g.)", "King (220 g.)"], itemPrice: 19}]}
-    ];
+    public customer: PersonalInfo = {fullName: "Kemal Kılıçdaroğlu", credits: 120, address: "Bilkentte bir yerler" };
+    public restaurants: Restaurant []; 
 
-    public menu: MenuItem [] = this.restaurants[0].menu;
-    public restaurant: Restaurant = this.restaurants[0];
-    public currentItem: MenuItem = {itemId: this.menu[0].itemId,
-        itemName: this.menu[0].itemName,
-        itemOptions: this.menu[0].itemOptions,
-        itemPrice: this.menu[0].itemPrice};
+    public menu: Array<MenuItem> [];
+    public selectedRestaurant:  Restaurant; 
+    public searched_restaurant: string;
+    public currentItem: MenuItem ;
 
-    public newCombo : Combo = {combo_id: 1, comboName: "Fuzz", itemlist: this.restaurants[0].menu, price: 15};
-    public combo: MenuItem[] = this.restaurants[0].menu;
+    public newCombo :  Array<Combo> = [];
+    public savedCombo: COMBO_MENU;
     
     public combos: Combo[] = [{combo_id: 1, comboName: "Fuzz", 
                                 itemlist: [{itemId: 1, itemName: "Hamburger", itemOptions: ["Small (90 g.)","Medium (120 g.)", "Large (180 g.)", "King (220 g.)"], itemPrice: 14},
@@ -76,9 +40,13 @@ export class UserComboComponent implements OnInit{
                                 {combo_id: 3, comboName: "Açım", itemlist: [{itemId: 1, itemName: "Hamburger", itemOptions: ["Small (90 g.)","Medium (120 g.)", "Large (180 g.)", "King (220 g.)"], itemPrice: 14},
                                             {itemId: 2, itemName: "Cheeseburger", itemOptions: ["Small (90 g.)","Medium (120 g.)", "Large (180 g.)", "King (220 g.)"], itemPrice: 19}], price: 120}];
 
-    public options: string[] = ["Acılı"];
+
+                                            loginForm = new FormGroup({
+                                              type : new FormControl('',Validators.required),
+                                          });
     public closeResult = '';
-    
+    public addedCombo : Combo;
+    public deletedCombo : Combo;
     constructor(private modalService: NgbModal, private route: ActivatedRoute){
     }
 
@@ -86,44 +54,64 @@ export class UserComboComponent implements OnInit{
         this.route.params.subscribe(params => {
             this.combos.forEach((aCombo: Combo) => {
               if (aCombo.combo_id == params.id) {
-                this.newCombo = aCombo;
+                this.newCombo.push(aCombo);
               }
             });
         });
+        
+    
     } 
 
     addToCombo(v){
-
+      this.newCombo.push(this.addedCombo);
     }
 
-    removeFromCombo(v){
-
+    removeFromCombo(){
+        const index = this.newCombo.indexOf(this.deletedCombo, 0);
+        if (index > -1) {
+            this.newCombo.splice(index, 1);
+        }
+    this.updatePage();
+        
+      //  customerID;
     }
-
+    itemToAddCart(name){
+      this.addedCombo = name;
+    }
+    setItemDeleted(v){
+      this.deletedCombo = v;
+    }
     saveCombo(e){
-
+      this.savedCombo = e;
+      alert("Your customized order has been saved as a combo");
     }
 
-    proceedToCheckout(e){
-
+    proceedToCheckout(){
+      //Sent data to the db.
     }
 
 
-    updatePage(){}
+    updatePage(){
+
+    }
 
     refreshFilter(){
-        //this.updatePage();
+        this.searched_restaurant ="";
     }
 
-    submitMenuFilter(){
+    submitRestaurantFilter(){
         //this.counter = 0;
         //this.resultAssignment=this.assignments.filter(item=> item.RESTAURANT_NAME ===this.filteredRestaurantName);
+        this.selectedRestaurant = this.restaurants.find(e => e.restaurantname === this.searched_restaurant);
         
     }
-    changeMenuSelection(e){
-        //this.filteredRestaurantName = e.target.value;
-    }
+    addItemValue(e){
 
+    }
+ 
+    changeRestaurantSelection(e){
+      this.searched_restaurant = e.target.value;
+    }
     open(content) {
         this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
           this.closeResult = ``;

@@ -38,7 +38,7 @@
     </form>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-outline-dark" (click)="addToCart($value)" value="item">Add to Cart</button>
+        <button type="button" class="btn btn-outline-dark" (click)="addToCart(selectedItem)" value="item">Add to Cart</button>
         <button type="button" class="btn btn-outline-dark" (click)="saveOrderAsCombo()" (click)="modal.dismiss('Cross click')">Save Order as Combo</button>
     </div>
 </ng-template>
@@ -60,7 +60,7 @@
     </form>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-outline-dark" (click)="removeFromCart()" (click)="modal.dismiss('Cross click')" value="item">Remove from Cart</button>
+        <button type="button" class="btn btn-outline-dark" (click)="removeFromCart(selectedItem)" (click)="modal.dismiss('Cross click')" value="item">Remove from Cart</button>
         <button type="button" class="btn btn-outline-dark" (click)="modal.dismiss('Cross click')">Cancel</button>
     </div>
 </ng-template>
@@ -88,7 +88,14 @@
                 <tr *ngFor="let item of menu">
                     <td>{{item.FOODNAME}}</td>
                     <td>{{item.PRICE}}</td>
+
                     <button type="button" class="btn btn-outline-dark" (click)="open(contentAddItemToCart,item.FOOD_ID)"  (click)="itemToAddCart(item.FOOD_ID)" >Add</button>
+
+
+                    <button type="button" class="btn btn-outline-dark" (click)="open(contentAddItemToCart)"  (click)="setItem(item)" >Add</button>
+
+                    <button type="button" class="btn btn-outline-dark" (click)="open(contentAddItemToCart,item.FOOD_ID)"  (click)="itemToAddCart(item)" >Add</button>
+
                 </tr>
             </tbody>
         </table>
@@ -107,10 +114,10 @@
                 <th>Price</th>
             </thead>
             <tbody>
-                <tr *ngFor="let item of menu">
+                <tr *ngFor="let item of cart">
                     <td>{{item.FOODNAME}}</td>
                     <td>{{item.PRICE}}</td>
-                    <button type="button" class="btn btn-outline-dark" (click)="open(contentRemoveItemFromCart)"  (click)="setItemDeleted(item.FOOD_NAME)">Delete</button>
+                    <button type="button" class="btn btn-outline-dark" (click)="open(contentRemoveItemFromCart)"  (click)="setItem(item)">Delete</button>
                 </tr>
             </tbody>
         </table>
