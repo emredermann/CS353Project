@@ -15,50 +15,16 @@ import { identifierModuleUrl } from '@angular/compiler';
 
 export class UserOrderComponent implements OnInit {
     public info: PersonalInfo = {fullName: "Doğa Tansel", credits: 125.12, address: "Bilkent"};
-    public restaurants= [] /*: Restaurant[] = [
-        {restaurant_id: 1, restaurant_owner: "Ali Veli", 
-        restaurantname:'Burger King', owner_id: 1, 
-        avg_rating: 3.5, region_name: "Bilkent", 
-        menu: [{itemId: 1, itemName: "Hamburger", itemOptions: ["Small (90 g.)","Medium (120 g.)", "Large (180 g.)", "King (220 g.)"], itemPrice: 14},
-            {itemId: 2, itemName: "Cheeseburger", itemOptions: ["Small (90 g.)","Medium (120 g.)", "Large (180 g.)", "King (220 g.)"], itemPrice: 19}]},
-        
-        {restaurant_id: 2, restaurant_owner: "Ali Veli", 
-        restaurantname:'Pizza Hut', owner_id: 2, 
-        avg_rating: 3.9, region_name: "Çankaya", 
-        menu: [{itemId: 1, itemName: "Hamburger", itemOptions: ["Small (90 g.)","Medium (120 g.)", "Large (180 g.)", "King (220 g.)"], itemPrice: 14},
-            {itemId: 2, itemName: "Cheeseburger", itemOptions: ["Small (90 g.)","Medium (120 g.)", "Large (180 g.)", "King (220 g.)"], itemPrice: 19}]} ,
-        
-        {restaurant_id: 3, restaurant_owner: "Hasan Abi", 
-        restaurantname:'KFC', owner_id: 3, 
-        avg_rating: 4.5, region_name: "Ümitköy", 
-        menu: [{itemId: 1, itemName: "Hamburger", itemOptions: ["Small (90 g.)","Medium (120 g.)", "Large (180 g.)", "King (220 g.)"], itemPrice: 14},
-            {itemId: 2, itemName: "Cheeseburger", itemOptions: ["Small (90 g.)","Medium (120 g.)", "Large (180 g.)", "King (220 g.)"], itemPrice: 19}]} ,
-        
-        {restaurant_id: 4, restaurant_owner: "Halil Abi", 
-        restaurantname:'Kardeşler Aspava', 
-        owner_id: 4, avg_rating: 4.2, region_name: "Moda",
-        menu: [{itemId: 1, itemName: "Hamburger", itemOptions: ["Small (90 g.)","Medium (120 g.)", "Large (180 g.)", "King (220 g.)"], itemPrice: 14},
-            {itemId: 2, itemName: "Cheeseburger", itemOptions: ["Small (90 g.)","Medium (120 g.)", "Large (180 g.)", "King (220 g.)"], itemPrice: 19}]} ,
-        
-        {restaurant_id: 5, restaurant_owner: "Ali Veli", 
-        restaurantname:'Gülçimen Aspava', 
-        owner_id: 5, avg_rating: 5.0, region_name: "Bilkent", 
-        menu: [{itemId: 1, itemName: "Hamburger", itemOptions: ["Small (90 g.)","Medium (120 g.)", "Large (180 g.)", "King (220 g.)"], itemPrice: 14},
-            {itemId: 2, itemName: "Cheeseburger", itemOptions: ["Small (90 g.)","Medium (120 g.)", "Large (180 g.)", "King (220 g.)"], itemPrice: 19}]} ,
-        
-        {restaurant_id: 6, restaurant_owner: "Ali Veli", 
-        restaurantname:'Şan İskender', owner_id: 6, 
-        avg_rating: 3.5, region_name: "Bilkent", 
-        menu: [{itemId: 1, itemName: "Hamburger", itemOptions: ["Small (90 g.)","Medium (120 g.)", "Large (180 g.)", "King (220 g.)"], itemPrice: 14},
-            {itemId: 2, itemName: "Cheeseburger", itemOptions: ["Small (90 g.)","Medium (120 g.)", "Large (180 g.)", "King (220 g.)"], itemPrice: 19}]}
-    ];*/
+    public restaurants= [] ;
 
     public restaurant: Restaurant = this.restaurants[0];
     public myMenu: MenuItem[] = this.restaurants[0].menu;
     public searchText: string;
     public closeResult = '';
     selectedSize:string;
-    cart: any[];
+    public deletedItem : MenuItem;
+    public cart: Array<MenuItem> = [];
+    public addedItem : MenuItem;
     public options: string[] = ["something"];
     public rest_id:number;
     public menu = [];
@@ -98,18 +64,24 @@ export class UserOrderComponent implements OnInit {
 
 
     addToCart(v){
-        alert("Your order has been added to cart.");
-        
+        this.cart.push(this.addedItem);
     }
-    removeFromCart(v){
-        alert("Item removed from cart.");
-        
+    removeFromCart(){
+        const index = this.cart.indexOf(this.deletedItem, 0);
+        if (index > -1) {
+            this.cart.splice(index, 1);
+        }
+        this.updatePage();
     }
-
+    itemToAddCart(name){
+        this.addedItem = name;
+    }
+    setItemDeleted(v){
+        this.deletedItem = v;
+    }
     saveOrderAsCombo() {
-     
+        this.cart;                  // ---> send it to the db as combo
         alert("Your customized order has been saved as a combo");
-
     }
 
     proceedToCheckout(){} //Saves all the changed attributes
@@ -129,6 +101,7 @@ export class UserOrderComponent implements OnInit {
       //this.updatePage();
     }
 
+    
     submitMenuFilter(){
       //this.counter = 0;
       //this.resultAssignment=this.assignments.filter(item=> item.RESTAURANT_NAME ===this.filteredRestaurantName);

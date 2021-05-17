@@ -46,14 +46,6 @@
                   <br />
                   Status: {{delGuyInfo.status}}
                 </div>
-                <div class="d-inline-block" ngbDropdown #myDrop="ngbDropdown">
-                  <button class="btn btn-outline-primary mr-2" id="dropdownRegionBox" ngbDropdownToggle>Region Selection</button>
-                  <div  ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                    <div *ngFor="let reg of region">
-                      <button ngbDropdownItem  value="{{reg}}" (click)="regionSet($event)">{{reg}}</button>
-                    </div>
-                  </div>
-                </div>
               
                 <div class="col-md-3 col-3 text-right">
                   <button class="btn btn-sm btn-outline-success btn-round btn-icon"><i class="fa fa-envelope"></i></button>
