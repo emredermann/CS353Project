@@ -53,11 +53,11 @@
           </ul>
         </div>
       </div>
-  
+      <div class="card-header">
+        <h4 class="card-title">List of Restaurant Branches</h4>
+      </div>
       <div class="card">
-        <div class="card-header">
-          <h4 class="card-title">List of Restaurant Branches</h4>
-        </div>
+        
         <div class="card-body">
           <table class="table">
             <thead class=" text-primary">
@@ -67,7 +67,7 @@
                 <th>Menu</th>
             </thead>
             <tbody>
-              <tr *ngFor="let rest of restaurants">
+              <tr *ngFor = "let rest of restaurants;index as i">
                 <td>{{rest.RESTAURANTNAME}}</td>
                 <td>{{rest.REGION_NAME}}</td>
                 <td>{{rest.AVG_RATING}}</td>
@@ -81,6 +81,7 @@
           </table>
          
         </div>
+      
       </div>
   
       
