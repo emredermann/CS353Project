@@ -17,8 +17,14 @@ export class UserOrderComponent implements OnInit {
     public info: PersonalInfo = {fullName: "Doğa Tansel", credits: 125.12, address: "Bilkent"};
     public restaurants= [] ;
 
-    public restaurant: Restaurant = this.restaurants[0];
-    public myMenu: MenuItem[] = this.restaurants[0].menu;
+    public restaurant: Restaurant = {restaurant_id: 0,
+        restaurant_owner: "",
+        restaurantname: "",
+        owner_id: 0,
+        avg_rating: 0,
+        region_name: "",
+        menu: []};
+    public myMenu: MenuItem[] = [];
     public searchText: string;
     public closeResult = '';
     selectedSize:string;
@@ -93,7 +99,7 @@ export class UserOrderComponent implements OnInit {
 
         this.restService.getRestaurants().pipe().subscribe(data => {  
             this.restaurants = data;
-            this. restaurants = this.restaurants.filter((item)=>item.RESTAURANT_ID = this.rest_id);
+            this.restaurants = this.restaurants.filter((item)=>item.RESTAURANT_ID = this.rest_id);
         });
     }
   
