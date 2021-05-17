@@ -6,12 +6,21 @@ import { MenuItem } from './../../_models/menuItem';
 import { ActivatedRoute } from "@angular/router";
 import { RestaurantService } from 'app/_services/restaurant-service/restaurant.service';
 import { identifierModuleUrl } from '@angular/compiler';
+import { OrderService } from 'app/_services/order-service/order.service';
+import { AuthenticationService } from 'app/_services/authentication-service/authentication.service';
 
 @Component({
     selector: 'user-order-cmp',
     moduleId: module.id,
     templateUrl: 'user-order.component.html'
 })
+class MENU_ITEM {
+    FOOD_ID: number;
+    FOODNAME: string;
+    PRICE: number;
+    RESTAURANT_ID:number;
+    ISAVAILABLE:boolean;
+}
 
 export class UserOrderComponent implements OnInit {
     public info: PersonalInfo = {fullName: "Doğa Tansel", credits: 125.12, address: "Bilkent"};
@@ -34,9 +43,11 @@ export class UserOrderComponent implements OnInit {
     public options: string[] = ["something"];
     public rest_id:number;
     public menu = [];
-    constructor(private modalService: NgbModal, private route: ActivatedRoute, private restService:RestaurantService ) {}
-    
+    constructor(private modalService: NgbModal, private route: ActivatedRoute, private restService:RestaurantService,
+        private orderService:OrderService, private authService:AuthenticationService ) {}
+    public list:MENU_ITEM[];
     ngOnInit() {
+        
         this.route.params.subscribe(params => {
            this.rest_id= params.id;
            console.log(this.rest_id);
@@ -49,7 +60,7 @@ export class UserOrderComponent implements OnInit {
         this.updatePage();
     }
 
-
+   
 
     open(content) {
         this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
@@ -71,6 +82,7 @@ export class UserOrderComponent implements OnInit {
 
 
     addToCart(v){
+        this.orderService.createOrder(this.list);
         this.cart.push(this.addedItem);
     }
     removeFromCart(){

@@ -13,7 +13,6 @@ import { OwnerMenuItemEditorComponent } from '../../pages/owner-menu-item-editor
 @NgModule({
   imports: [
     CommonModule,
-    //BrowserModule,
     RouterModule.forChild(OwnerLayoutRoutes),
     FormsModule,
     NgbModule
