@@ -22,6 +22,11 @@ class MENU_ITEM {
     ISAVAILABLE:boolean;
 }
 
+class HAS_ITEM {
+    FOOD_ID: number;
+    ORDER_NO:number;
+}
+
 export class UserOrderComponent implements OnInit {
     public info: PersonalInfo = {fullName: "Doğa Tansel", credits: 125.12, address: "Bilkent"};
     public restaurants= [] ;
