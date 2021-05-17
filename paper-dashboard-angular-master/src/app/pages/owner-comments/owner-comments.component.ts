@@ -48,9 +48,9 @@ export class OwnerCommentsComponent implements OnInit{
         let id = this.authService.getCurrentUserId();
         
         this.orderService.getReviews(id).pipe().subscribe(data => {  
-            //console.log(this.orders);
-            this.orders = data;
             
+            this.orders = data;
+            console.log(data);
          });
     }
     open(content,order_no) {

@@ -8,10 +8,12 @@ import { OwnerCommentsComponent } from '../../pages/owner-comments/owner-comment
 import { OwnerMainComponent } from '../../pages/owner-main/owner-main.component';
 import { OwnerMenuEditorComponent } from '../../pages/owner-menu-editor/owner-menu-editor.component';
 import { OwnerMenuItemEditorComponent } from '../../pages/owner-menu-item-editor/owner-menu-item-editor.component';
+//import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
   imports: [
     CommonModule,
+    //BrowserModule,
     RouterModule.forChild(OwnerLayoutRoutes),
     FormsModule,
     NgbModule,

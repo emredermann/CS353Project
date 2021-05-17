@@ -31,7 +31,7 @@ export class OwnerMainComponent implements OnInit{
     private clicked = false;
     public closeResult = '';
     public counter: number;
-
+    
     constructor(private modalService: NgbModal,private orderService:OrderService,private authService:AuthenticationService){
 
     }

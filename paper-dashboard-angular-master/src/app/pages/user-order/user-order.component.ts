@@ -39,6 +39,7 @@ export class UserOrderComponent implements OnInit {
     ngOnInit() {
         this.route.params.subscribe(params => {
            this.rest_id= params.id;
+           console.log(this.rest_id);
             this.restaurants.forEach((anItem: Restaurant) => {
               if (anItem.restaurant_id == params.id) {
                 this.restaurant = anItem;
