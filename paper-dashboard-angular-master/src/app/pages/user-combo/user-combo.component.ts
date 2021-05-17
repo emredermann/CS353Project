@@ -17,7 +17,7 @@ import { ActivatedRoute } from "@angular/router";
 export class UserComboComponent implements OnInit{
 
     private clicked = false;
-    public customer: PersonalInfo = {fullName: "Kemal Kılıçdaroğlu", credits: 120, address: "Bilkentte bir yerler" };
+    public customer: PersonalInfo = {fullName: "Umut Ada Yürüten", credits: 120, address: "İncek" };
     public restaurants: Restaurant[] = [
         {restaurant_id: 1, restaurant_owner: "Ali Veli", 
         restaurantname:'Burger King', owner_id: 1, 
@@ -76,7 +76,7 @@ export class UserComboComponent implements OnInit{
                                 {combo_id: 3, comboName: "Açım", itemlist: [{itemId: 1, itemName: "Hamburger", itemOptions: ["Small (90 g.)","Medium (120 g.)", "Large (180 g.)", "King (220 g.)"], itemPrice: 14},
                                             {itemId: 2, itemName: "Cheeseburger", itemOptions: ["Small (90 g.)","Medium (120 g.)", "Large (180 g.)", "King (220 g.)"], itemPrice: 19}], price: 120}];
 
-    public options: string[] = ["something"];
+    public options: string[] = ["Acılı"];
     public closeResult = '';
     
     constructor(private modalService: NgbModal, private route: ActivatedRoute){
