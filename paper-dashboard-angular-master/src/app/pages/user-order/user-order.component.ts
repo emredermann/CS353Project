@@ -16,7 +16,7 @@ import { TypeCheckCompiler } from '@angular/compiler/src/view_compiler/type_chec
     moduleId: module.id,
     templateUrl: 'user-order.component.html'
 })
-/*class MENU_ITEM {
+class MENU_ITEM {
     FOOD_ID: number;
     FOODNAME: string;
     PRICE: number;
@@ -27,7 +27,7 @@ import { TypeCheckCompiler } from '@angular/compiler/src/view_compiler/type_chec
 class HAS_ITEM {
     FOOD_ID: number;
     ORDER_NO:number;
-}*/
+}
 
 export class UserOrderComponent implements OnInit {
     public info: PersonalInfo = {fullName: "Doğa Tansel", credits: 125.12, address: "Bilkent"};
@@ -118,12 +118,12 @@ export class UserOrderComponent implements OnInit {
         this.orderService.addToOrder(this.fud_t,this.ord_no,this.opt_t,1).pipe().subscribe(data => {  
             this.ord_no = data;
         });
-        this.cart.push(this.addedItem);
+        //this.cart.push(this.addedItem);
     }
     removeFromCart(selectedItem){
-        this.orderItem.FOOD_ID = selectedItem.FOOD_ID;
+        /*this.orderItem.FOOD_ID = selectedItem.FOOD_ID;
         this.orderItem.ORDER_NO = this.orderCount;
-        this.orderCount--;
+        this.orderCount--;*/
 
         const index = this.has_item.indexOf(this.orderItem, 0);
         if (index > -1) {
