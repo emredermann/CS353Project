@@ -9,6 +9,8 @@ const { first } = require('../knex');
 
 module.exports = {
     authenticate,
+    getUser,
+    getRestaurantMenu
     
 };
 
@@ -38,6 +40,32 @@ async function authenticate({ username, password }) {
         
     return result;
     
+}
+
+async function getUser(id){
+    let result =  await knex('customer').where({CUSTOMER_ID:id}).then((user)=>{
+        try{
+            user[0].RESTAURANT_ID;
+            return user;
+        }catch{
+            throw "Internal Server Error"
+        }
+    });
+
+    return result;
+}
+
+async function getRestaurantMenu(){
+    let result =  await knex('menu_item').where({RESTAURANT_ID:id}).then((user)=>{
+        try{
+            user[0].RESTAURANT_ID;
+            return user;
+        }catch{
+            throw "Internal Server Error"
+        }
+    });
+
+    return result;
 }
 
 

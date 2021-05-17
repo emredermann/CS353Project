@@ -10,6 +10,8 @@ const registerService = require('./register-service');
 router.get('/table',getRestaurants);
 router.post('/authenticate', authenticate);
 router.put('/register',register);
+router.get('/users/:id',getUser);
+router.get('/menu/:id',getRestaurantMenu)
 module.exports = router;
 
 function getRestaurants(req,res,next){
@@ -27,5 +29,14 @@ function authenticate(req, res, next) {
 function register(req,res,next){
     
     registerService.register(req.body).then(user => res.json(user))
+    .catch(next);
+}
+
+function getUser(req,res,next){
+    userService.getUser(req.params.id).then(user => res.json(user))
+    .catch(next);
+}
+function getRestaurantMenu(req,res,next){
+    userService.getRestaurantMenu(req.params.id).then(user => res.json(user))
     .catch(next);
 }

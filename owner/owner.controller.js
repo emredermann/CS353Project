@@ -9,6 +9,7 @@ router.put('/register',register);
 router.get('/reviews/:id',getReviews);
 router.get('/orders/:id',getOrderHistory);
 router.get('/restaurant/:id',getOwnerRestaurants);
+
 module.exports = router;
 
 
@@ -38,3 +39,4 @@ function getOwnerRestaurants(req,res,next){
     ownerService.getOwnerRestaurants(req.params.id).then(user => res.json(user))
     .catch(next);
 }
+
