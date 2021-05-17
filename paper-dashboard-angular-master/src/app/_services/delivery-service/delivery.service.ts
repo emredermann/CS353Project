@@ -14,9 +14,17 @@ export class DeliveryService {
   constructor(private http: HttpClient) { }
 
   getDeliveryStatus(id: number){
-    return this.http.get<any>(`${environment.apiUrl}/delivery/${id}`)//SOR
+    return this.http.get<any>(`${environment.apiUrl}/delivery/${id}`)
             .pipe(map(deliveryGuy => {
                 return deliveryGuy;
         }));
   }
+
+  getDeliveryGuy(id: number){
+    return this.http.get<any>(`${environment.apiUrl}/delivery/delGuy${id}`)
+            .pipe(map(deliveryGuy => {
+                return deliveryGuy;
+        }));
+  }
+
 }
