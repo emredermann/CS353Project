@@ -11,7 +11,7 @@ import { map } from 'rxjs/operators';
 export class RegisterService {
 
   constructor(private http: HttpClient) { }
-
+  
   registerCustomer( username:string, password:string,phone:number,address:string,region:string){
     return this.http.put<any>(`${environment.apiUrl}/user/register`, { 'Ausername': username, 'Apassword':password,
                                                             'Aphone':phone,'Aaddress': address, 'Aregion' : region})

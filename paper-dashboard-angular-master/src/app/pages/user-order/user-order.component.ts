@@ -14,7 +14,7 @@ import { AuthenticationService } from 'app/_services/authentication-service/auth
     moduleId: module.id,
     templateUrl: 'user-order.component.html'
 })
-class MENU_ITEM {
+/*class MENU_ITEM {
     FOOD_ID: number;
     FOODNAME: string;
     PRICE: number;
@@ -25,7 +25,7 @@ class MENU_ITEM {
 class HAS_ITEM {
     FOOD_ID: number;
     ORDER_NO:number;
-}
+}*/
 
 export class UserOrderComponent implements OnInit {
     public info: PersonalInfo = {fullName: "Doğa Tansel", credits: 125.12, address: "Bilkent"};
@@ -50,11 +50,12 @@ export class UserOrderComponent implements OnInit {
     public menu = [];
     constructor(private modalService: NgbModal, private route: ActivatedRoute, private restService:RestaurantService,
         private orderService:OrderService, private authService:AuthenticationService ) {}
-    public list:MENU_ITEM[];
+    //public list:MENU_ITEM[];
     ngOnInit() {
         
         this.route.params.subscribe(params => {
            this.rest_id= params.id;
+           this.restService.setRestID(this.rest_id);
            console.log(this.rest_id);
             this.restaurants.forEach((anItem: Restaurant) => {
               if (anItem.restaurant_id == params.id) {
@@ -65,9 +66,15 @@ export class UserOrderComponent implements OnInit {
         this.updatePage();
     }
 
-   
+   getItemOptions(id){
+        this.orderService.getItemOptions(id).pipe().subscribe(data => {  
+            this.options = data;
+            
+         });
+   }
 
-    open(content) {
+    open(content,foodid) {
+        this.getItemOptions(foodid);
         this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
             this.closeResult = ``;
           }, (reason) => {
@@ -87,7 +94,7 @@ export class UserOrderComponent implements OnInit {
 
 
     addToCart(v){
-        this.orderService.createOrder(this.list);
+        //this.orderService.createOrder(this.list);
         this.cart.push(this.addedItem);
     }
     removeFromCart(){
