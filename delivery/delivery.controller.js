@@ -9,6 +9,8 @@ router.put('/register',register);
 router.get('/orders/new/:id',getNewDeliveryOrders);
 router.get('/orders/old/:id',getOldDeliveryOrders);
 router.get('/orders/:id',getOrderDetails);
+router.get('/delivery/delGuy/:id',getDeliveryGuy);
+
 module.exports = router;
 
 
@@ -39,3 +41,12 @@ function getOrderDetails(req,res,next){
     deliveryService.getOrderDetails(req.params.id).then(user => res.json(user))
     .catch(next);
 }
+
+function getDeliveryGuy(req,res,next){
+    deliveryService.getDeliveryGuy(req.params.id).then(user => res.json(user))
+    .catch(next);
+}
+
+
+
+

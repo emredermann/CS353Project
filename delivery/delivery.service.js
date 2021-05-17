@@ -12,6 +12,7 @@ module.exports = {
     getNewDeliveryOrders,
     getOldDeliveryOrders,
     getOrderDetails,
+    getDeliveryGuy,
 
 };
 
@@ -103,6 +104,11 @@ async function getOldDeliveryOrders(id){
                 
 }
 //
+
+async function getDeliveryGuy(id){
+    return knex('deliveryguy').joinRaw('orders').where({DELIVERY_GUY_ID: id});
+}
+
 
 // TO BE CAHNGED
 async function getOrderDetails(id){
