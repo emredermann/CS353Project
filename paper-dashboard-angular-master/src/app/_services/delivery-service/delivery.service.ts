@@ -26,4 +26,12 @@ export class DeliveryService {
                 return deliveryGuy;
         }));
   }
+
+  getDeliveryGuy(id: number){
+    return this.http.get<any>(`${environment.apiUrl}/delivery/delGuy${id}`)
+            .pipe(map(deliveryGuy => {
+                return deliveryGuy;
+        }));
+  }
+
 }
