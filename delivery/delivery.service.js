@@ -12,6 +12,8 @@ module.exports = {
     getNewDeliveryOrders,
     getOldDeliveryOrders,
     getOrderDetails,
+    acceptDelivery,
+    
 
 };
 
@@ -22,10 +24,11 @@ async function authenticate({ username, password }) {
     let result = await knex('user').join('delivery_guy','DELIVERY_GUY_ID','=','USER_ID').where({USER_ID: username, PASSWORD: password}).then((user)=>{
         
         try{
+            
             user[0].USER_ID;
         }
         catch{
-        
+            
             throw 'Invalid ID or Password';
         }
         const token = jwt.sign({ sub: user.id }, config.secret, { expiresIn: '7d' });
@@ -39,17 +42,19 @@ async function authenticate({ username, password }) {
             throw err;
                  
         })      
-
+        
     if(result === 'Invalid ID or Password')
         return result;
+        
 
         let t = await knex('delivery_guy').where({DELIVERY_GUY_ID:username}).update({isAVAILABLE:true}).then((user)=>{
         
             try{
-                user[0].USER_ID;
+                console.log(user);
+                //user[0].DELIVERY_GUY_ID;
             }
             catch{
-            
+                
                 throw 'Internal Server Error';
             }
             return user;
@@ -57,9 +62,10 @@ async function authenticate({ username, password }) {
                 throw err;
                      
             });
+           
             if (t ===  'Internal Server Error')
                 return t;
-        
+              
     return result;
     
 }
@@ -67,14 +73,14 @@ async function authenticate({ username, password }) {
 
 async function getNewDeliveryOrders(id){
     
-    let result = await knex('orders').where({DELIVERY_GUY_ID: id}).where({ORDERSTATE:'Waiting'})
+    let result = await knex('orders').where({DELIVERY_GUY_ID: id}).where({ORDERSTATE:'Requested'})
                     .join('HAS_ITEM','HAS_ITEM.ORDER_NO','=','orders.ORDER_NO').join('MENU_ITEM','MENU_ITEM.FOOD_ID','=','HAS_ITEM.FOOD_ID')
                     .join('restaurant','restaurant.RESTAURANT_ID','=','MENU_ITEM.RESTAURANT_ID')
                     .distinct('HAS_ITEM.ORDER_NO','CUSTOMER_ID','orders.DELIVERY_GUY_ID','orders.ORDERSTATE','RESTAURANTNAME')
                     .then((data)=>{
                         try{
                             
-                            data[0].DELIVERY_GUY_ID;
+                            //data[0].DELIVERY_GUY_ID;
                             return data;
                         }catch{
                             throw "Internal Server Error"
@@ -125,4 +131,33 @@ async function getOrderDetails(id){
 function omitPassword(user) {
     const { password, ...userWithoutPassword } = user;
     return userWithoutPassword;
+}
+
+async function acceptDelivery({u_id,od}){
+    console.log(u_id);
+    console.log(od);
+    let result = await knex('orders').update({ORDERSTATE:'On-The-Way'}).where({ORDER_NO:od}).then((data)=>{
+        try{
+            
+            //data[0].ORDER_NO;
+            console.log(data);
+            return data;
+        }catch{
+            throw "Internal Server Error"
+        }
+    });
+
+    result = await knex('delivery_guy').update({isAVAILABLE:false}).where({DELIVERY_GUY_ID:u_id}).then((data)=>{
+        try{
+            
+            console.log(data);
+            //data[0].ORDER_NO;
+            return data;
+        }catch{
+            throw "Internal Server Error"
+        }
+    });
+    return result;
+
+
 }

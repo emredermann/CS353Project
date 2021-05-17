@@ -43,9 +43,10 @@ async function authenticate({ username, password }) {
 }
 
 async function getUser(id){
-    let result =  await knex('customer').where({CUSTOMER_ID:id}).then((user)=>{
+    let result =  await knex('customer').where('customer.CUSTOMER_ID',id).join('user','user.USER_ID','=','customer.CUSTOMER_ID').then((user)=>{
         try{
-            user[0].RESTAURANT_ID;
+            user[0].CUSTOMER_ID;
+            console.log(user);
             return user;
         }catch{
             throw "Internal Server Error"

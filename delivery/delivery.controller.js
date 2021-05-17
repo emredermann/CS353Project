@@ -9,6 +9,7 @@ router.put('/register',register);
 router.get('/orders/new/:id',getNewDeliveryOrders);
 router.get('/orders/old/:id',getOldDeliveryOrders);
 router.get('/orders/:id',getOrderDetails);
+router.post('/accept',acceptDelivery)
 module.exports = router;
 
 
@@ -37,5 +38,9 @@ function getOldDeliveryOrders(req,res,next){
 }
 function getOrderDetails(req,res,next){
     deliveryService.getOrderDetails(req.params.id).then(user => res.json(user))
+    .catch(next);
+}
+function acceptDelivery(req,res,nex){
+    deliveryService.acceptDelivery(req.body).then(user => res.json(user))
     .catch(next);
 }
