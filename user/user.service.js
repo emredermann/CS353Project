@@ -14,7 +14,10 @@ module.exports = {
     getItemOptions,
     getUserCombos,
     getCombo,
-    removeCombo
+    removeCombo,
+    createOrder,
+    addToOrder,
+    changeOrderStatus
 
     
 };
@@ -130,6 +133,61 @@ async function removeCombo(id){
     return result;
 }
 
+async function createOrder({cust_id, rest_id}){
+    console.log("HERE");
+    //console.log("cust:" +cust_id);
+    let maxO = await knex('orders').select('ORDER_NO').max('ORDER_NO', {as:'max'} ).then((user)=>{
+        try{
+            //user[0].RESTAURANT_ID;
+            //console.log(user);
+            //return user[0].max;
+        }catch{
+            //return 0;
+        }
+    });
+    maxO = maxO[0].max + 1;
+    //console.log("max:" +maxO);
+    let result = await knex('orders').insert({ORDER_NO:maxO},{COST: 0},{ORDATE: null},{ORDERSTATE:'Creating'},{DELIVERY_TIME:''},
+            {DELIVERY_GUY_ID:null},{CUSTOMER_ID:cust_id},{RESTAURANT_ID:rest_id})
+    .then((user)=>{
+        try{
+            //user[0].RESTAURANT_ID;
+            //console.log(user);
+            //return user[0].ORDER_NO;
+        }catch{
+            throw "Internal Server Error";
+        }
+    });
+    //return maxO;
+}
+
+async function addToOrder(food_t,{food,ono,opt,count}){
+    let result  = await knex('has_item').insert( {FOOD_ID:food_t},{ORDER_NO:ono},{OPTION_NO: opt},{AMOUNT:count})
+    .then((user)=>{
+        try{
+            //user[0].RESTAURANT_ID;
+            //console.log(user);
+            //return user[0].ORDER_NO;
+        }catch{
+            throw "Internal Server Error";
+        } 
+    });
+    return result;
+}
+
+async function changeOrderStatus({stat,ono}){
+    console.log("here");
+    let result = await knex('orders').update({ORDERSTATE:stat}).where({ORDER_STATE:ono})
+    .then((user)=>{
+        try{
+            //user[0].RESTAURANT_ID;
+            //console.log(user);
+            //return user[0].ORDER_NO;
+        }catch{
+            throw "Internal Server Error";
+        }
+    });
+}
 
 // helper functions
 function omitPassword(user) {

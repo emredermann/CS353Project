@@ -1,7 +1,7 @@
 ﻿const express = require('express');
 const router = express.Router();
 const userService = require('./user.service');
-const profileService = require('./profile-service');
+
 const restaurantService = require('./restaurant-service');
 const registerService = require('./register-service');
 
@@ -16,6 +16,10 @@ router.get('/item/:id',getItemOptions);
 router.get('/combos/:id',getUserCombos);
 router.get('/combo/:id',getCombo);
 router.delete('/combo/rem/:id',removeCombo);
+router.put('/order/create',createOrder);
+router.put('/order/add/:id',addToOrder);
+router.post('/order/update',changeOrderStatus);
+
 module.exports = router;
 
 function getRestaurants(req,res,next){
@@ -59,7 +63,21 @@ function getCombo(req,res,next){
     .catch(next);
 }
 function removeCombo(req,res,next){
-    console.log("aaa");
+    
     userService.removeCombo(req.params.id).then(user => res.json(user))
+    .catch(next);
+}
+
+function createOrder(req,res,next){
+    userService.createOrder(req.body).then(user => res.json(user))
+    .catch(next);
+}
+function addToOrder(req,res,next){
+    
+    userService.addToOrder(req.params.id,req.body).then(user => res.json(user))
+    .catch(next);
+}
+function changeOrderStatus(req,res,next){
+    userService.changeOrderStatus(req.body).then(user => res.json(user))
     .catch(next);
 }
