@@ -14,15 +14,15 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 })
 
 export class UserOrderHistoryComponent implements OnInit{
-    public orders: userOrder [] = [{customerName: "İnsan Çocuğu", idNo: 5, items: ["abc","cde"], date: new Date(), price: 120.45, 
-                                    restaurantName: "Burger King", restaurantReview: "Nice!", restaurantRating: 3.5, delGuyReview:"Cool!",delGuyRating: 3.9,
-                                    restaurantResponse:"Thanks!",orderState: "Delivered"},
-                                    {customerName: "İnsan Çocuğu 2", idNo: 3, items: ["adf","dsg"], date: new Date(), price: 30.15, 
+    public orders: userOrder [] = [{customerName: "Ahmet", idNo: 5, items: ["CheeseBurger","Sundae"], date: new Date(), price: 120.45, 
+                                    restaurantName: "Burger King", restaurantReview: "Very delicious meal.", restaurantRating: 3.5, delGuyReview:"Fast!",delGuyRating: 3.9,
+                                    restaurantResponse:"Thanks for the feedback!",orderState: "Delivered"},
+                                    {customerName: "Arda", idNo: 3, items: ["SSK "," Mantı"], date: new Date(), price: 30.15, 
                                     restaurantName: "ASPAVA", restaurantReview: "Nice!", restaurantRating:4.5, delGuyReview:"Cool!",delGuyRating: 3.9,
-                                    restaurantResponse:"No Thanks!",orderState: "Delivered"},
-                                    {customerName: "İnsan Çocuğu 3", idNo: 4, items: ["çükbaş","amcıkağaz"], date: new Date(), price: 21.15, 
-                                    restaurantName: "PİZZA", restaurantReview: "Dick!", restaurantRating:0.5, delGuyReview:"BRUH!",delGuyRating: 3.9,
-                                    restaurantResponse:"No Thanks!",orderState: "En Route"}];
+                                    restaurantResponse:"Thank you for the positive response!",orderState: "Delivered"},
+                                    {customerName: "Doğa", idNo: 4, items: ["Margarita ","Limonata"], date: new Date(), price: 21.15, 
+                                    restaurantName: "PİZZARİA", restaurantReview: "Bad aftertaste.", restaurantRating:0.5, delGuyReview:"He came 30 minutes late!",delGuyRating: 3.9,
+                                    restaurantResponse:"Why rating so low man?",orderState: "En Route"}];
     public counter : number;
     public user: PersonalInfo = {fullName: "Kemal Kılıçdaroğlu", credits: 120.43, address:"Somewhere in bilkent" };
     public closeResult = '';
