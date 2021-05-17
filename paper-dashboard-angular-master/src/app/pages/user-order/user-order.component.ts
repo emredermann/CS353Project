@@ -84,8 +84,6 @@ export class UserOrderComponent implements OnInit {
         alert("Your customized order has been saved as a combo");
     }
 
-
-
     proceedToCheckout(){} //Saves all the changed attributes
 
     updatePage(){
@@ -104,8 +102,6 @@ export class UserOrderComponent implements OnInit {
     }
 
     
-
-
     submitMenuFilter(){
       //this.counter = 0;
       //this.resultAssignment=this.assignments.filter(item=> item.RESTAURANT_NAME ===this.filteredRestaurantName);
