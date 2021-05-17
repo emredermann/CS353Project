@@ -90,7 +90,7 @@ export class OrderService {
 
   insertOrder(list:MENU_ITEM){
 
-  }
+  }*/
   
   createOrder(list : MENU_ITEM){
     return this.http.put<any>(`${environment.apiUrl}/user/orderc`, {list})
@@ -100,4 +100,44 @@ export class OrderService {
         return user;
     }));
   }
-}
+
+  getItemOptions(id){
+    return this.http.get<any>(`${environment.apiUrl}/user/item/${id}`)
+    .pipe(map(user => {
+       
+        
+        return user;
+    }));
+
+  }
+
+  getUserCombos(id){
+    return this.http.get<any>(`${environment.apiUrl}/user/combos/${id}`)
+    .pipe(map(user => {
+       
+        
+        return user;
+    }));
+  }
+  getCombo(id){
+    return this.http.get<any>(`${environment.apiUrl}/user/combo/${id}`)
+    .pipe(map(user => {
+       
+        
+        return user;
+    }));
+    }
+    removeCombo(id){
+      return this.http.delete<any>(`${environment.apiUrl}/user/combo/rem/${id}`)
+      .pipe(map(user => {
+         
+          
+          return user;
+      }));
+      }
+
+  }
+
+ 
+  
+

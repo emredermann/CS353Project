@@ -11,6 +11,13 @@ import { map } from 'rxjs/operators';
 export class RestaurantService {
 
   constructor(private http: HttpClient) { }
+  public rest_id:number;
+  getRestID(){
+    return this.rest_id;
+  }
+  setRestID(id:number){
+    this.rest_id = id;
+  }
   getRestaurants(){
     return  this.http.get<Restaurant[]>(`${environment.apiUrl}/user/table`)
     .pipe(map(rest => {

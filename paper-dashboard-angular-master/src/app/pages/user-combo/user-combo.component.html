@@ -17,7 +17,7 @@
   </form>
   </div>
   <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="addToCombo($value)" (click)="modal.dismiss('Cross click')" value="item">Add to Combo</button>
+      <button type="button" class="btn btn-outline-dark" (click)="addToCombo(choice)" (click)="modal.dismiss('Cross click')" value="item">Add to Combo</button>
       <button type="button" class="btn btn-outline-dark" (click)="modal.dismiss('Cross click')">Cancel</button>
   </div>
 </ng-template>
@@ -39,7 +39,7 @@
   </form>
   </div>
   <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="removeFromCombo($value)" (click)="modal.dismiss('Cross click')" value="item">Remove from Combo</button>
+      <button type="button" class="btn btn-outline-dark" (click)="removeFromCombo()" (click)="modal.dismiss('Cross click')" value="item">Remove from Combo</button>
       <button type="button" class="btn btn-outline-dark" (click)="modal.dismiss('Cross click')">Cancel</button>
   </div>
 </ng-template>
@@ -79,7 +79,7 @@
         <p>
         <p>Order Cost: {{newCombo.price}}</p>
         <div class="example-button-row">
-          <button type="button" class="btn btn-outline-dark" (click)="proceedToCheckout($event)" (click)="modal.dismiss('Cross click')" >Order Combo</button>
+          <button type="button" class="btn btn-outline-dark" (click)="proceedToCheckout()" (click)="modal.dismiss('Cross click')" >Order Combo</button>
           <button type="button" class="btn btn-outline-dark" (click)="modal.dismiss('Cross click')">Cancel</button>
         </div>
       </div>
@@ -124,13 +124,16 @@
 
     <div class="card">
       <div class="card-header">
-        <h4 class="card-title">View {{restaurant.restaurantname}} Menu</h4>
+        <h4 class="card-title">View {{selectedRestaurant.restaurantname}} Menu</h4>
       </div>
       <div class="card-body">
+        <div class="form-group">
         <div class="search-Restaurant">
           <input type="text" class="form-control" size = "35"  placeholder="Search by restaurant name"  (change)="changeRestaurantSelection($event)">
-            <button class="btn btn-primary" (click)="submitRestaurantFilter()" type="submit"> Search</button>
+        </div>  
+          <button class="btn btn-primary" (click)="submitRestaurantFilter()" type="submit"> Search</button>
             <button class="btn btn-primary" (click)="refreshFilter()" type="submit"> Clear</button>
+            
         </div>
 
         <table class="table">
@@ -141,7 +144,7 @@
           <tbody>
             <tr *ngFor="let item of menu; index as i" [value]="item.itemName">
               <td>{{item.itemName}}</td>
-              <td><button class="btn btn-primary" (click)="open(contentAddItemToCombo)">Add</button></td>
+              <td><button class="btn btn-primary" (click)="addItemValue(item)" (click)="open(contentAddItemToCombo)">Add</button></td>
             </tr>
           </tbody>
 
@@ -150,6 +153,7 @@
        
       </div>
     </div>
+
 
     <div class="card">
       <div class="card-header">
@@ -162,9 +166,9 @@
                 <th>Delete Item From New Combo</th>
             </thead>
             <tbody>
-              <tr *ngFor="let item of combo; index as i" [value]="item.itemName">
+              <tr *ngFor="let item of newCombo; " [value]="item.itemName">
                 <td>{{item.itemName}}</td>
-                <td><button class="btn btn-primary" (click)="open(contentDeleteItemFromCombo)">Delete</button></td>
+                <td><button class="btn btn-primary" (click)="open(contentDeleteItemFromCombo)" (click)="setItemDeleted(item)">Delete</button></td>
               </tr>
               </tbody>
           </table>

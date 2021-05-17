@@ -32,7 +32,7 @@
         <label for="choice">Select Options</label>
         <p>
         <select *ngFor="let choice of options" [value] ="selectedSize">
-            <option value="choice">{{choice}}</option>
+            <option value="choice">{{choice.ORDER_DETAILS}}</option>
         </select>
         </div>
     </form>
@@ -88,7 +88,11 @@
                 <tr *ngFor="let item of menu">
                     <td>{{item.FOODNAME}}</td>
                     <td>{{item.PRICE}}</td>
+<<<<<<< HEAD
                     <button type="button" class="btn btn-outline-dark" (click)="open(contentAddItemToCart)"  (click)="setItem(item)" >Add</button>
+=======
+                    <button type="button" class="btn btn-outline-dark" (click)="open(contentAddItemToCart,item.FOOD_ID)"  (click)="itemToAddCart(item)" >Add</button>
+>>>>>>> 1acca2e135a55ef9d0a166994f8969317a5458b0
                 </tr>
             </tbody>
         </table>
@@ -107,7 +111,7 @@
                 <th>Price</th>
             </thead>
             <tbody>
-                <tr *ngFor="let item of menu">
+                <tr *ngFor="let item of cart">
                     <td>{{item.FOODNAME}}</td>
                     <td>{{item.PRICE}}</td>
                     <button type="button" class="btn btn-outline-dark" (click)="open(contentRemoveItemFromCart)"  (click)="setItem(item)">Delete</button>
