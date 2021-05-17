@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ActivatedRoute } from "@angular/router";
 import { Router } from "@angular/router";
+import { RestaurantService } from 'app/_services/restaurant-service/restaurant.service';
 
 @Component({
     selector: 'owner-menu-editor-cmp',
@@ -14,12 +15,12 @@ import { Router } from "@angular/router";
 
 export class OwnerMenuEditorComponent implements OnInit{
 
-    public menu: MenuItem[] = [{itemId: 1, itemName: "Hamburger", itemOptions: ["Small (90 g.)","Medium (120 g.)", "Large (180 g.)", "King (220 g.)"], itemPrice: 14},
+    public menu: MenuItem[]; /*= [{itemId: 1, itemName: "Hamburger", itemOptions: ["Small (90 g.)","Medium (120 g.)", "Large (180 g.)", "King (220 g.)"], itemPrice: 14},
                         {itemId: 2, itemName: "Cheeseburger", itemOptions: ["Small (90 g.)","Medium (120 g.)", "Large (180 g.)", "King (220 g.)"], itemPrice: 19}];
-
+*/
     public restaurantinfo: restaurantOwner = {name: "Ali Veli", restaurantName: "Burger King", 
                                               id: 4,branch:"Bilkent" ,address: "ABC" };
-    public restaurants: Restaurant[] = [{restaurant_id: 1,
+    public restaurants: Restaurant[] = []/*[{restaurant_id: 1,
                       restaurant_owner: "Ali Veli",
                       restaurantname: "Burger King",
                       owner_id: 1,
@@ -34,8 +35,9 @@ export class OwnerMenuEditorComponent implements OnInit{
                       avg_rating: 3.5,
                       region_name: "Çankaya",
                       menu: this.menu} ];
+                      */
                 
-    public restaurant: Restaurant = this.restaurants[0];
+    public restaurant: Restaurant;
 
     private clicked = false;
     public counter: number;
@@ -44,7 +46,7 @@ export class OwnerMenuEditorComponent implements OnInit{
     public deleteStatus = 'Are you sure you want to delete this item from your menu?';
     public newItemId = 0;
 
-    constructor(private modalService: NgbModal, private route: ActivatedRoute, private router: Router){
+    constructor(private modalService: NgbModal, private route: ActivatedRoute, private router: Router, private restService:RestaurantService){
         this.counter = 0;
     }
 
@@ -118,5 +120,13 @@ export class OwnerMenuEditorComponent implements OnInit{
     }
 
     saveChanges(){}
+
+    getRestaurantMenu(order_no){
+      this.restService.getRestaurantMenu(order_no).pipe().subscribe(data => {  
+            
+        this.menu = data;
+    
+    });
+    }
 
 }

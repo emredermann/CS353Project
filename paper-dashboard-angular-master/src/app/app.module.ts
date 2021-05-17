@@ -25,7 +25,7 @@ import { RegisterService } from './_services/register-service/register.service';
 import { OrderService } from './_services/order-service/order.service';
 import { CustomerService } from './_services/customer-service/customer.service';
 import { DeliveryService } from './_services/delivery-service/delivery.service';
-import { CommonModule } from "@angular/common";
+//import { CommonModule } from "@angular/common";
 
 //import { AppRoutingModule } from './pages/app-routing.module';
 
@@ -55,7 +55,7 @@ import { CommonModule } from "@angular/common";
     ReactiveFormsModule,
     HttpClientModule,
     FixedPluginModule,
-    CommonModule
+    //CommonModule
     //RestaurantService
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
