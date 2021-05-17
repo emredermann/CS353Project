@@ -56,10 +56,12 @@ async function getUser(id){
     return result;
 }
 
-async function getRestaurantMenu(){
-    let result =  await knex('menu_item').where({RESTAURANT_ID:id}).then((user)=>{
+async function getRestaurantMenu(id){
+    console.log("aaaa");
+    let result =  await knex('menu_item').where({RESTAURANT_ID: id}).then((user)=>{
         try{
-            user[0].RESTAURANT_ID;
+            //user[0].RESTAURANT_ID;
+            console.log(user);
             return user;
         }catch{
             throw "Internal Server Error"

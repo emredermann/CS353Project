@@ -11,7 +11,7 @@ router.get('/table',getRestaurants);
 router.post('/authenticate', authenticate);
 router.put('/register',register);
 router.get('/users/:id',getUser);
-router.get('/menu/:id',getRestaurantMenu)
+router.get('/menu/:id', getRestaurantMenu); 
 module.exports = router;
 
 function getRestaurants(req,res,next){
@@ -37,6 +37,7 @@ function getUser(req,res,next){
     .catch(next);
 }
 function getRestaurantMenu(req,res,next){
+    console.log("Here");
     userService.getRestaurantMenu(req.params.id).then(user => res.json(user))
     .catch(next);
 }
