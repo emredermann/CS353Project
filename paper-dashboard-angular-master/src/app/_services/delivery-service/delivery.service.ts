@@ -14,7 +14,14 @@ export class DeliveryService {
   constructor(private http: HttpClient) { }
 
   getDeliveryStatus(id: number){
-    return this.http.get<any>(`${environment.apiUrl}/delivery/${id}`)//SOR
+    return this.http.get<any>(`${environment.apiUrl}/delivery/${id}`)
+            .pipe(map(deliveryGuy => {
+                return deliveryGuy;
+        }));
+  }
+
+  acceptDelivery(u_id:number,order:number){
+    return this.http.post<any>(`${environment.apiUrl}/delivery/accept`,{u_id,order})
             .pipe(map(deliveryGuy => {
                 return deliveryGuy;
         }));

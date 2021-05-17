@@ -6,6 +6,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { OrderService } from 'app/_services/order-service/order.service';
 import { AuthenticationService } from 'app/_services/authentication-service/authentication.service';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { DeliveryService } from 'app/_services/delivery-service/delivery.service';
 
 @Component({
     selector: 'delivery-guy-new-assignments-cmp',
@@ -20,7 +21,7 @@ export class DeliveryGuyNewAssignmentsComponent implements OnInit{
     });
 
     constructor( private formBuilder: FormBuilder,private orderService:OrderService, 
-        private authService:AuthenticationService,private modalService: NgbModal){}
+        private authService:AuthenticationService,private modalService: NgbModal,private deliveryService:DeliveryService){}
 
 
     public delGuyInfo: deliveryGuy = {deliveryGuyName: "İhsan Vekil", job: "Delivery Guy", rating: 3.5, joinedOn: "4.3.2020", status :"available"};
@@ -144,14 +145,16 @@ export class DeliveryGuyNewAssignmentsComponent implements OnInit{
            this.delGuyInfo.status = "available"; 
            this.clicked = true;
     }
-    acceptAssignment(e){
+    acceptAssignment(e,order){
         this.delGuyInfo.status = "busy";
         this.clicked = true;
         this.currentAssignment = e.target.value;
-        this.actionMethod();
+        this.actionMethod(order);
     }
-    actionMethod() {
-       alert("You are assigned to!"+this.currentAssignment);
+    actionMethod(order) {
+        let id = this.authService.getCurrentUserId();
+       this.deliveryService.acceptDelivery(id,order);
+       this.updatePage();
   }
   getOrderDetails(order_no:number){
         let id_user = this.authService.getCurrentUserId();

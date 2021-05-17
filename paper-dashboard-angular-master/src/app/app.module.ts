@@ -24,6 +24,7 @@ import { CustomerSidebarModule } from './customer-sidebar/customer-sidebar.modul
 import { RegisterService } from './_services/register-service/register.service';
 import { OrderService } from './_services/order-service/order.service';
 import { CustomerService } from './_services/customer-service/customer.service';
+import { DeliveryService } from './_services/delivery-service/delivery.service';
 
 //import { AppRoutingModule } from './pages/app-routing.module';
 
@@ -56,8 +57,9 @@ import { CustomerService } from './_services/customer-service/customer.service';
     //RestaurantService
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }, RestaurantService, RegisterService, OrderService, CustomerService
-    
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }, RestaurantService, 
+    RegisterService, OrderService, CustomerService, DeliveryService
+
     ],
   bootstrap: [AppComponent]
 })

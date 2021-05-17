@@ -94,7 +94,7 @@
                       <td>{{assign.ORDERSTATE}}</td>
                       <td>{{assign.RESTAURANTNAME}}</td>
                       <td><button class="btn btn-primary" (click)="declineAssignment()" disabled = {{clicked}} hidden="hidden" >Decline</button></td>
-                      <td><button class="btn btn-primary" value="{{assign.ORDER_NO}}" (click)="acceptAssignment($event);"  disabled = {{clicked}}>Accept</button></td>
+                      <td><button class="btn btn-primary" value="{{assign.ORDER_NO}}" (click)="acceptAssignment($event,assign.ORDER_NO);"  disabled = {{clicked}}>Accept</button></td>
                     </tr>
                   </tbody>
               </table>
