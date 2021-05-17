@@ -115,12 +115,12 @@
               <th>Combo Details</th>
           </thead>
           <tbody>
-            <tr *ngFor="let combo of combos; index as i" [value]="combo.comboName">
-              <td>{{combo.comboName}}</td>
+            <tr *ngFor="let combo of combos; index as i" [value]="combo.COMBO_NAME">
+              <td>{{combo.COMBO_NAME}}</td>
               <td><button class="btn btn-primary" (click)="open(contentComboDetails)">See Combo Details</button></td>
-              <td><button mat-button-raised class="btn btn-primary" [routerLink]="['/user/user-combo/', combo.combo_id]" (click)="gotoComboDetails('/user/user-combo/',combo.combo_id)">Edit Combo</button></td>
+              <td><button mat-button-raised class="btn btn-primary" [routerLink]="['/user/user-combo/', combo.combo_id]" (click)="gotoComboDetails('/user/user-combo/',combo.COMBO_NAME)">Edit Combo</button></td>
               <td><button class="btn btn-primary" (click)="open(contentOrderCombo)">Order Combo</button></td>
-              <td><button class="btn btn-primary" (click)="open(contentRemoveCombo)">Remove Combo</button></td>
+              <td><button class="btn btn-primary" (click)="open(contentRemoveCombo,combo.COMBO_NAME)">Remove Combo</button></td>
             </tr>
           </tbody>
 
