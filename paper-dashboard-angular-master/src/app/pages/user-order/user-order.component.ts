@@ -48,8 +48,13 @@ export class UserOrderComponent implements OnInit {
     public options: string[] = ["something"];
     public rest_id:number;
     public menu = [];
+    public test:number = 0;
+    public ord_no:number;
+    public fud_t;
+    public opt_t = null;
     constructor(private modalService: NgbModal, private route: ActivatedRoute, private restService:RestaurantService,
         private orderService:OrderService, private authService:AuthenticationService ) {}
+    
     //public list:MENU_ITEM[];
     ngOnInit() {
         
@@ -94,7 +99,21 @@ export class UserOrderComponent implements OnInit {
 
 
     addToCart(v){
+
+        if(this.test == 0){
+            this.test = this.test + 1;
+            let ud = this.authService.getCurrentUserId();
+            let resti = this.restService.getRestID();
+            this.orderService.createOrder(ud,resti).pipe().subscribe(data => {  
+                this.ord_no = data;
+                console.log(data);
+            });
+        }
         //this.orderService.createOrder(this.list);
+        alert(this.fud_t);
+        this.orderService.addToOrder(this.fud_t,this.ord_no,this.opt_t,1).pipe().subscribe(data => {  
+            this.ord_no = data;
+        });
         this.cart.push(this.addedItem);
     }
     removeFromCart(){
@@ -104,8 +123,9 @@ export class UserOrderComponent implements OnInit {
         }
         this.updatePage();
     }
-    itemToAddCart(name){
-        this.addedItem = name;
+    itemToAddCart(fud:number){
+        alert(fud);
+        this.fud_t = fud;
     }
     setItemDeleted(v){
         this.deletedItem = v;
@@ -115,7 +135,10 @@ export class UserOrderComponent implements OnInit {
         alert("Your customized order has been saved as a combo");
     }
 
-    proceedToCheckout(){} //Saves all the changed attributes
+    proceedToCheckout(){
+        let stat = 'Waiting';
+        this.orderService.changeOrderStatus(stat,this.ord_no);
+    } //Saves all the changed attributes
 
     updatePage(){
         this.restService.getRestaurantMenu(this.rest_id).pipe().subscribe(data => {  

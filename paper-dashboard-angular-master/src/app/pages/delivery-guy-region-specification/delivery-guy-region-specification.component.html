@@ -19,8 +19,8 @@
                   <tbody>
                     <tr  *ngFor="let region of regions" >
                       <td>{{region.REGION_NAME}}</td>
-                      <td><button type="button" class="btn btn-primary" disabled ="{{buttonCondNcheck}}" value="{{region.REGION_NAME}}"  (click)="regionAdd($event,region.REGION_NAME)">+</button></td>
-                      <td><button type="button" class="btn btn-primary" disabled = "{{buttonCondNcheck}}" value="{{region.REGION_NAME}}"  (click)="regionRemove($event,region.REGION_NAME)">-</button></td>
+                      <td><button type="button" class="btn btn-primary" disabled ="checkN(region.REGION_NAME)" value="{{region.REGION_NAME}}"  (click)="regionAdd($event,region.REGION_NAME)">+</button></td>
+                      <td><button type="button" class="btn btn-primary" disabled = "check(region.REGION_NAME)" value="{{region.REGION_NAME}}"  (click)="regionRemove($event,region.REGION_NAME)">-</button></td>
                     </tr>
                   </tbody>
               </table>

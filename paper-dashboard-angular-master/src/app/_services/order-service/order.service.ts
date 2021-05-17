@@ -92,14 +92,7 @@ export class OrderService {
 
   }*/
   
-  createOrder(list : MENU_ITEM[]){
-    return this.http.put<any>(`${environment.apiUrl}/user/orderc`, {list})
-    .pipe(map(user => {
-       
-        
-        return user;
-    }));
-  }
+  
 
   getItemOptions(id){
     return this.http.get<any>(`${environment.apiUrl}/user/item/${id}`)
@@ -134,6 +127,35 @@ export class OrderService {
           
           return user;
       }));
+      }
+
+
+      createOrder(cust_id, rest_id){
+        return this.http.put<any>(`${environment.apiUrl}/user/order/create`,{cust_id, rest_id} )
+        .pipe(map(user => {
+           
+            
+            return user;
+        }));
+      }
+
+      addToOrder(fud_t, ono, opt, count){
+        
+        alert("fud:" +fud_t);
+        return this.http.put<any>(`${environment.apiUrl}/user/order/add/${fud_t}`, {fud_t,ono,opt,count} )
+        .pipe(map(user => {
+           
+            
+            return user;
+        }));
+      }
+      changeOrderStatus(stat,ono){
+        return this.http.post<any>(`${environment.apiUrl}/user/order/update`,{stat, ono} )
+        .pipe(map(user => {
+           
+            
+            return user;
+        }));
       }
 
   }

@@ -51,13 +51,13 @@ export class DeliveryGuyRegionSpecificationComponent implements OnInit{
     }
     check(region){
         let id = this.authService.getCurrentUserId(); 
-        let test = this.delRegions.filter((item)=>item.DELIVERY_GUY_ID ==id); ////
+        let test = this.regions.filter((item)=>item.DELIVERY_GUY_ID ==id); ////
         this.buttonCondcheck = true;
         return (test.findIndex(region) != -1);
     }
     checkN(region){
         let id = this.authService.getCurrentUserId(); 
-        let test = this.delRegions.filter((item)=>item.DELIVERY_GUY_ID ==id);////
+        let test = this.regions.filter((item)=>item.DELIVERY_GUY_ID ==id);////
         this.buttonCondNcheck = true;
         return (test.findIndex(region) == -1);
     }
