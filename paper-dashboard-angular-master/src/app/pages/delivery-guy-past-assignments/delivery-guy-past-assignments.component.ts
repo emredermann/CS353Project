@@ -5,7 +5,6 @@ import { FormBuilder } from '@angular/forms';
 import { OrderService } from 'app/_services/order-service/order.service';
 import { AuthenticationService } from 'app/_services/authentication-service/authentication.service';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap'
-import { DeliveryService } from 'app/_services/delivery-service/delivery.service';
 //type NewType = NgbModal;
 
 @Component({
@@ -15,48 +14,15 @@ import { DeliveryService } from 'app/_services/delivery-service/delivery.service
 })
 
 export class DeliveryGuyPastAssignmentsComponent implements OnInit{
-  [x: string]: any;
     public delGuyInfo: deliveryGuy = {deliveryGuyName: "İhsan Vekil", job: "Delivery Guy", rating: 3.5, joinedOn: "4.3.2020" ,status:"pending"};
     public searchText: string;
     public title = 'Past Delivery Assignments';
     public closeResult = '';
     public orderDetail = [];
-    public assignments = [];
-    public orderReviews = []; /*: userOrder[]= [{
-    
-    customerName: "İnsan Çocuğu",
-    idNo:1,
-    items: ['Quarterpounder Hamburger with fries', 'Coke Zero (35 mL)', 'Total: $35'],
-    date: new Date(),
-    price: 124,
-    restaurantName:"McDonalds",
-    restaurantReview:"Very Good",
-    restaurantRating: 12,
-    delGuyReview: "Very Bad",
-    delGuyRating:4,
-    restaurantResponse:"Test",
-    orderState:"pending"},
-
-    {customerName: "İnsan Çocuğu2",
-    idNo:1,
-    items: ['Quarterpounder Hamburger with fries', 'Coke Zero (35 mL)', 'Total: $35'],
-    date: new Date(),
-    price: 124,
-    restaurantName:"McDonalds",
-    restaurantReview:"Very Good",
-    restaurantRating: 12,
-    delGuyReview: "Very Bad",
-    delGuyRating:4,
-    restaurantResponse:"Test",
-    orderState:"pending"}
-    ];*/
+    public assignments = []; 
     
     constructor( private formBuilder: FormBuilder,private orderService:OrderService, 
-        private authService:AuthenticationService,private modalService: NgbModal,
-        private deliveryService: DeliveryService){
-
-    }
-
+        private authService:AuthenticationService,private modalService: NgbModal){}
     ngOnInit(){ //Database'den çekilecek kısım bu
         this.updatePage();
     }
@@ -96,16 +62,9 @@ export class DeliveryGuyPastAssignmentsComponent implements OnInit{
     });
   }
 
-  getReviews(order_no:number){
-    
-    let id_user = this.authService.getCurrentUserId();
-    this.orderService.getReviews(order_no).pipe().subscribe(data => {  
-        
-        this.orderReviews = data;
-    
-    });
+  getDelGuyReview(order_no:number){
+    //ORDER NO YERINE REVIEW VE RATING GELECEK
   }
-
   
   open(content) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
