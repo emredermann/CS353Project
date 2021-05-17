@@ -93,7 +93,7 @@
                       <td><button type="button" class="btn btn-primary" (click)="open(contentorderdetails)" (click)="getOrderDetails(assign.ORDER_NO)" >See Order Details</button></td>
                       <td>{{assign.ORDERSTATE}}</td>
                       <td>{{assign.RESTAURANTNAME}}</td>
-                      <td><button class="btn btn-primary" (click)="declineAssignment()" disabled = {{clicked}} >Decline</button></td>
+                      <td><button class="btn btn-primary" (click)="declineAssignment()" disabled = {{clicked}} hidden="hidden" >Decline</button></td>
                       <td><button class="btn btn-primary" value="{{assign.ORDER_NO}}" (click)="acceptAssignment($event);"  disabled = {{clicked}}>Accept</button></td>
                     </tr>
                   </tbody>
