@@ -40,14 +40,10 @@ export class UserComboComponent implements OnInit{
                                 {combo_id: 3, comboName: "Açım", itemlist: [{itemId: 1, itemName: "Hamburger", itemOptions: ["Small (90 g.)","Medium (120 g.)", "Large (180 g.)", "King (220 g.)"], itemPrice: 14},
                                             {itemId: 2, itemName: "Cheeseburger", itemOptions: ["Small (90 g.)","Medium (120 g.)", "Large (180 g.)", "King (220 g.)"], itemPrice: 19}], price: 120}];
 
-<<<<<<< HEAD
 
                                             loginForm = new FormGroup({
                                               type : new FormControl('',Validators.required),
                                           });
-=======
-    public options: string[] = ["Acılı"];
->>>>>>> 814798f5743c761a54a19daa2cd475f1821978d1
     public closeResult = '';
     public addedCombo : Combo;
     public deletedCombo : Combo;
