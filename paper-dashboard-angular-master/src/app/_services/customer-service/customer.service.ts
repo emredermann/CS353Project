@@ -13,7 +13,7 @@ export class CustomerService {
     constructor(private http: HttpClient) { }
 
     getUser(id: number){
-        return this.http.get<any>(`${environment.apiUrl}/user/${id}`)//SOR
+        return this.http.get<any>(`${environment.apiUrl}/user/users/${id}`)//SOR
             .pipe(map(user => {
                 return user;
         }));

@@ -5,6 +5,9 @@ import { Restaurant } from './../../_models/restaurant';
 import { MenuItem } from './../../_models/menuItem';
 import { Router } from "@angular/router";
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { CustomerService } from 'app/_services/customer-service/customer.service';
+import { AuthenticationService } from 'app/_services/authentication-service/authentication.service';
+import { RestaurantService } from 'app/_services/restaurant-service/restaurant.service';
 
 @Component({
     selector: 'user-main-cmp',
@@ -15,8 +18,8 @@ import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class UserMainComponent implements OnInit{
     public title = 'List of Restaurants';
     public searchText: string;
-    public customer: PersonalInfo = {fullName: "Doğa Tansel", credits: 125.12, address: "Bilkent"};
-    public restaurants: Restaurant[] = [
+    public customer = [];//: PersonalInfo = {fullName: "Doğa Tansel", credits: 125.12, address: "Bilkent"};
+    public restaurants = []/*: Restaurant[] = [
         {restaurant_id: 1, restaurant_owner: "Ali Veli", 
         restaurantname:'Burger King', owner_id: 1, 
         avg_rating: 3.5, region_name: "Bilkent", 
@@ -52,15 +55,16 @@ export class UserMainComponent implements OnInit{
         avg_rating: 3.5, region_name: "Bilkent", 
         menu: [{itemId: 1, itemName: "Hamburger", itemOptions: ["Small (90 g.)","Medium (120 g.)", "Large (180 g.)", "King (220 g.)"], itemPrice: 14},
             {itemId: 2, itemName: "Cheeseburger", itemOptions: ["Small (90 g.)","Medium (120 g.)", "Large (180 g.)", "King (220 g.)"], itemPrice: 19}]}
-    ];
+    ];*/
 
     public closeResult = '';
 
-    constructor(private modalService: NgbModal, private router: Router){
+    constructor(private modalService: NgbModal, private router: Router,private customerService: CustomerService,
+          private authService:AuthenticationService, private restService:RestaurantService){
     }
 
     ngOnInit(){ //Database'den çekilecek kısım bu
-        
+      this.updatePage();
     }
     // Search text datasını alıyor.
     getCity(e){
@@ -91,7 +95,17 @@ export class UserMainComponent implements OnInit{
         });
     }
 
-    updatePage(){}
+    updatePage(){
+        let id = this.authService.getCurrentUserId();
+        this.customerService.getUser(id).pipe().subscribe(data => {  
+        this.customer = data;
+        
+       });
+       this.restService.getRestaurants().pipe().subscribe(data => {  
+        this.restaurants = data;
+        
+       });
+    }
   
     refreshFilter(){
       //this.updatePage();

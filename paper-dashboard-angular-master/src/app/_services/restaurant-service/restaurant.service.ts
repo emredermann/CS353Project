@@ -20,6 +20,14 @@ export class RestaurantService {
     }));
     
   }
+  getRestaurantMenu(id:number){
+    return  this.http.get<any[]>(`${environment.apiUrl}/user/menu/${id}`)
+    .pipe(map(rest => {
+      
+      
+      return rest;
+    }));
+  }
 
   getOwnerRestaurants(id:number){
     return  this.http.get<Restaurant[]>(`${environment.apiUrl}/owner/restaurant/${id}`)
