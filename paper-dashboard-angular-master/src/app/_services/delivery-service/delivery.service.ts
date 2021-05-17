@@ -28,10 +28,38 @@ export class DeliveryService {
   }
 
   getDeliveryGuy(id: number){
-    return this.http.get<any>(`${environment.apiUrl}/delivery/delGuy${id}`)
+    return this.http.get<any>(`${environment.apiUrl}/delivery/delGuy/${id}`)
             .pipe(map(deliveryGuy => {
                 return deliveryGuy;
         }));
+  }
+  getRegions(){
+    return this.http.get<any>(`${environment.apiUrl}/delivery/regions`)
+      .pipe(map(deliveryGuy => {
+        return deliveryGuy;
+    }));
+  }
+
+  getUserRegion(id){
+    return this.http.get<any>(`${environment.apiUrl}/delivery/regions/${id}`)
+    .pipe(map(deliveryGuy => {
+      return deliveryGuy;
+    }));
+  }
+
+  postRegion({region,id}){
+    return this.http.post<any>(`${environment.apiUrl}/delivery/regions`,{region,id})
+    .pipe(map(deliveryGuy => {
+      return deliveryGuy;
+    }));
+  }
+
+  removeRegion(id,region){
+
+    return this.http.delete<any>(`${environment.apiUrl}/delivery/regions/remove${id}~${region}`)
+      .pipe(map(deliveryGuy => {
+       return deliveryGuy;
+     }));
   }
 
 }

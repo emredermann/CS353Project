@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from 'app/_services/authentication-service/authentication.service';
+import { DeliveryService } from 'app/_services/delivery-service/delivery.service';
 
 interface DeliveryGuyInfo {
     deliveryGuyName: string;
@@ -20,13 +22,30 @@ export class DeliveryGuyRegionSpecificationComponent implements OnInit{
     public searchText: string;
     public title = 'Past Delivery Assignments';
     public selectedRegion:Array<string> = [];
-    public regions  : Array<string> = [];
-    
+    public regions = [];// : Array<string> = [];
+    public delRegions = [];
+    constructor(private deliveryService:DeliveryService,private authService :AuthenticationService){}
+
     ngOnInit(){ //Database'den çekilecek kısım bu
-        this.regions = ["beytepe","bilkent","cankaya","kızılcahamam","karsıyaka",]
+        //this.regions = ["beytepe","bilkent","cankaya","kızılcahamam","karsıyaka",]
+        this.updatePage();
     }   
 
-    
+    updatePage(){
+        let id = this.authService.getCurrentUserId(); 
+        this.deliveryService.getRegions().pipe().subscribe(data => {  
+            
+            this.regions = data;
+            
+         });
+
+         this.deliveryService.getUserRegion(id).subscribe(data => {  
+            
+            this.delRegions = data;
+            
+         });
+
+    }
     getName(){
         return this.delGuyInfo.deliveryGuyName;
     }
@@ -39,13 +58,22 @@ export class DeliveryGuyRegionSpecificationComponent implements OnInit{
     getJoinDate(){
         return this.delGuyInfo.joinedOn;
     }
-    regionAdd(e){
+    regionAdd(e,region){
+        let id =this.authService.getCurrentUserId();
+        this.deliveryService.postRegion({region,id});
+
+        this.updatePage();
         const index = this.selectedRegion.indexOf(e.target.value, 0);
         if (index < 0) {
             this.selectedRegion.push( e.target.value);
         }
     }
-    regionRemove(e){
+    regionRemove(e,region){
+
+        let id =this.authService.getCurrentUserId();
+        this.deliveryService.removeRegion(id,region);
+
+        this.updatePage();
         const index = this.selectedRegion.indexOf(e.target.value, 0);
         if (index > -1) {
             this.selectedRegion.splice(index, 1);
