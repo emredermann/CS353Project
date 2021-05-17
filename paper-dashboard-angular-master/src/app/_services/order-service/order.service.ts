@@ -1,10 +1,18 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { MenuItem } from 'app/_models/menuItem';
 import { Restaurant } from 'app/_models/restaurant';
 import { environment } from 'environments/environment';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+class MENU_ITEM {
+  FOOD_ID: number;
+  FOODNAME: string;
+  PRICE: number;
+  RESTAURANT_ID:number;
+    ISAVAILABLE:boolean;
+}
 @Injectable({
   providedIn: 'root'
 })
@@ -80,4 +88,16 @@ export class OrderService {
     }));
   }
 
+  insertOrder(list:MenuItem[]){
+
+  }
+  
+  createOrder(list : MENU_ITEM[]){
+    return this.http.put<any>(`${environment.apiUrl}/user/orderc`, {list})
+    .pipe(map(user => {
+       
+        
+        return user;
+    }));
+  }
 }

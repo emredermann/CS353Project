@@ -15,9 +15,9 @@ import { AuthenticationService } from 'app/_services/authentication-service/auth
 
 export class OwnerRestaurantEditorComponent implements OnInit{
 
-    public menu: MenuItem[] = [{itemId: 1, itemName: "Hamburger", itemOptions: ["Small (90 g.)","Medium (120 g.)", "Large (180 g.)", "King (220 g.)"], itemPrice: 14},
+    /*public menu: MenuItem[] = [{itemId: 1, itemName: "Hamburger", itemOptions: ["Small (90 g.)","Medium (120 g.)", "Large (180 g.)", "King (220 g.)"], itemPrice: 14},
                         {itemId: 2, itemName: "Cheeseburger", itemOptions: ["Small (90 g.)","Medium (120 g.)", "Large (180 g.)", "King (220 g.)"], itemPrice: 19}];
-
+*/
     public restaurantinfo: restaurantOwner = {name: "Ali Veli", restaurantName: "Burger King", 
                                                     id: 4,branch:"Bilkent" ,address: "ABC" };
     public restaurants = [];
