@@ -48,13 +48,17 @@ async function getReviews(id){
     //console.log(id);
     /*if(id == 111)
         throw "Pat";*/
-    let result = await knex('review').where('review.OWNER_ID',id).join('orders','orders.ORDER_NO','=','review.ORDER_NO')
-    .select('review.ORDER_NO','orders.ORDERSTATE','review.DELIVERYGUYREVIEW','review.RESTAURANTREVIEW','review.DELIVERYGUYRATING','review.RESTAURANTRATING','review.OWNERCOMMENT')
+    let result = await knex('orders').where('review.OWNER_ID',id).join('review','orders.ORDER_NO','=','review.ORDER_NO')
+    //.join('restaurant','restaurant.OWNER_ID','=','review.OWNER_ID')//.groupBy('review.ORDER_NO')
+    .join('restaurant','restaurant.RESTAURANT_ID','=','orders.RESTAURANT_ID').groupBy('restaurant.RESTAURANT_ID')
+    .select('review.ORDER_NO','restaurant.RESTAURANTNAME','orders.ORDERSTATE','review.DELIVERYGUYREVIEW','review.DELIVERYGUYRATING',
+                    'review.RESTAURANTRATING','review.RESTAURANTREVIEW','review.OWNERCOMMENT')
+    .avg({AVG_RATING:'review.RESTAURANTRATING'})
     .then((user)=>{
         
         try{
             //console.log("T");
-            //console.log(user);
+            console.log(user);
             user[0].ORDER_NO;
             return user;
         }
