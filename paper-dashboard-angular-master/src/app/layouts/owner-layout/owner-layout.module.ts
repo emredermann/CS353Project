@@ -15,7 +15,7 @@ import { OwnerMenuItemEditorComponent } from '../../pages/owner-menu-item-editor
     CommonModule,
     RouterModule.forChild(OwnerLayoutRoutes),
     FormsModule,
-    NgbModule
+    NgbModule,
   ],
   declarations: [
     OwnerCommentsComponent,
