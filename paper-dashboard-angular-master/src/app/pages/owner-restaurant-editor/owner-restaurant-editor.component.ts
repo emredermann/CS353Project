@@ -20,21 +20,7 @@ export class OwnerRestaurantEditorComponent implements OnInit{
 
     public restaurantinfo: restaurantOwner = {name: "Ali Veli", restaurantName: "Burger King", 
                                                     id: 4,branch:"Bilkent" ,address: "ABC" };
-    public restaurants = [];/*: Restaurant[] = [{restaurant_id: 1,
-        restaurant_owner: "Ali Veli",
-        restaurantname: "Burger King",
-        owner_id: 1,
-        avg_rating: 3.5,
-        region_name: "Bilkent",
-        menu: this.menu},
-
-        {restaurant_id: 2,
-        restaurant_owner: "Ali Veli",
-        restaurantname: "Pizza Hut",
-        owner_id: 2,
-        avg_rating: 3.5,
-        region_name: "Çankaya",
-        menu: this.menu} ];*/
+    public restaurants = [];
 
     private clicked = false;
     public counter: number;
