@@ -88,7 +88,7 @@ export class UserOrderComponent implements OnInit {
     }
     saveOrderAsCombo() {
         this.cart;                  // ---> send it to the db as combo
-        alert("Your customized order has been saved as a combo");
+      
     }
 
     proceedToCheckout(){} //Saves all the changed attributes
