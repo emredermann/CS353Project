@@ -11,6 +11,7 @@ router.get('/orders/old/:id',getOldDeliveryOrders);
 router.get('/orders/:id',getOrderDetails);
 router.get('/delivery/delGuy/:id',getDeliveryGuy);
 
+router.post('/accept',acceptDelivery)
 module.exports = router;
 
 
@@ -50,3 +51,7 @@ function getDeliveryGuy(req,res,next){
 
 
 
+function acceptDelivery(req,res,nex){
+    deliveryService.acceptDelivery(req.body).then(user => res.json(user))
+    .catch(next);
+}
