@@ -88,11 +88,11 @@ export class OrderService {
     }));
   }
 
-  insertOrder(list:MenuItem[]){
+  insertOrder(list:MENU_ITEM){
 
   }
   
-  createOrder(list : MENU_ITEM[]){
+  createOrder(list : MENU_ITEM){
     return this.http.put<any>(`${environment.apiUrl}/user/orderc`, {list})
     .pipe(map(user => {
        
